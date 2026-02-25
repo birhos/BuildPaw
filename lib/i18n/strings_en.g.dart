@@ -56,6 +56,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final TranslationsBuildModeEn buildMode = TranslationsBuildModeEn.internal(_root);
 	late final TranslationsPwaStrategyEn pwaStrategy = TranslationsPwaStrategyEn.internal(_root);
 	late final TranslationsLanguageEn language = TranslationsLanguageEn.internal(_root);
+	late final TranslationsThemeEn theme = TranslationsThemeEn.internal(_root);
 }
 
 // Path: app
@@ -382,6 +383,24 @@ class TranslationsLanguageEn {
 	String get turkish => 'Türkçe';
 }
 
+// Path: theme
+class TranslationsThemeEn {
+	TranslationsThemeEn.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Theme'
+	String get title => 'Theme';
+
+	/// en: 'Dark'
+	String get dark => 'Dark';
+
+	/// en: 'Light'
+	String get light => 'Light';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -450,6 +469,9 @@ extension on Translations {
 			'language.title' => 'Language',
 			'language.english' => 'English',
 			'language.turkish' => 'Türkçe',
+			'theme.title' => 'Theme',
+			'theme.dark' => 'Dark',
+			'theme.light' => 'Light',
 			_ => null,
 		};
 	}

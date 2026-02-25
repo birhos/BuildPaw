@@ -25,7 +25,7 @@ class IosConfigPanel extends StatelessWidget {
           child: ExpansionTile(
             leading: Icon(
               Icons.apple,
-              color: enabled ? AppColors.info : AppColors.onSurfaceVariant,
+              color: enabled ? AppColors.info : Theme.of(context).colorScheme.onSurfaceVariant,
             ),
             title: Row(
               children: [
@@ -66,7 +66,7 @@ class IosConfigPanel extends StatelessWidget {
                       const Divider(),
                       CheckboxListTile(
                         title: Text(t.platformConfig.codeObfuscation),
-                        subtitle: const Text('--obfuscate', style: _flagStyle),
+                        subtitle: Text('--obfuscate', style: _flagStyle(context)),
                         value: config.obfuscate,
                         dense: true,
                         contentPadding: EdgeInsets.zero,
@@ -74,7 +74,7 @@ class IosConfigPanel extends StatelessWidget {
                       ),
                       CheckboxListTile(
                         title: Text(t.platformConfig.splitDebugInfo),
-                        subtitle: const Text('--split-debug-info=build/symbols', style: _flagStyle),
+                        subtitle: Text('--split-debug-info=build/symbols', style: _flagStyle(context)),
                         value: config.splitDebugInfo,
                         dense: true,
                         contentPadding: EdgeInsets.zero,
@@ -102,7 +102,7 @@ class IosConfigPanel extends StatelessWidget {
                               .map(
                                 (mode) => RadioListTile<BuildMode>(
                                   title: Text(_buildModeLabel(t, mode)),
-                                  subtitle: Text(mode.flag, style: _flagStyle),
+                                  subtitle: Text(mode.flag, style: _flagStyle(context)),
                                   value: mode,
                                   dense: true,
                                   contentPadding: EdgeInsets.zero,
@@ -149,9 +149,9 @@ String _buildModeLabel(Translations t, BuildMode mode) {
   };
 }
 
-const _flagStyle = TextStyle(
+TextStyle _flagStyle(BuildContext context) => TextStyle(
   fontSize: 12,
-  color: AppColors.onSurfaceVariant,
+  color: Theme.of(context).colorScheme.onSurfaceVariant,
   fontFamily: 'monospace',
 );
 
@@ -164,7 +164,7 @@ class _SectionLabel extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-        color: AppColors.primary,
+        color: Theme.of(context).colorScheme.primary,
         fontWeight: FontWeight.w600,
       ),
     );

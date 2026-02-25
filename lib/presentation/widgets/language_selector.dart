@@ -17,9 +17,9 @@ class LanguageSelector extends StatelessWidget {
         final currentLocale = state is LocaleLoaded ? state.locale : AppLocale.en;
         return PopupMenuButton<AppLocale>(
           tooltip: t.language.title,
-          icon: const Icon(
+          icon: Icon(
             Icons.language,
-            color: AppColors.onSurfaceVariant,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
             size: 22,
           ),
           onSelected: (locale) =>

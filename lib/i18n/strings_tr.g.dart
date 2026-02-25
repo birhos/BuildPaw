@@ -55,6 +55,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _TranslationsBuildModeTr buildMode = _TranslationsBuildModeTr._(_root);
 	@override late final _TranslationsPwaStrategyTr pwaStrategy = _TranslationsPwaStrategyTr._(_root);
 	@override late final _TranslationsLanguageTr language = _TranslationsLanguageTr._(_root);
+	@override late final _TranslationsThemeTr theme = _TranslationsThemeTr._(_root);
 }
 
 // Path: app
@@ -261,6 +262,18 @@ class _TranslationsLanguageTr extends TranslationsLanguageEn {
 	@override String get turkish => 'Türkçe';
 }
 
+// Path: theme
+class _TranslationsThemeTr extends TranslationsThemeEn {
+	_TranslationsThemeTr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Tema';
+	@override String get dark => 'Koyu';
+	@override String get light => 'Açık';
+}
+
 /// The flat map containing all translations for locale <tr>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -329,6 +342,9 @@ extension on TranslationsTr {
 			'language.title' => 'Dil',
 			'language.english' => 'English',
 			'language.turkish' => 'Türkçe',
+			'theme.title' => 'Tema',
+			'theme.dark' => 'Koyu',
+			'theme.light' => 'Açık',
 			_ => null,
 		};
 	}

@@ -28,4 +28,18 @@ abstract final class AppColors {
   static const Color terminalText = Color(0xFFB8B8CC);
   static const Color terminalError = Color(0xFFEF4444);
   static const Color terminalSuccess = Color(0xFF22C55E);
+
+  // Light theme
+  static const Color lightSurface = Color(0xFFF5F5F7);
+  static const Color lightSurfaceContainer = Color(0xFFEBEBEF);
+  static const Color lightSurfaceContainerHigh = Color(0xFFE0E0E6);
+  static const Color lightSurfaceContainerHighest = Color(0xFFD4D4DC);
+
+  static const Color lightBackground = Color(0xFFFFFFFF);
+
+  static const Color lightOnSurface = Color(0xFF1E1E2E);
+  static const Color lightOnSurfaceVariant = Color(0xFF5C5C70);
+
+  static const Color lightOutline = Color(0xFFC4C4D0);
+  static const Color lightOutlineVariant = Color(0xFFE8E8F0);
 }

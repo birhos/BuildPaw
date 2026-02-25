@@ -7,6 +7,7 @@ import '../../application/project/project_state.dart';
 import '../../core/theme/app_colors.dart';
 import '../../i18n/strings.g.dart';
 import 'language_selector.dart';
+import 'theme_selector.dart';
 
 class ProjectSelectorWidget extends StatelessWidget {
   const ProjectSelectorWidget({super.key});
@@ -35,10 +36,11 @@ class ProjectSelectorWidget extends StatelessWidget {
                   t.projectSelector.title,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: AppColors.onSurface,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 const Spacer(),
+                const ThemeSelector(),
                 const LanguageSelector(),
                 if (isLoading)
                   const SizedBox(
@@ -57,7 +59,7 @@ class ProjectSelectorWidget extends StatelessWidget {
                     controller: TextEditingController(text: path),
                     decoration: InputDecoration(
                       hintText: t.projectSelector.hint,
-                      prefixIcon: const Icon(Icons.folder_open, color: AppColors.onSurfaceVariant),
+                      prefixIcon: Icon(Icons.folder_open, color: Theme.of(context).colorScheme.onSurfaceVariant),
                       errorText: errorMessage,
                     ),
                   ),

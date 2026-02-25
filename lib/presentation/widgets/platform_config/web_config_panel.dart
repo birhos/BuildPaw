@@ -25,7 +25,7 @@ class WebConfigPanel extends StatelessWidget {
           child: ExpansionTile(
             leading: Icon(
               Icons.language,
-              color: enabled ? AppColors.primaryLight : AppColors.onSurfaceVariant,
+              color: enabled ? AppColors.primaryLight : Theme.of(context).colorScheme.onSurfaceVariant,
             ),
             title: Row(
               children: [
@@ -64,7 +64,7 @@ class WebConfigPanel extends StatelessWidget {
                       const Divider(),
                       CheckboxListTile(
                         title: Text(t.platformConfig.noTreeShakeIcons),
-                        subtitle: const Text('--no-tree-shake-icons', style: _flagStyle),
+                        subtitle: Text('--no-tree-shake-icons', style: _flagStyle(context)),
                         value: config.noTreeShakeIcons,
                         dense: true,
                         contentPadding: EdgeInsets.zero,
@@ -92,7 +92,7 @@ class WebConfigPanel extends StatelessWidget {
                               .map(
                                 (mode) => RadioListTile<BuildMode>(
                                   title: Text(_buildModeLabel(t, mode)),
-                                  subtitle: Text(mode.flag, style: _flagStyle),
+                                  subtitle: Text(mode.flag, style: _flagStyle(context)),
                                   value: mode,
                                   dense: true,
                                   contentPadding: EdgeInsets.zero,
@@ -139,9 +139,9 @@ String _buildModeLabel(Translations t, BuildMode mode) {
   };
 }
 
-const _flagStyle = TextStyle(
+TextStyle _flagStyle(BuildContext context) => TextStyle(
   fontSize: 12,
-  color: AppColors.onSurfaceVariant,
+  color: Theme.of(context).colorScheme.onSurfaceVariant,
   fontFamily: 'monospace',
 );
 
@@ -154,7 +154,7 @@ class _SectionLabel extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-        color: AppColors.primary,
+        color: Theme.of(context).colorScheme.primary,
         fontWeight: FontWeight.w600,
       ),
     );

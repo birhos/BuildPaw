@@ -15,8 +15,7 @@ class AndroidConfigPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BuildConfigCubit, BuildConfigState>(
       builder: (context, state) {
-        final enabled =
-            state.enabledPlatforms[BuildPlatform.android] ?? false;
+        final enabled = state.enabledPlatforms[BuildPlatform.android] ?? false;
         final config = state.androidConfig;
         final cubit = context.read<BuildConfigCubit>();
 
@@ -32,8 +31,7 @@ class AndroidConfigPanel extends StatelessWidget {
                 const Spacer(),
                 Switch(
                   value: enabled,
-                  onChanged: (v) =>
-                      cubit.togglePlatform(BuildPlatform.android, v),
+                  onChanged: (v) => cubit.togglePlatform(BuildPlatform.android, v),
                 ),
               ],
             ),
@@ -41,17 +39,15 @@ class AndroidConfigPanel extends StatelessWidget {
             children: [
               if (enabled)
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _SectionLabel('Output Type'),
+                      const _SectionLabel('Output Type'),
                       const SizedBox(height: 4),
                       RadioGroup<AndroidOutputType>(
                         groupValue: config.outputType,
-                        onChanged: (v) => cubit.updateAndroidConfig(
-                            config.copyWith(outputType: v)),
+                        onChanged: (v) => cubit.updateAndroidConfig(config.copyWith(outputType: v)),
                         child: Column(
                           children: AndroidOutputType.values
                               .map(
@@ -68,45 +64,37 @@ class AndroidConfigPanel extends StatelessWidget {
                       const Divider(),
                       CheckboxListTile(
                         title: const Text('Code Obfuscation'),
-                        subtitle:
-                            const Text('--obfuscate', style: _flagStyle),
+                        subtitle: const Text('--obfuscate', style: _flagStyle),
                         value: config.obfuscate,
                         dense: true,
                         contentPadding: EdgeInsets.zero,
-                        onChanged: (v) => cubit.updateAndroidConfig(
-                            config.copyWith(obfuscate: v)),
+                        onChanged: (v) => cubit.updateAndroidConfig(config.copyWith(obfuscate: v)),
                       ),
                       CheckboxListTile(
                         title: const Text('Split Debug Info'),
-                        subtitle: const Text(
-                            '--split-debug-info=build/symbols',
-                            style: _flagStyle),
+                        subtitle: const Text('--split-debug-info=build/symbols', style: _flagStyle),
                         value: config.splitDebugInfo,
                         dense: true,
                         contentPadding: EdgeInsets.zero,
-                        onChanged: (v) => cubit.updateAndroidConfig(
-                            config.copyWith(splitDebugInfo: v)),
+                        onChanged: (v) => cubit.updateAndroidConfig(config.copyWith(splitDebugInfo: v)),
                       ),
                       const Divider(),
-                      _SectionLabel('Flavor'),
+                      const _SectionLabel('Flavor'),
                       const SizedBox(height: 4),
                       TextField(
                         decoration: const InputDecoration(
                           hintText: 'e.g. dev, staging, prod',
                           isDense: true,
                         ),
-                        controller:
-                            TextEditingController(text: config.flavor),
-                        onChanged: (v) => cubit.updateAndroidConfig(
-                            config.copyWith(flavor: v)),
+                        controller: TextEditingController(text: config.flavor),
+                        onChanged: (v) => cubit.updateAndroidConfig(config.copyWith(flavor: v)),
                       ),
                       const SizedBox(height: 12),
-                      _SectionLabel('Run Mode'),
+                      const _SectionLabel('Run Mode'),
                       const SizedBox(height: 4),
                       RadioGroup<BuildMode>(
                         groupValue: config.buildMode,
-                        onChanged: (v) => cubit.updateAndroidConfig(
-                            config.copyWith(buildMode: v)),
+                        onChanged: (v) => cubit.updateAndroidConfig(config.copyWith(buildMode: v)),
                         child: Column(
                           children: BuildMode.values
                               .map(
@@ -122,17 +110,15 @@ class AndroidConfigPanel extends StatelessWidget {
                         ),
                       ),
                       const Divider(),
-                      _SectionLabel('Target'),
+                      const _SectionLabel('Target'),
                       const SizedBox(height: 4),
                       TextField(
                         decoration: const InputDecoration(
                           hintText: 'lib/main.dart',
                           isDense: true,
                         ),
-                        controller:
-                            TextEditingController(text: config.target),
-                        onChanged: (v) => cubit.updateAndroidConfig(
-                            config.copyWith(target: v)),
+                        controller: TextEditingController(text: config.target),
+                        onChanged: (v) => cubit.updateAndroidConfig(config.copyWith(target: v)),
                       ),
                       const SizedBox(height: 12),
                     ],
@@ -153,17 +139,17 @@ const _flagStyle = TextStyle(
 );
 
 class _SectionLabel extends StatelessWidget {
-  final String text;
   const _SectionLabel(this.text);
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-            color: AppColors.primary,
-            fontWeight: FontWeight.w600,
-          ),
+        color: AppColors.primary,
+        fontWeight: FontWeight.w600,
+      ),
     );
   }
 }

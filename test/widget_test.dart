@@ -1,6 +1,5 @@
-import 'package:flutter_test/flutter_test.dart';
-
 import 'package:buildpaw/app.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   testWidgets('BuildPaw app renders', (WidgetTester tester) async {

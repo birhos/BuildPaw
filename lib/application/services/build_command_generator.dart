@@ -7,15 +7,14 @@ import 'package:buildpaw/domain/models/ios_build_config.dart';
 import 'package:buildpaw/domain/models/web_build_config.dart';
 
 class BuildCommand {
-  final String executable;
-  final List<String> arguments;
-  final String displayName;
-
   const BuildCommand({
     required this.executable,
     required this.arguments,
     required this.displayName,
   });
+  final String executable;
+  final List<String> arguments;
+  final String displayName;
 
   String get fullCommand => '$executable ${arguments.join(' ')}';
 }
@@ -30,26 +29,32 @@ class BuildCommandGenerator {
     final commands = <BuildCommand>[];
 
     if (config.outputType == AndroidOutputType.both) {
-      commands.add(_buildAndroidCommand(
-        buildType: 'apk',
-        config: config,
-        useFvm: useFvm,
-        displayName: 'Android APK',
-      ));
-      commands.add(_buildAndroidCommand(
-        buildType: 'appbundle',
-        config: config,
-        useFvm: useFvm,
-        displayName: 'Android AAB',
-      ));
+      commands
+        ..add(
+          _buildAndroidCommand(
+            buildType: 'apk',
+            config: config,
+            useFvm: useFvm,
+            displayName: 'Android APK',
+          ),
+        )
+        ..add(
+          _buildAndroidCommand(
+            buildType: 'appbundle',
+            config: config,
+            useFvm: useFvm,
+            displayName: 'Android AAB',
+          ),
+        );
     } else {
-      commands.add(_buildAndroidCommand(
-        buildType: config.outputType.command,
-        config: config,
-        useFvm: useFvm,
-        displayName:
-            'Android ${config.outputType == AndroidOutputType.apk ? 'APK' : 'AAB'}',
-      ));
+      commands.add(
+        _buildAndroidCommand(
+          buildType: config.outputType.command,
+          config: config,
+          useFvm: useFvm,
+          displayName: 'Android ${config.outputType == AndroidOutputType.apk ? 'APK' : 'AAB'}',
+        ),
+      );
     }
 
     return commands;
@@ -113,9 +118,9 @@ class BuildCommandGenerator {
   }) {
     final args = <String>[];
     if (useFvm) args.add('flutter');
-    args.addAll(['build', 'web']);
-
-    args.add(config.buildMode.flag);
+    args
+      ..addAll(['build', 'web'])
+      ..add(config.buildMode.flag);
 
     if (config.pwaStrategy != PwaStrategy.defaultStrategy) {
       args.add('--pwa-strategy=${config.pwaStrategy.value}');
@@ -129,8 +134,7 @@ class BuildCommandGenerator {
       args.addAll(['--flavor', config.flavor]);
     }
 
-    if (config.target != AppConstants.defaultTarget &&
-        config.target.isNotEmpty) {
+    if (config.target != AppConstants.defaultTarget && config.target.isNotEmpty) {
       args.addAll(['--target', config.target]);
     }
 

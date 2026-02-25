@@ -1,9 +1,8 @@
 import 'process_service.dart';
 
 class GitService {
-  final ProcessService _processService;
-
   GitService(this._processService);
+  final ProcessService _processService;
 
   Future<String> getCurrentBranch(String projectPath) async {
     try {

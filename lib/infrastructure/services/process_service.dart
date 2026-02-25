@@ -3,10 +3,9 @@ import 'dart:convert';
 import 'dart:io';
 
 class ProcessResult {
+  const ProcessResult({required this.exitCode, required this.logs});
   final int exitCode;
   final List<String> logs;
-
-  const ProcessResult({required this.exitCode, required this.logs});
 
   bool get success => exitCode == 0;
 }
@@ -38,26 +37,20 @@ class ProcessService {
     final stdoutCompleter = Completer<void>();
     final stderrCompleter = Completer<void>();
 
-    _currentProcess!.stdout
-        .transform(utf8.decoder)
-        .transform(const LineSplitter())
-        .listen(
+    _currentProcess!.stdout.transform(utf8.decoder).transform(const LineSplitter()).listen(
       (line) {
         logs.add(line);
         onOutput(line, false);
       },
-      onDone: () => stdoutCompleter.complete(),
+      onDone: stdoutCompleter.complete,
     );
 
-    _currentProcess!.stderr
-        .transform(utf8.decoder)
-        .transform(const LineSplitter())
-        .listen(
+    _currentProcess!.stderr.transform(utf8.decoder).transform(const LineSplitter()).listen(
       (line) {
         logs.add(line);
         onOutput(line, true);
       },
-      onDone: () => stderrCompleter.complete(),
+      onDone: stderrCompleter.complete,
     );
 
     final exitCode = await _currentProcess!.exitCode;
@@ -84,7 +77,7 @@ class ProcessService {
   }
 
   void cancel() {
-    _currentProcess?.kill(ProcessSignal.sigterm);
+    _currentProcess?.kill();
     _currentProcess = null;
   }
 

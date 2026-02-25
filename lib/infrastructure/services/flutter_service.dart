@@ -3,9 +3,8 @@ import 'dart:io';
 import 'process_service.dart';
 
 class FlutterService {
-  final ProcessService _processService;
-
   FlutterService(this._processService);
+  final ProcessService _processService;
 
   /// Returns the flutter executable, preferring FVM if detected.
   String flutterExecutable(String projectPath) {
@@ -77,7 +76,11 @@ class FlutterService {
       final exec = flutterExecutable(projectPath);
       final prefix = flutterPrefix(projectPath);
 
-      final result = await _processService.runAndCapture(executable: exec, arguments: [...prefix, '--version', '--machine'], workingDirectory: projectPath);
+      final result = await _processService.runAndCapture(
+        executable: exec,
+        arguments: [...prefix, '--version', '--machine'],
+        workingDirectory: projectPath,
+      );
 
       final versionMatch = RegExp(r'"frameworkVersion"\s*:\s*"([^"]+)"').firstMatch(result);
       if (versionMatch != null) {
@@ -85,7 +88,11 @@ class FlutterService {
       }
 
       // Fallback: parse non-machine output
-      final fallback = await _processService.runAndCapture(executable: exec, arguments: [...prefix, '--version'], workingDirectory: projectPath);
+      final fallback = await _processService.runAndCapture(
+        executable: exec,
+        arguments: [...prefix, '--version'],
+        workingDirectory: projectPath,
+      );
       final match = RegExp(r'Flutter\s+(\S+)').firstMatch(fallback);
       return match?.group(1) ?? 'unknown';
     } catch (_) {
@@ -98,7 +105,11 @@ class FlutterService {
       final exec = dartExecutable(projectPath);
       final prefix = dartPrefix(projectPath);
 
-      final result = await _processService.runAndCapture(executable: exec, arguments: [...prefix, '--version'], workingDirectory: projectPath);
+      final result = await _processService.runAndCapture(
+        executable: exec,
+        arguments: [...prefix, '--version'],
+        workingDirectory: projectPath,
+      );
       final match = RegExp(r'Dart SDK version:\s*(\S+)').firstMatch(result);
       return match?.group(1) ?? 'unknown';
     } catch (_) {

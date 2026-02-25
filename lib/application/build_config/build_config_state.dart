@@ -5,12 +5,7 @@ import '../../domain/models/android_build_config.dart';
 import '../../domain/models/ios_build_config.dart';
 import '../../domain/models/web_build_config.dart';
 
-class BuildConfigState extends Equatable {
-  final Map<BuildPlatform, bool> enabledPlatforms;
-  final AndroidBuildConfig androidConfig;
-  final IosBuildConfig iosConfig;
-  final WebBuildConfig webConfig;
-
+final class BuildConfigState extends Equatable {
   const BuildConfigState({
     this.enabledPlatforms = const {
       BuildPlatform.android: false,
@@ -21,14 +16,14 @@ class BuildConfigState extends Equatable {
     this.iosConfig = const IosBuildConfig(),
     this.webConfig = const WebBuildConfig(),
   });
+  final Map<BuildPlatform, bool> enabledPlatforms;
+  final AndroidBuildConfig androidConfig;
+  final IosBuildConfig iosConfig;
+  final WebBuildConfig webConfig;
 
-  bool get hasEnabledPlatform =>
-      enabledPlatforms.values.any((enabled) => enabled);
+  bool get hasEnabledPlatform => enabledPlatforms.values.any((enabled) => enabled);
 
-  Set<BuildPlatform> get activePlatforms => enabledPlatforms.entries
-      .where((e) => e.value)
-      .map((e) => e.key)
-      .toSet();
+  Set<BuildPlatform> get activePlatforms => enabledPlatforms.entries.where((e) => e.value).map((e) => e.key).toSet();
 
   BuildConfigState copyWith({
     Map<BuildPlatform, bool>? enabledPlatforms,
@@ -46,9 +41,9 @@ class BuildConfigState extends Equatable {
 
   @override
   List<Object?> get props => [
-        enabledPlatforms,
-        androidConfig,
-        iosConfig,
-        webConfig,
-      ];
+    enabledPlatforms,
+    androidConfig,
+    iosConfig,
+    webConfig,
+  ];
 }

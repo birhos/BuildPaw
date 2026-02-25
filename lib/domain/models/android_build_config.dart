@@ -4,13 +4,6 @@ import '../enums/android_output_type.dart';
 import '../enums/build_mode.dart';
 
 class AndroidBuildConfig extends Equatable {
-  final AndroidOutputType outputType;
-  final bool obfuscate;
-  final bool splitDebugInfo;
-  final String flavor;
-  final BuildMode buildMode;
-  final String target;
-
   const AndroidBuildConfig({
     this.outputType = AndroidOutputType.apk,
     this.obfuscate = false,
@@ -19,6 +12,23 @@ class AndroidBuildConfig extends Equatable {
     this.buildMode = BuildMode.release,
     this.target = 'lib/main.dart',
   });
+
+  factory AndroidBuildConfig.fromJson(Map<String, dynamic> json) {
+    return AndroidBuildConfig(
+      outputType: AndroidOutputType.values.byName(json['outputType'] as String? ?? AndroidOutputType.apk.name),
+      obfuscate: json['obfuscate'] as bool? ?? false,
+      splitDebugInfo: json['splitDebugInfo'] as bool? ?? false,
+      flavor: json['flavor'] as String? ?? '',
+      buildMode: BuildMode.values.byName(json['buildMode'] as String? ?? BuildMode.release.name),
+      target: json['target'] as String? ?? 'lib/main.dart',
+    );
+  }
+  final AndroidOutputType outputType;
+  final bool obfuscate;
+  final bool splitDebugInfo;
+  final String flavor;
+  final BuildMode buildMode;
+  final String target;
 
   AndroidBuildConfig copyWith({
     AndroidOutputType? outputType,
@@ -39,34 +49,21 @@ class AndroidBuildConfig extends Equatable {
   }
 
   Map<String, dynamic> toJson() => {
-        'outputType': outputType.name,
-        'obfuscate': obfuscate,
-        'splitDebugInfo': splitDebugInfo,
-        'flavor': flavor,
-        'buildMode': buildMode.name,
-        'target': target,
-      };
-
-  factory AndroidBuildConfig.fromJson(Map<String, dynamic> json) {
-    return AndroidBuildConfig(
-      outputType: AndroidOutputType.values.byName(
-          json['outputType'] as String? ?? AndroidOutputType.apk.name),
-      obfuscate: json['obfuscate'] as bool? ?? false,
-      splitDebugInfo: json['splitDebugInfo'] as bool? ?? false,
-      flavor: json['flavor'] as String? ?? '',
-      buildMode: BuildMode.values
-          .byName(json['buildMode'] as String? ?? BuildMode.release.name),
-      target: json['target'] as String? ?? 'lib/main.dart',
-    );
-  }
+    'outputType': outputType.name,
+    'obfuscate': obfuscate,
+    'splitDebugInfo': splitDebugInfo,
+    'flavor': flavor,
+    'buildMode': buildMode.name,
+    'target': target,
+  };
 
   @override
   List<Object?> get props => [
-        outputType,
-        obfuscate,
-        splitDebugInfo,
-        flavor,
-        buildMode,
-        target,
-      ];
+    outputType,
+    obfuscate,
+    splitDebugInfo,
+    flavor,
+    buildMode,
+    target,
+  ];
 }

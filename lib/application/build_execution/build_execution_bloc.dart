@@ -2,32 +2,30 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/enums/build_platform.dart';
-import '../../domain/models/build_result.dart';
 import '../../application/services/artifact_manager.dart';
 import '../../application/services/build_command_generator.dart';
+import '../../domain/enums/build_platform.dart';
+import '../../domain/models/build_result.dart';
 import '../../infrastructure/services/process_service.dart';
 import 'build_execution_event.dart';
 import 'build_execution_state.dart';
 
-class BuildExecutionBloc
-    extends Bloc<BuildExecutionEvent, BuildExecutionState> {
-  final ProcessService _processService;
-  final BuildCommandGenerator _commandGenerator;
-  final ArtifactManager _artifactManager;
-
+final class BuildExecutionBloc extends Bloc<BuildExecutionEvent, BuildExecutionState> {
   BuildExecutionBloc({
     required ProcessService processService,
     required BuildCommandGenerator commandGenerator,
     required ArtifactManager artifactManager,
-  })  : _processService = processService,
-        _commandGenerator = commandGenerator,
-        _artifactManager = artifactManager,
-        super(const BuildIdle()) {
+  }) : _processService = processService,
+       _commandGenerator = commandGenerator,
+       _artifactManager = artifactManager,
+       super(const BuildIdle()) {
     on<BuildStarted>(_onBuildStarted);
     on<BuildLogReceived>(_onBuildLogReceived);
     on<BuildCancelled>(_onBuildCancelled);
   }
+  final ProcessService _processService;
+  final BuildCommandGenerator _commandGenerator;
+  final ArtifactManager _artifactManager;
 
   bool _isCancelled = false;
 
@@ -41,30 +39,33 @@ class BuildExecutionBloc
 
     for (final platform in event.platforms) {
       final commands = switch (platform) {
-        BuildPlatform.android => event.androidConfig != null
-            ? _commandGenerator
-                .generateAndroid(
-                  config: event.androidConfig!,
-                  useFvm: event.useFvm,
-                )
-                .map((c) => MapEntry(platform, c))
-            : <MapEntry<BuildPlatform, BuildCommand>>[],
-        BuildPlatform.ios => event.iosConfig != null
-            ? _commandGenerator
-                .generateIos(
-                  config: event.iosConfig!,
-                  useFvm: event.useFvm,
-                )
-                .map((c) => MapEntry(platform, c))
-            : <MapEntry<BuildPlatform, BuildCommand>>[],
-        BuildPlatform.web => event.webConfig != null
-            ? _commandGenerator
-                .generateWeb(
-                  config: event.webConfig!,
-                  useFvm: event.useFvm,
-                )
-                .map((c) => MapEntry(platform, c))
-            : <MapEntry<BuildPlatform, BuildCommand>>[],
+        BuildPlatform.android =>
+          event.androidConfig != null
+              ? _commandGenerator
+                    .generateAndroid(
+                      config: event.androidConfig!,
+                      useFvm: event.useFvm,
+                    )
+                    .map((c) => MapEntry(platform, c))
+              : <MapEntry<BuildPlatform, BuildCommand>>[],
+        BuildPlatform.ios =>
+          event.iosConfig != null
+              ? _commandGenerator
+                    .generateIos(
+                      config: event.iosConfig!,
+                      useFvm: event.useFvm,
+                    )
+                    .map((c) => MapEntry(platform, c))
+              : <MapEntry<BuildPlatform, BuildCommand>>[],
+        BuildPlatform.web =>
+          event.webConfig != null
+              ? _commandGenerator
+                    .generateWeb(
+                      config: event.webConfig!,
+                      useFvm: event.useFvm,
+                    )
+                    .map((c) => MapEntry(platform, c))
+              : <MapEntry<BuildPlatform, BuildCommand>>[],
       };
       allCommands.addAll(commands);
     }
@@ -79,17 +80,18 @@ class BuildExecutionBloc
     var completedCount = 0;
     final totalCount = allCommands.length;
 
-    emit(BuildRunning(
-      logs: logs,
-      totalCount: totalCount,
-    ));
+    emit(
+      BuildRunning(
+        logs: logs,
+        totalCount: totalCount,
+      ),
+    );
 
     for (final entry in allCommands) {
       if (_isCancelled) {
         logs = [
           ...logs,
-          const LogEntry(
-              text: '\n⚠ Build cancelled by user.', isError: true),
+          const LogEntry(text: '\n⚠ Build cancelled by user.', isError: true),
         ];
         emit(BuildError(error: 'Build cancelled.', logs: logs));
         return;
@@ -107,12 +109,14 @@ class BuildExecutionBloc
         LogEntry(text: '> ${command.fullCommand}'),
       ];
 
-      emit(BuildRunning(
-        logs: logs,
-        currentPlatform: platform,
-        completedCount: completedCount,
-        totalCount: totalCount,
-      ));
+      emit(
+        BuildRunning(
+          logs: logs,
+          currentPlatform: platform,
+          completedCount: completedCount,
+          totalCount: totalCount,
+        ),
+      );
 
       final stopwatch = Stopwatch()..start();
 
@@ -131,12 +135,14 @@ class BuildExecutionBloc
         logs = List.from((state as BuildRunning).logs);
       }
 
-      results.add(BuildResult(
-        platform: platform,
-        success: result.success,
-        duration: stopwatch.elapsed,
-        logs: result.logs,
-      ));
+      results.add(
+        BuildResult(
+          platform: platform,
+          success: result.success,
+          duration: stopwatch.elapsed,
+          logs: result.logs,
+        ),
+      );
 
       completedCount++;
 
@@ -144,32 +150,34 @@ class BuildExecutionBloc
         logs = [
           ...logs,
           LogEntry(
-            text:
-                '\n✗ ${command.displayName} failed (exit code: ${result.exitCode})',
+            text: '\n✗ ${command.displayName} failed (exit code: ${result.exitCode})',
             isError: true,
           ),
         ];
-        emit(BuildError(
-          error: '${command.displayName} build failed.',
-          logs: logs,
-        ));
+        emit(
+          BuildError(
+            error: '${command.displayName} build failed.',
+            logs: logs,
+          ),
+        );
         return;
       }
 
       logs = [
         ...logs,
         LogEntry(
-          text:
-              '\n✓ ${command.displayName} completed in ${_formatDuration(stopwatch.elapsed)}',
+          text: '\n✓ ${command.displayName} completed in ${_formatDuration(stopwatch.elapsed)}',
         ),
       ];
 
-      emit(BuildRunning(
-        logs: logs,
-        currentPlatform: platform,
-        completedCount: completedCount,
-        totalCount: totalCount,
-      ));
+      emit(
+        BuildRunning(
+          logs: logs,
+          currentPlatform: platform,
+          completedCount: completedCount,
+          totalCount: totalCount,
+        ),
+      );
     }
 
     // Collect artifacts
@@ -196,22 +204,25 @@ class BuildExecutionBloc
         const LogEntry(text: '\n🐾 All builds completed successfully!'),
       ];
 
-      emit(BuildSuccess(
-        results: results,
-        outputPath: outputPath,
-        logs: logs,
-      ));
+      emit(
+        BuildSuccess(
+          results: results,
+          outputPath: outputPath,
+          logs: logs,
+        ),
+      );
     } catch (e) {
       logs = [
         ...logs,
-        LogEntry(text: 'Warning: Failed to collect artifacts: $e',
-            isError: true),
+        LogEntry(text: 'Warning: Failed to collect artifacts: $e', isError: true),
       ];
-      emit(BuildSuccess(
-        results: results,
-        outputPath: '',
-        logs: logs,
-      ));
+      emit(
+        BuildSuccess(
+          results: results,
+          outputPath: '',
+          logs: logs,
+        ),
+      );
     }
   }
 

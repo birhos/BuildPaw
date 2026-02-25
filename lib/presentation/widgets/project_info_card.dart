@@ -24,7 +24,10 @@ class ProjectInfoCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text('Project Info', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+                    Text(
+                      'Project Info',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+                    ),
                     const Spacer(),
                     IconButton(
                       icon: const Icon(Icons.refresh, size: 18),
@@ -43,9 +46,18 @@ class ProjectInfoCard extends StatelessWidget {
                     _InfoChip(icon: Icons.code, label: info.name, color: AppColors.primary),
                     _InfoChip(icon: Icons.tag, label: 'v${info.version}', color: AppColors.warning),
                     _InfoChip(icon: Icons.account_tree, label: info.branch, color: AppColors.info),
-                    if (info.latestTag != null) _InfoChip(icon: Icons.label_outline, label: info.latestTag!, color: AppColors.onSurface),
-                    _InfoChip(icon: Icons.flutter_dash, label: 'Flutter ${info.flutterVersion}', color: AppColors.primaryLight),
-                    _InfoChip(icon: Icons.diamond_outlined, label: 'Dart ${info.dartVersion}', color: AppColors.success),
+                    if (info.latestTag != null)
+                      _InfoChip(icon: Icons.label_outline, label: info.latestTag!, color: AppColors.onSurface),
+                    _InfoChip(
+                      icon: Icons.flutter_dash,
+                      label: 'Flutter ${info.flutterVersion}',
+                      color: AppColors.primaryLight,
+                    ),
+                    _InfoChip(
+                      icon: Icons.diamond_outlined,
+                      label: 'Dart ${info.dartVersion}',
+                      color: AppColors.success,
+                    ),
                     _FvmChip(info: info),
                   ],
                 ),
@@ -59,11 +71,10 @@ class ProjectInfoCard extends StatelessWidget {
 }
 
 class _InfoChip extends StatelessWidget {
+  const _InfoChip({required this.icon, required this.label, required this.color});
   final IconData icon;
   final String label;
   final Color color;
-
-  const _InfoChip({required this.icon, required this.label, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -90,9 +101,8 @@ class _InfoChip extends StatelessWidget {
 }
 
 class _FvmChip extends StatelessWidget {
-  final ProjectInfo info;
-
   const _FvmChip({required this.info});
+  final ProjectInfo info;
 
   @override
   Widget build(BuildContext context) {

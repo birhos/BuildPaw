@@ -14,13 +14,12 @@ class ProjectSelectorWidget extends StatelessWidget {
     return BlocBuilder<ProjectCubit, ProjectState>(
       builder: (context, state) {
         final path = switch (state) {
-          ProjectLoaded s => s.info.path,
+          final ProjectLoaded s => s.info.path,
           _ => '',
         };
 
         final isLoading = state is ProjectLoading;
-        final errorMessage =
-            state is ProjectError ? state.message : null;
+        final errorMessage = state is ProjectError ? state.message : null;
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,9 +31,9 @@ class ProjectSelectorWidget extends StatelessWidget {
                 Text(
                   'BuildPaw',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.onSurface,
-                      ),
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.onSurface,
+                  ),
                 ),
                 const Spacer(),
                 if (isLoading)
@@ -54,8 +53,7 @@ class ProjectSelectorWidget extends StatelessWidget {
                     controller: TextEditingController(text: path),
                     decoration: InputDecoration(
                       hintText: 'Select a Flutter project directory...',
-                      prefixIcon: const Icon(Icons.folder_open,
-                          color: AppColors.onSurfaceVariant),
+                      prefixIcon: const Icon(Icons.folder_open, color: AppColors.onSurfaceVariant),
                       errorText: errorMessage,
                     ),
                   ),
@@ -79,7 +77,7 @@ class ProjectSelectorWidget extends StatelessWidget {
       dialogTitle: 'Select Flutter Project',
     );
     if (result != null && context.mounted) {
-      context.read<ProjectCubit>().selectProject(result);
+      await context.read<ProjectCubit>().selectProject(result);
     }
   }
 }

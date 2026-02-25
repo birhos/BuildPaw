@@ -10,25 +10,23 @@ sealed class BuildExecutionState extends Equatable {
   List<Object?> get props => [];
 }
 
-class BuildIdle extends BuildExecutionState {
+final class BuildIdle extends BuildExecutionState {
   const BuildIdle();
 }
 
-class BuildRunning extends BuildExecutionState {
-  final List<LogEntry> logs;
-  final BuildPlatform? currentPlatform;
-  final int completedCount;
-  final int totalCount;
-
+final class BuildRunning extends BuildExecutionState {
   const BuildRunning({
     this.logs = const [],
     this.currentPlatform,
     this.completedCount = 0,
     this.totalCount = 0,
   });
+  final List<LogEntry> logs;
+  final BuildPlatform? currentPlatform;
+  final int completedCount;
+  final int totalCount;
 
-  double get progress =>
-      totalCount > 0 ? completedCount / totalCount : 0;
+  double get progress => totalCount > 0 ? completedCount / totalCount : 0;
 
   BuildRunning copyWith({
     List<LogEntry>? logs,
@@ -49,40 +47,37 @@ class BuildRunning extends BuildExecutionState {
 }
 
 class BuildSuccess extends BuildExecutionState {
-  final List<BuildResult> results;
-  final String outputPath;
-  final List<LogEntry> logs;
-
   const BuildSuccess({
     required this.results,
     required this.outputPath,
     this.logs = const [],
   });
+  final List<BuildResult> results;
+  final String outputPath;
+  final List<LogEntry> logs;
 
   @override
   List<Object?> get props => [results, outputPath, logs];
 }
 
 class BuildError extends BuildExecutionState {
+  const BuildError({required this.error, this.logs = const []});
   final String error;
   final List<LogEntry> logs;
-
-  const BuildError({required this.error, this.logs = const []});
 
   @override
   List<Object?> get props => [error, logs];
 }
 
 class LogEntry extends Equatable {
-  final String text;
-  final bool isError;
-  final bool isHeader;
-
   const LogEntry({
     required this.text,
     this.isError = false,
     this.isHeader = false,
   });
+  final String text;
+  final bool isError;
+  final bool isHeader;
 
   @override
   List<Object?> get props => [text, isError, isHeader];

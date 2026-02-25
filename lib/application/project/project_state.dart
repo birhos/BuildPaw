@@ -9,27 +9,25 @@ sealed class ProjectState extends Equatable {
   List<Object?> get props => [];
 }
 
-class ProjectInitial extends ProjectState {
+final class ProjectInitial extends ProjectState {
   const ProjectInitial();
 }
 
-class ProjectLoading extends ProjectState {
+final class ProjectLoading extends ProjectState {
   const ProjectLoading();
 }
 
-class ProjectLoaded extends ProjectState {
-  final ProjectInfo info;
-
+final class ProjectLoaded extends ProjectState {
   const ProjectLoaded(this.info);
+  final ProjectInfo info;
 
   @override
   List<Object?> get props => [info];
 }
 
-class ProjectError extends ProjectState {
-  final String message;
-
+final class ProjectError extends ProjectState {
   const ProjectError(this.message);
+  final String message;
 
   @override
   List<Object?> get props => [message];

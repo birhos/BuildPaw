@@ -23,9 +23,7 @@ class WebConfigPanel extends StatelessWidget {
           child: ExpansionTile(
             leading: Icon(
               Icons.language,
-              color: enabled
-                  ? AppColors.primaryLight
-                  : AppColors.onSurfaceVariant,
+              color: enabled ? AppColors.primaryLight : AppColors.onSurfaceVariant,
             ),
             title: Row(
               children: [
@@ -33,8 +31,7 @@ class WebConfigPanel extends StatelessWidget {
                 const Spacer(),
                 Switch(
                   value: enabled,
-                  onChanged: (v) =>
-                      cubit.togglePlatform(BuildPlatform.web, v),
+                  onChanged: (v) => cubit.togglePlatform(BuildPlatform.web, v),
                 ),
               ],
             ),
@@ -42,57 +39,52 @@ class WebConfigPanel extends StatelessWidget {
             children: [
               if (enabled)
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _SectionLabel('PWA Strategy'),
+                      const _SectionLabel('PWA Strategy'),
                       const SizedBox(height: 4),
                       DropdownButtonFormField<PwaStrategy>(
                         initialValue: config.pwaStrategy,
                         isExpanded: true,
                         decoration: const InputDecoration(isDense: true),
                         items: PwaStrategy.values
-                            .map((s) => DropdownMenuItem(
-                                  value: s,
-                                  child: Text(s.label),
-                                ))
+                            .map(
+                              (s) => DropdownMenuItem(
+                                value: s,
+                                child: Text(s.label),
+                              ),
+                            )
                             .toList(),
-                        onChanged: (v) => cubit.updateWebConfig(
-                            config.copyWith(pwaStrategy: v)),
+                        onChanged: (v) => cubit.updateWebConfig(config.copyWith(pwaStrategy: v)),
                       ),
                       const Divider(),
                       CheckboxListTile(
                         title: const Text('No Tree Shake Icons'),
-                        subtitle: const Text('--no-tree-shake-icons',
-                            style: _flagStyle),
+                        subtitle: const Text('--no-tree-shake-icons', style: _flagStyle),
                         value: config.noTreeShakeIcons,
                         dense: true,
                         contentPadding: EdgeInsets.zero,
-                        onChanged: (v) => cubit.updateWebConfig(
-                            config.copyWith(noTreeShakeIcons: v)),
+                        onChanged: (v) => cubit.updateWebConfig(config.copyWith(noTreeShakeIcons: v)),
                       ),
                       const Divider(),
-                      _SectionLabel('Flavor'),
+                      const _SectionLabel('Flavor'),
                       const SizedBox(height: 4),
                       TextField(
                         decoration: const InputDecoration(
                           hintText: 'e.g. dev, staging, prod',
                           isDense: true,
                         ),
-                        controller:
-                            TextEditingController(text: config.flavor),
-                        onChanged: (v) => cubit
-                            .updateWebConfig(config.copyWith(flavor: v)),
+                        controller: TextEditingController(text: config.flavor),
+                        onChanged: (v) => cubit.updateWebConfig(config.copyWith(flavor: v)),
                       ),
                       const SizedBox(height: 12),
-                      _SectionLabel('Run Mode'),
+                      const _SectionLabel('Run Mode'),
                       const SizedBox(height: 4),
                       RadioGroup<BuildMode>(
                         groupValue: config.buildMode,
-                        onChanged: (v) => cubit
-                            .updateWebConfig(config.copyWith(buildMode: v)),
+                        onChanged: (v) => cubit.updateWebConfig(config.copyWith(buildMode: v)),
                         child: Column(
                           children: BuildMode.values
                               .map(
@@ -108,17 +100,15 @@ class WebConfigPanel extends StatelessWidget {
                         ),
                       ),
                       const Divider(),
-                      _SectionLabel('Target'),
+                      const _SectionLabel('Target'),
                       const SizedBox(height: 4),
                       TextField(
                         decoration: const InputDecoration(
                           hintText: 'lib/main.dart',
                           isDense: true,
                         ),
-                        controller:
-                            TextEditingController(text: config.target),
-                        onChanged: (v) => cubit
-                            .updateWebConfig(config.copyWith(target: v)),
+                        controller: TextEditingController(text: config.target),
+                        onChanged: (v) => cubit.updateWebConfig(config.copyWith(target: v)),
                       ),
                       const SizedBox(height: 12),
                     ],
@@ -139,17 +129,17 @@ const _flagStyle = TextStyle(
 );
 
 class _SectionLabel extends StatelessWidget {
-  final String text;
   const _SectionLabel(this.text);
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-            color: AppColors.primary,
-            fontWeight: FontWeight.w600,
-          ),
+        color: AppColors.primary,
+        fontWeight: FontWeight.w600,
+      ),
     );
   }
 }

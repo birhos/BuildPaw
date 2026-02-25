@@ -26,7 +26,11 @@ class _BuildLogPanelState extends State<BuildLogPanel> {
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients) {
-        _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 100), curve: Curves.easeOut);
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 100),
+          curve: Curves.easeOut,
+        );
       }
     });
   }
@@ -41,9 +45,9 @@ class _BuildLogPanelState extends State<BuildLogPanel> {
       },
       builder: (context, state) {
         final logs = switch (state) {
-          BuildRunning s => s.logs,
-          BuildSuccess s => s.logs,
-          BuildError s => s.logs,
+          final BuildRunning s => s.logs,
+          final BuildSuccess s => s.logs,
+          final BuildError s => s.logs,
           _ => <LogEntry>[],
         };
 
@@ -60,7 +64,10 @@ class _BuildLogPanelState extends State<BuildLogPanel> {
                   children: [
                     const Icon(Icons.terminal, size: 18, color: AppColors.onSurfaceVariant),
                     const SizedBox(width: 8),
-                    Text('Build Output', style: Theme.of(context).textTheme.titleSmall?.copyWith(color: AppColors.onSurfaceVariant)),
+                    Text(
+                      'Build Output',
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(color: AppColors.onSurfaceVariant),
+                    ),
                     const Spacer(),
                     if (logs.isNotEmpty)
                       IconButton(
@@ -71,7 +78,9 @@ class _BuildLogPanelState extends State<BuildLogPanel> {
                         onPressed: () {
                           final text = logs.map((e) => '${e.text}\n').join();
                           Clipboard.setData(ClipboardData(text: text));
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Logs copied to clipboard'), duration: Duration(seconds: 2)));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Logs copied to clipboard'), duration: Duration(seconds: 2)),
+                          );
                         },
                       ),
                     const SizedBox(width: 4),
@@ -86,7 +95,10 @@ class _BuildLogPanelState extends State<BuildLogPanel> {
                     ? Center(
                         child: Text(
                           'Build output will appear here...',
-                          style: GoogleFonts.jetBrainsMono(fontSize: 13, color: AppColors.onSurfaceVariant.withValues(alpha: 0.5)),
+                          style: GoogleFonts.jetBrainsMono(
+                            fontSize: 13,
+                            color: AppColors.onSurfaceVariant.withValues(alpha: 0.5),
+                          ),
                         ),
                       )
                     : SelectableRegion(

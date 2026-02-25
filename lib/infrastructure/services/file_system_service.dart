@@ -14,16 +14,14 @@ class FileSystemService {
         '${timestamp.year}-${_pad(timestamp.month)}-${_pad(timestamp.day)}'
         '_${_pad(timestamp.hour)}-${_pad(timestamp.minute)}';
 
-    final outputPath =
-        '$home/Desktop/${AppConstants.outputRootFolder}/$projectName/$dateStr';
+    final outputPath = '$home/Desktop/${AppConstants.outputRootFolder}/$projectName/$dateStr';
 
     await Directory(outputPath).create(recursive: true);
     return outputPath;
   }
 
   /// Creates a platform subdirectory inside the output root.
-  Future<String> createPlatformSubdir(
-      String outputRoot, String platform) async {
+  Future<String> createPlatformSubdir(String outputRoot, String platform) async {
     final dir = '$outputRoot/$platform';
     await Directory(dir).create(recursive: true);
     return dir;
@@ -36,9 +34,8 @@ class FileSystemService {
 
     await Directory(destination).create(recursive: true);
 
-    await for (final entity in sourceDir.list(recursive: false)) {
-      final newPath =
-          '$destination/${entity.path.split(Platform.pathSeparator).last}';
+    await for (final entity in sourceDir.list()) {
+      final newPath = '$destination/${entity.path.split(Platform.pathSeparator).last}';
       if (entity is File) {
         await entity.copy(newPath);
       } else if (entity is Directory) {

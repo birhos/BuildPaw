@@ -5,16 +5,15 @@ import '../../infrastructure/services/flutter_service.dart';
 import '../../infrastructure/services/git_service.dart';
 import 'project_state.dart';
 
-class ProjectCubit extends Cubit<ProjectState> {
-  final GitService _gitService;
-  final FlutterService _flutterService;
-
+final class ProjectCubit extends Cubit<ProjectState> {
   ProjectCubit({
     required GitService gitService,
     required FlutterService flutterService,
-  })  : _gitService = gitService,
-        _flutterService = flutterService,
-        super(const ProjectInitial());
+  }) : _gitService = gitService,
+       _flutterService = flutterService,
+       super(const ProjectInitial());
+  final GitService _gitService;
+  final FlutterService _flutterService;
 
   Future<void> selectProject(String path) async {
     emit(const ProjectLoading());
@@ -22,8 +21,7 @@ class ProjectCubit extends Cubit<ProjectState> {
     try {
       final isValid = await _flutterService.validateProject(path);
       if (!isValid) {
-        emit(const ProjectError(
-            'Invalid Flutter project. pubspec.yaml not found.'));
+        emit(const ProjectError('Invalid Flutter project. pubspec.yaml not found.'));
         return;
       }
 

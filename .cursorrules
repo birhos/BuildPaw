@@ -1,0 +1,40 @@
+// Flutter Development Guidelines
+const flutterGuidelines = {
+    // Commit Message Guidelines
+    commitFormat: {
+        pattern: "<type>(#taskId1,#taskId2,...): <description>",
+        types: {
+            feat: "Used for adding new features.",
+            fix: "Used for fixing bugs.",
+            docs: "Used for documentation changes, such as updating README or API guides.",
+            style: "Used for formatting changes, such as fixing spacing, semicolons, etc.",
+            refactor: "Used for code improvements or restructuring without changing functionality.",
+            perf: "Used for changes that improve performance.",
+            test: "Used for adding or updating tests.",
+            build: "Used for changes in build systems or external dependencies.",
+            revert: "Used to revert a previous commit.",
+            hotfix: "Used for critical or urgent bug fixes.",
+        },
+        descriptionRules: [
+            "Get task id from branch name the branch name must look like azure-xxxx get after azure- and do not increase the task id",
+            "Task IDs must be prefixed with '#' and separated by commas.",
+            "Keep description short (4-5 words).",
+            "Use present tense.",
+            "No capitalization at start (except proper nouns).",
+            "No period at end.",
+            "Use clear and concise language.",
+        ],
+        examples: [
+            "feat(#1234): add 0Auth support for user login",
+            "fix(#2345,#2346): correct API endpoint URLs",
+            "docs(#3456): update installation guide",
+            "style(#4567,#4568,#4569): adjust code formatting",
+            "refactor(#5678,#5679): improve JWT validation",
+            "perf(#6789): optimize query response time",
+            "test(#7890,#7891): add user login tests",
+            "build(#8901): update webpack configuration",
+            "revert(#9012): revert JWT support addition",
+            "hotfix(#1122): extend token TTL duration"
+        ]
+    }
+};

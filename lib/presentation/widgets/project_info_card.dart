@@ -5,7 +5,7 @@ import '../../application/project/project_cubit.dart';
 import '../../application/project/project_state.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/models/project_info.dart';
-import '../../i18n/strings.g.dart';
+import '../../core/i18n/strings.g.dart';
 
 class ProjectInfoCard extends StatelessWidget {
   const ProjectInfoCard({super.key});

@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/build_config/build_config_cubit.dart';
 import '../../core/theme/app_colors.dart';
-import '../../i18n/strings.g.dart';
+import '../../core/i18n/strings.g.dart';
 
 /// Wraps [child] with a [DropTarget] that accepts JSON config files.
 /// When a .json file is dropped, it imports the config and shows a snackbar.

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../i18n/strings.g.dart';
+import '../../core/i18n/strings.g.dart';
 
 sealed class LocaleState extends Equatable {
   const LocaleState();

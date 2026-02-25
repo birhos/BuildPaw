@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../i18n/strings.g.dart';
+import '../../core/i18n/strings.g.dart';
 import 'locale_state.dart';
 
 const _localeKey = 'app_locale';

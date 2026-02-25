@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../i18n/strings.g.dart';
+import '../../core/i18n/strings.g.dart';
 
 class ExportConfigDialog extends StatefulWidget {
   const ExportConfigDialog({super.key});

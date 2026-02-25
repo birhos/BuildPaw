@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/build_config/build_config_cubit.dart';
-import '../../i18n/strings.g.dart';
+import '../../core/i18n/strings.g.dart';
 import '../widgets/build_action_bar.dart';
 import '../widgets/build_log_panel.dart';
 import '../widgets/config_drop_target.dart';

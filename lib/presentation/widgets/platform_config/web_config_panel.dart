@@ -7,7 +7,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../domain/enums/build_mode.dart';
 import '../../../domain/enums/build_platform.dart';
 import '../../../domain/enums/pwa_strategy.dart';
-import '../../../i18n/strings.g.dart';
+import '../../../core/i18n/strings.g.dart';
 
 class WebConfigPanel extends StatelessWidget {
   const WebConfigPanel({super.key});

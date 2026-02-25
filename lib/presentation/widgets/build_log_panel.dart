@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../application/build_execution/build_execution_bloc.dart';
 import '../../application/build_execution/build_execution_state.dart';
 import '../../core/theme/app_colors.dart';
-import '../../i18n/strings.g.dart';
+import '../../core/i18n/strings.g.dart';
 
 class BuildLogPanel extends StatefulWidget {
   const BuildLogPanel({super.key});

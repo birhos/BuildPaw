@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../application/locale/locale_cubit.dart';
 import '../../application/locale/locale_state.dart';
 import '../../core/theme/app_colors.dart';
-import '../../i18n/strings.g.dart';
+import '../../core/i18n/strings.g.dart';
 
 class LanguageSelector extends StatelessWidget {
   const LanguageSelector({super.key});

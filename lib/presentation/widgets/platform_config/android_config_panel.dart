@@ -7,7 +7,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../domain/enums/android_output_type.dart';
 import '../../../domain/enums/build_mode.dart';
 import '../../../domain/enums/build_platform.dart';
-import '../../../i18n/strings.g.dart';
+import '../../../core/i18n/strings.g.dart';
 
 class AndroidConfigPanel extends StatelessWidget {
   const AndroidConfigPanel({super.key});

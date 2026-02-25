@@ -10,7 +10,7 @@ import '../../application/project/project_cubit.dart';
 import '../../application/project/project_state.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/enums/build_platform.dart';
-import '../../i18n/strings.g.dart';
+import '../../core/i18n/strings.g.dart';
 
 class BuildActionBar extends StatelessWidget {
   const BuildActionBar({super.key});

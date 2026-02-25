@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/build_config/build_config_cubit.dart';
+import '../../i18n/strings.g.dart';
 import '../widgets/build_action_bar.dart';
 import '../widgets/build_log_panel.dart';
 import '../widgets/export_config_dialog.dart';
@@ -48,13 +49,14 @@ class HomePage extends StatelessWidget {
 class _ConfigActionRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final t = context.t;
     return Row(
       children: [
         Expanded(
           child: OutlinedButton.icon(
             onPressed: () => _handleExport(context),
             icon: const Icon(Icons.upload_file, size: 18),
-            label: const Text('Export Config'),
+            label: Text(t.config.export),
           ),
         ),
         const SizedBox(width: 12),
@@ -62,7 +64,7 @@ class _ConfigActionRow extends StatelessWidget {
           child: OutlinedButton.icon(
             onPressed: () => _handleImport(context),
             icon: const Icon(Icons.download, size: 18),
-            label: const Text('Import Config'),
+            label: Text(t.config.import),
           ),
         ),
       ],
@@ -82,12 +84,13 @@ class _ConfigActionRow extends StatelessWidget {
         );
 
     if (!context.mounted) return;
+    final t = context.t;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
           path != null
-              ? 'Config exported to $path'
-              : 'Export cancelled.',
+              ? t.config.exportSuccess(path: path)
+              : t.config.exportCancelled,
         ),
       ),
     );
@@ -98,12 +101,13 @@ class _ConfigActionRow extends StatelessWidget {
         await context.read<BuildConfigCubit>().importConfig();
 
     if (!context.mounted) return;
+    final t = context.t;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
           presetName != null
-              ? 'Imported: $presetName'
-              : 'Import cancelled or file invalid.',
+              ? t.config.importSuccess(name: presetName)
+              : t.config.importCancelled,
         ),
       ),
     );

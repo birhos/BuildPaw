@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../application/build_execution/build_execution_bloc.dart';
 import '../../application/build_execution/build_execution_state.dart';
 import '../../core/theme/app_colors.dart';
+import '../../i18n/strings.g.dart';
 
 class BuildLogPanel extends StatefulWidget {
   const BuildLogPanel({super.key});
@@ -37,6 +38,7 @@ class _BuildLogPanelState extends State<BuildLogPanel> {
 
   @override
   Widget build(BuildContext context) {
+    final t = context.t;
     return BlocConsumer<BuildExecutionBloc, BuildExecutionState>(
       listener: (context, state) {
         if (state is BuildRunning || state is BuildSuccess || state is BuildError) {
@@ -65,7 +67,7 @@ class _BuildLogPanelState extends State<BuildLogPanel> {
                     const Icon(Icons.terminal, size: 18, color: AppColors.onSurfaceVariant),
                     const SizedBox(width: 8),
                     Text(
-                      'Build Output',
+                      t.buildLog.title,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(color: AppColors.onSurfaceVariant),
                     ),
                     const Spacer(),
@@ -73,18 +75,18 @@ class _BuildLogPanelState extends State<BuildLogPanel> {
                       IconButton(
                         icon: const Icon(Icons.copy, size: 16),
                         color: AppColors.onSurfaceVariant,
-                        tooltip: 'Copy logs',
+                        tooltip: t.buildLog.copyTooltip,
                         splashRadius: 16,
                         onPressed: () {
                           final text = logs.map((e) => '${e.text}\n').join();
                           Clipboard.setData(ClipboardData(text: text));
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Logs copied to clipboard'), duration: Duration(seconds: 2)),
+                            SnackBar(content: Text(t.buildLog.copied), duration: const Duration(seconds: 2)),
                           );
                         },
                       ),
                     const SizedBox(width: 4),
-                    _statusBadge(state),
+                    _statusBadge(context, state),
                   ],
                 ),
               ),
@@ -94,7 +96,7 @@ class _BuildLogPanelState extends State<BuildLogPanel> {
                 child: isIdle && logs.isEmpty
                     ? Center(
                         child: Text(
-                          'Build output will appear here...',
+                          t.buildLog.placeholder,
                           style: GoogleFonts.jetBrainsMono(
                             fontSize: 13,
                             color: AppColors.onSurfaceVariant.withValues(alpha: 0.5),
@@ -136,12 +138,13 @@ class _BuildLogPanelState extends State<BuildLogPanel> {
     return AppColors.terminalText;
   }
 
-  Widget _statusBadge(BuildExecutionState state) {
+  Widget _statusBadge(BuildContext context, BuildExecutionState state) {
+    final t = context.t;
     final (String label, Color color) = switch (state) {
-      BuildIdle() => ('Idle', AppColors.onSurfaceVariant),
-      BuildRunning() => ('Running', AppColors.warning),
-      BuildSuccess() => ('Success', AppColors.success),
-      BuildError() => ('Failed', AppColors.error),
+      BuildIdle() => (t.buildStatus.idle, AppColors.onSurfaceVariant),
+      BuildRunning() => (t.buildStatus.running, AppColors.warning),
+      BuildSuccess() => (t.buildStatus.success, AppColors.success),
+      BuildError() => (t.buildStatus.failed, AppColors.error),
     };
 
     return Container(

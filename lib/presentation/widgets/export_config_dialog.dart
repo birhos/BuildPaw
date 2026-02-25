@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../i18n/strings.g.dart';
+
 class ExportConfigDialog extends StatefulWidget {
   const ExportConfigDialog({super.key});
 
@@ -20,8 +22,9 @@ class _ExportConfigDialogState extends State<ExportConfigDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final t = context.t;
     return AlertDialog(
-      title: const Text('Export Build Config'),
+      title: Text(t.exportDialog.title),
       content: SizedBox(
         width: 360,
         child: Column(
@@ -29,18 +32,18 @@ class _ExportConfigDialogState extends State<ExportConfigDialog> {
           children: [
             TextField(
               controller: _nameController,
-              decoration: const InputDecoration(
-                labelText: 'Preset Name',
-                hintText: 'e.g. release-prod',
+              decoration: InputDecoration(
+                labelText: t.exportDialog.presetName,
+                hintText: t.exportDialog.presetNameHint,
               ),
               autofocus: true,
             ),
             const SizedBox(height: 16),
             TextField(
               controller: _versionController,
-              decoration: const InputDecoration(
-                labelText: 'Version',
-                hintText: 'e.g. 1.0.0',
+              decoration: InputDecoration(
+                labelText: t.exportDialog.version,
+                hintText: t.exportDialog.versionHint,
               ),
             ),
           ],
@@ -49,7 +52,7 @@ class _ExportConfigDialogState extends State<ExportConfigDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
+          child: Text(t.common.cancel),
         ),
         ElevatedButton(
           onPressed: () {
@@ -59,7 +62,7 @@ class _ExportConfigDialogState extends State<ExportConfigDialog> {
             Navigator.of(context)
                 .pop((name: name, version: version));
           },
-          child: const Text('Export'),
+          child: Text(t.common.export),
         ),
       ],
     );

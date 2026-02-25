@@ -5,12 +5,14 @@ import '../../application/project/project_cubit.dart';
 import '../../application/project/project_state.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/models/project_info.dart';
+import '../../i18n/strings.g.dart';
 
 class ProjectInfoCard extends StatelessWidget {
   const ProjectInfoCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final t = context.t;
     return BlocBuilder<ProjectCubit, ProjectState>(
       builder: (context, state) {
         if (state is! ProjectLoaded) return const SizedBox.shrink();
@@ -25,14 +27,14 @@ class ProjectInfoCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Project Info',
+                      t.projectInfo.title,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
                     ),
                     const Spacer(),
                     IconButton(
                       icon: const Icon(Icons.refresh, size: 18),
                       color: AppColors.onSurfaceVariant,
-                      tooltip: 'Refresh project info',
+                      tooltip: t.projectInfo.refreshTooltip,
                       splashRadius: 16,
                       onPressed: () => context.read<ProjectCubit>().selectProject(info.path),
                     ),
@@ -58,7 +60,7 @@ class ProjectInfoCard extends StatelessWidget {
                       label: 'Dart ${info.dartVersion}',
                       color: AppColors.success,
                     ),
-                    _FvmChip(info: info),
+                    _FvmChip(info: info, fvmActive: t.projectInfo.fvmActive, fvmInactive: t.projectInfo.fvmInactive),
                   ],
                 ),
               ],
@@ -101,8 +103,14 @@ class _InfoChip extends StatelessWidget {
 }
 
 class _FvmChip extends StatelessWidget {
-  const _FvmChip({required this.info});
+  const _FvmChip({
+    required this.info,
+    required this.fvmActive,
+    required this.fvmInactive,
+  });
   final ProjectInfo info;
+  final String fvmActive;
+  final String fvmInactive;
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +128,7 @@ class _FvmChip extends StatelessWidget {
           Icon(info.hasFvm ? Icons.check_circle : Icons.cancel_outlined, size: 16, color: color),
           const SizedBox(width: 6),
           Text(
-            info.hasFvm ? 'FVM Active' : 'No FVM',
+            info.hasFvm ? fvmActive : fvmInactive,
             style: TextStyle(color: color, fontSize: 13, fontWeight: FontWeight.w500),
           ),
         ],

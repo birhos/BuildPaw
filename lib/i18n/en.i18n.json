@@ -1,0 +1,94 @@
+{
+  "app": {
+    "name": "BuildPaw"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "export": "Export",
+    "browse": "Browse"
+  },
+  "projectSelector": {
+    "title": "BuildPaw",
+    "hint": "Select a Flutter project directory...",
+    "selectDialogTitle": "Select Flutter Project"
+  },
+  "projectInfo": {
+    "title": "Project Info",
+    "refreshTooltip": "Refresh project info",
+    "fvmActive": "FVM Active",
+    "fvmInactive": "No FVM"
+  },
+  "config": {
+    "export": "Export Config",
+    "import": "Import Config",
+    "exportSuccess": "Config exported to $path",
+    "exportCancelled": "Export cancelled.",
+    "importSuccess": "Imported: $name",
+    "importCancelled": "Import cancelled or file invalid."
+  },
+  "exportDialog": {
+    "title": "Export Build Config",
+    "presetName": "Preset Name",
+    "presetNameHint": "e.g. release-prod",
+    "version": "Version",
+    "versionHint": "e.g. 1.0.0"
+  },
+  "build": {
+    "button": "BUILD",
+    "building": "Building...",
+    "buildingPlatform": "Building $platform... ($completed/$total)",
+    "cancel": "Cancel"
+  },
+  "buildLog": {
+    "title": "Build Output",
+    "copyTooltip": "Copy logs",
+    "copied": "Logs copied to clipboard",
+    "placeholder": "Build output will appear here..."
+  },
+  "buildStatus": {
+    "idle": "Idle",
+    "running": "Running",
+    "success": "Success",
+    "failed": "Failed"
+  },
+  "platforms": {
+    "android": "Android",
+    "ios": "iOS",
+    "web": "Web"
+  },
+  "platformConfig": {
+    "outputType": "Output Type",
+    "codeObfuscation": "Code Obfuscation",
+    "splitDebugInfo": "Split Debug Info",
+    "flavor": "Flavor",
+    "flavorHint": "e.g. dev, staging, prod",
+    "runMode": "Run Mode",
+    "target": "Target",
+    "targetHint": "lib/main.dart",
+    "pwaStrategy": "PWA Strategy",
+    "noTreeShakeIcons": "No Tree Shake Icons"
+  },
+  "androidOutput": {
+    "apk": "Only APK",
+    "aab": "Only AAB",
+    "both": "APK & AAB"
+  },
+  "iosOutput": {
+    "ios": "iOS (Runner.app)",
+    "ipa": "IPA (Exportable)"
+  },
+  "buildMode": {
+    "debug": "Debug",
+    "profile": "Profile",
+    "release": "Release"
+  },
+  "pwaStrategy": {
+    "default": "Default",
+    "none": "None"
+  },
+  "language": {
+    "title": "Language",
+    "english": "English",
+    "turkish": "Türkçe"
+  }
+}

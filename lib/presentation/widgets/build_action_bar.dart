@@ -10,6 +10,7 @@ import '../../application/project/project_cubit.dart';
 import '../../application/project/project_state.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/enums/build_platform.dart';
+import '../../i18n/strings.g.dart';
 
 class BuildActionBar extends StatelessWidget {
   const BuildActionBar({super.key});
@@ -44,8 +45,8 @@ class BuildActionBar extends StatelessWidget {
                               .add(const BuildCancelled()),
                           icon: const Icon(Icons.stop,
                               color: AppColors.error, size: 18),
-                          label: const Text('Cancel',
-                              style: TextStyle(color: AppColors.error)),
+                          label: Text(context.t.build.cancel,
+                              style: const TextStyle(color: AppColors.error)),
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(color: AppColors.error),
                             padding: const EdgeInsets.symmetric(
@@ -87,8 +88,12 @@ class BuildActionBar extends StatelessWidget {
             const SizedBox(width: 12),
             Text(
               running.currentPlatform != null
-                  ? 'Building ${running.currentPlatform!.label}... (${running.completedCount}/${running.totalCount})'
-                  : 'Building...',
+                  ? context.t.build.buildingPlatform(
+                      platform: _platformLabel(context, running.currentPlatform!),
+                      completed: running.completedCount,
+                      total: running.totalCount,
+                    )
+                  : context.t.build.building,
             ),
           ],
         ),
@@ -98,11 +103,20 @@ class BuildActionBar extends StatelessWidget {
     return ElevatedButton.icon(
       onPressed: canBuild ? () => _startBuild(context) : null,
       icon: const Icon(Icons.build_rounded, size: 20),
-      label: const Text('BUILD', style: TextStyle(letterSpacing: 1.5)),
+      label: Text(context.t.build.button, style: const TextStyle(letterSpacing: 1.5)),
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 16),
       ),
     );
+  }
+
+  String _platformLabel(BuildContext context, BuildPlatform platform) {
+    final t = context.t;
+    return switch (platform) {
+      BuildPlatform.android => t.platforms.android,
+      BuildPlatform.ios => t.platforms.ios,
+      BuildPlatform.web => t.platforms.web,
+    };
   }
 
   void _startBuild(BuildContext context) {

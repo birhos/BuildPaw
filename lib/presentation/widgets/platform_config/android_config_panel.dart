@@ -7,12 +7,14 @@ import '../../../core/theme/app_colors.dart';
 import '../../../domain/enums/android_output_type.dart';
 import '../../../domain/enums/build_mode.dart';
 import '../../../domain/enums/build_platform.dart';
+import '../../../i18n/strings.g.dart';
 
 class AndroidConfigPanel extends StatelessWidget {
   const AndroidConfigPanel({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final t = context.t;
     return BlocBuilder<BuildConfigCubit, BuildConfigState>(
       builder: (context, state) {
         final enabled = state.enabledPlatforms[BuildPlatform.android] ?? false;
@@ -27,7 +29,7 @@ class AndroidConfigPanel extends StatelessWidget {
             ),
             title: Row(
               children: [
-                const Text('Android'),
+                Text(t.platforms.android),
                 const Spacer(),
                 Switch(
                   value: enabled,
@@ -43,7 +45,7 @@ class AndroidConfigPanel extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const _SectionLabel('Output Type'),
+                      _SectionLabel(t.platformConfig.outputType),
                       const SizedBox(height: 4),
                       RadioGroup<AndroidOutputType>(
                         groupValue: config.outputType,
@@ -52,7 +54,7 @@ class AndroidConfigPanel extends StatelessWidget {
                           children: AndroidOutputType.values
                               .map(
                                 (type) => RadioListTile<AndroidOutputType>(
-                                  title: Text(type.label),
+                                  title: Text(_androidOutputLabel(t, type)),
                                   value: type,
                                   dense: true,
                                   contentPadding: EdgeInsets.zero,
@@ -63,7 +65,7 @@ class AndroidConfigPanel extends StatelessWidget {
                       ),
                       const Divider(),
                       CheckboxListTile(
-                        title: const Text('Code Obfuscation'),
+                        title: Text(t.platformConfig.codeObfuscation),
                         subtitle: const Text('--obfuscate', style: _flagStyle),
                         value: config.obfuscate,
                         dense: true,
@@ -71,7 +73,7 @@ class AndroidConfigPanel extends StatelessWidget {
                         onChanged: (v) => cubit.updateAndroidConfig(config.copyWith(obfuscate: v)),
                       ),
                       CheckboxListTile(
-                        title: const Text('Split Debug Info'),
+                        title: Text(t.platformConfig.splitDebugInfo),
                         subtitle: const Text('--split-debug-info=build/symbols', style: _flagStyle),
                         value: config.splitDebugInfo,
                         dense: true,
@@ -79,18 +81,18 @@ class AndroidConfigPanel extends StatelessWidget {
                         onChanged: (v) => cubit.updateAndroidConfig(config.copyWith(splitDebugInfo: v)),
                       ),
                       const Divider(),
-                      const _SectionLabel('Flavor'),
+                      _SectionLabel(t.platformConfig.flavor),
                       const SizedBox(height: 4),
                       TextField(
-                        decoration: const InputDecoration(
-                          hintText: 'e.g. dev, staging, prod',
+                        decoration: InputDecoration(
+                          hintText: t.platformConfig.flavorHint,
                           isDense: true,
                         ),
                         controller: TextEditingController(text: config.flavor),
                         onChanged: (v) => cubit.updateAndroidConfig(config.copyWith(flavor: v)),
                       ),
                       const SizedBox(height: 12),
-                      const _SectionLabel('Run Mode'),
+                      _SectionLabel(t.platformConfig.runMode),
                       const SizedBox(height: 4),
                       RadioGroup<BuildMode>(
                         groupValue: config.buildMode,
@@ -99,7 +101,7 @@ class AndroidConfigPanel extends StatelessWidget {
                           children: BuildMode.values
                               .map(
                                 (mode) => RadioListTile<BuildMode>(
-                                  title: Text(mode.label),
+                                  title: Text(_buildModeLabel(t, mode)),
                                   subtitle: Text(mode.flag, style: _flagStyle),
                                   value: mode,
                                   dense: true,
@@ -110,11 +112,11 @@ class AndroidConfigPanel extends StatelessWidget {
                         ),
                       ),
                       const Divider(),
-                      const _SectionLabel('Target'),
+                      _SectionLabel(t.platformConfig.target),
                       const SizedBox(height: 4),
                       TextField(
-                        decoration: const InputDecoration(
-                          hintText: 'lib/main.dart',
+                        decoration: InputDecoration(
+                          hintText: t.platformConfig.targetHint,
                           isDense: true,
                         ),
                         controller: TextEditingController(text: config.target),
@@ -130,6 +132,22 @@ class AndroidConfigPanel extends StatelessWidget {
       },
     );
   }
+}
+
+String _androidOutputLabel(Translations t, AndroidOutputType type) {
+  return switch (type) {
+    AndroidOutputType.apk => t.androidOutput.apk,
+    AndroidOutputType.aab => t.androidOutput.aab,
+    AndroidOutputType.both => t.androidOutput.both,
+  };
+}
+
+String _buildModeLabel(Translations t, BuildMode mode) {
+  return switch (mode) {
+    BuildMode.debug => t.buildMode.debug,
+    BuildMode.profile => t.buildMode.profile,
+    BuildMode.release => t.buildMode.release,
+  };
 }
 
 const _flagStyle = TextStyle(

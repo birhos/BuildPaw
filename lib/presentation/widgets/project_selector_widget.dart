@@ -5,12 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../application/project/project_cubit.dart';
 import '../../application/project/project_state.dart';
 import '../../core/theme/app_colors.dart';
+import '../../i18n/strings.g.dart';
+import 'language_selector.dart';
 
 class ProjectSelectorWidget extends StatelessWidget {
   const ProjectSelectorWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final t = context.t;
     return BlocBuilder<ProjectCubit, ProjectState>(
       builder: (context, state) {
         final path = switch (state) {
@@ -29,13 +32,14 @@ class ProjectSelectorWidget extends StatelessWidget {
                 const Icon(Icons.pets, color: AppColors.primary, size: 28),
                 const SizedBox(width: 10),
                 Text(
-                  'BuildPaw',
+                  t.projectSelector.title,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: AppColors.onSurface,
                   ),
                 ),
                 const Spacer(),
+                const LanguageSelector(),
                 if (isLoading)
                   const SizedBox(
                     width: 20,
@@ -52,7 +56,7 @@ class ProjectSelectorWidget extends StatelessWidget {
                     readOnly: true,
                     controller: TextEditingController(text: path),
                     decoration: InputDecoration(
-                      hintText: 'Select a Flutter project directory...',
+                      hintText: t.projectSelector.hint,
                       prefixIcon: const Icon(Icons.folder_open, color: AppColors.onSurfaceVariant),
                       errorText: errorMessage,
                     ),
@@ -62,7 +66,7 @@ class ProjectSelectorWidget extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: isLoading ? null : () => _pickProject(context),
                   icon: const Icon(Icons.search, size: 18),
-                  label: const Text('Browse'),
+                  label: Text(t.common.browse),
                 ),
               ],
             ),
@@ -73,8 +77,9 @@ class ProjectSelectorWidget extends StatelessWidget {
   }
 
   Future<void> _pickProject(BuildContext context) async {
+    final dialogTitle = context.t.projectSelector.selectDialogTitle;
     final result = await FilePicker.platform.getDirectoryPath(
-      dialogTitle: 'Select Flutter Project',
+      dialogTitle: dialogTitle,
     );
     if (result != null && context.mounted) {
       await context.read<ProjectCubit>().selectProject(result);

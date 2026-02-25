@@ -29,17 +29,21 @@ class ProjectCubit extends Cubit<ProjectState> {
 
       final results = await Future.wait([
         _flutterService.getProjectName(path),
+        _flutterService.getProjectVersion(path),
         _gitService.getCurrentBranch(path),
         _flutterService.getFlutterVersion(path),
         _flutterService.getDartVersion(path),
+        _gitService.getLatestTag(path),
       ]);
 
       final info = ProjectInfo(
-        name: results[0],
+        name: results[0]!,
         path: path,
-        branch: results[1],
-        flutterVersion: results[2],
-        dartVersion: results[3],
+        version: results[1]!,
+        branch: results[2]!,
+        flutterVersion: results[3]!,
+        dartVersion: results[4]!,
+        latestTag: results[5],
         hasFvm: _flutterService.hasFvm(path),
       );
 

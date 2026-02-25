@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../application/build_config/build_config_cubit.dart';
 import '../widgets/build_action_bar.dart';
 import '../widgets/build_log_panel.dart';
+import '../widgets/export_config_dialog.dart';
 import '../widgets/platform_config/android_config_panel.dart';
 import '../widgets/platform_config/ios_config_panel.dart';
 import '../widgets/platform_config/web_config_panel.dart';
@@ -19,21 +22,88 @@ class HomePage extends StatelessWidget {
           constraints: const BoxConstraints(maxWidth: 800),
           child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-            children: const [
-              ProjectSelectorWidget(),
-              SizedBox(height: 12),
-              ProjectInfoCard(),
-              SizedBox(height: 8),
-              AndroidConfigPanel(),
-              IosConfigPanel(),
-              WebConfigPanel(),
-              SizedBox(height: 4),
-              BuildActionBar(),
-              SizedBox(height: 4),
-              BuildLogPanel(),
-              SizedBox(height: 20),
+            children: [
+              const ProjectSelectorWidget(),
+              const SizedBox(height: 12),
+              const ProjectInfoCard(),
+              const SizedBox(height: 8),
+              const AndroidConfigPanel(),
+              const IosConfigPanel(),
+              const WebConfigPanel(),
+              const SizedBox(height: 8),
+              _ConfigActionRow(),
+              const SizedBox(height: 4),
+              const BuildActionBar(),
+              const SizedBox(height: 4),
+              const BuildLogPanel(),
+              const SizedBox(height: 20),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ConfigActionRow extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: OutlinedButton.icon(
+            onPressed: () => _handleExport(context),
+            icon: const Icon(Icons.upload_file, size: 18),
+            label: const Text('Export Config'),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: OutlinedButton.icon(
+            onPressed: () => _handleImport(context),
+            icon: const Icon(Icons.download, size: 18),
+            label: const Text('Import Config'),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _handleExport(BuildContext context) async {
+    final result = await showDialog<({String name, String version})>(
+      context: context,
+      builder: (_) => const ExportConfigDialog(),
+    );
+    if (result == null || !context.mounted) return;
+
+    final path = await context.read<BuildConfigCubit>().exportConfig(
+          name: result.name,
+          version: result.version,
+        );
+
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          path != null
+              ? 'Config exported to $path'
+              : 'Export cancelled.',
+        ),
+      ),
+    );
+  }
+
+  Future<void> _handleImport(BuildContext context) async {
+    final presetName =
+        await context.read<BuildConfigCubit>().importConfig();
+
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          presetName != null
+              ? 'Imported: $presetName'
+              : 'Import cancelled or file invalid.',
         ),
       ),
     );

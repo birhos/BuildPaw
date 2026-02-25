@@ -39,6 +39,26 @@ class WebBuildConfig extends Equatable {
     );
   }
 
+  Map<String, dynamic> toJson() => {
+        'pwaStrategy': pwaStrategy.name,
+        'noTreeShakeIcons': noTreeShakeIcons,
+        'flavor': flavor,
+        'buildMode': buildMode.name,
+        'target': target,
+      };
+
+  factory WebBuildConfig.fromJson(Map<String, dynamic> json) {
+    return WebBuildConfig(
+      pwaStrategy: PwaStrategy.values.byName(
+          json['pwaStrategy'] as String? ?? PwaStrategy.defaultStrategy.name),
+      noTreeShakeIcons: json['noTreeShakeIcons'] as bool? ?? true,
+      flavor: json['flavor'] as String? ?? '',
+      buildMode: BuildMode.values
+          .byName(json['buildMode'] as String? ?? BuildMode.release.name),
+      target: json['target'] as String? ?? 'lib/main.dart',
+    );
+  }
+
   @override
   List<Object?> get props => [
         pwaStrategy,

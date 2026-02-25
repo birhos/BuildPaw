@@ -17,4 +17,18 @@ class GitService {
       return 'unknown';
     }
   }
+
+  /// Returns the latest git tag, or null if no tags exist.
+  Future<String?> getLatestTag(String projectPath) async {
+    try {
+      final result = await _processService.runAndCapture(
+        executable: 'git',
+        arguments: ['describe', '--tags', '--abbrev=0'],
+        workingDirectory: projectPath,
+      );
+      return result.isNotEmpty ? result : null;
+    } catch (_) {
+      return null;
+    }
+  }
 }

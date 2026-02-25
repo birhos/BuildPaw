@@ -38,6 +38,28 @@ class AndroidBuildConfig extends Equatable {
     );
   }
 
+  Map<String, dynamic> toJson() => {
+        'outputType': outputType.name,
+        'obfuscate': obfuscate,
+        'splitDebugInfo': splitDebugInfo,
+        'flavor': flavor,
+        'buildMode': buildMode.name,
+        'target': target,
+      };
+
+  factory AndroidBuildConfig.fromJson(Map<String, dynamic> json) {
+    return AndroidBuildConfig(
+      outputType: AndroidOutputType.values.byName(
+          json['outputType'] as String? ?? AndroidOutputType.apk.name),
+      obfuscate: json['obfuscate'] as bool? ?? false,
+      splitDebugInfo: json['splitDebugInfo'] as bool? ?? false,
+      flavor: json['flavor'] as String? ?? '',
+      buildMode: BuildMode.values
+          .byName(json['buildMode'] as String? ?? BuildMode.release.name),
+      target: json['target'] as String? ?? 'lib/main.dart',
+    );
+  }
+
   @override
   List<Object?> get props => [
         outputType,

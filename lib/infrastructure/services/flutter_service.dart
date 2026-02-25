@@ -59,6 +59,19 @@ class FlutterService {
     return 'Unknown';
   }
 
+  Future<String> getProjectVersion(String path) async {
+    final pubspec = File('$path/pubspec.yaml');
+    if (!pubspec.existsSync()) return 'unknown';
+
+    final lines = await pubspec.readAsLines();
+    for (final line in lines) {
+      if (line.startsWith('version:')) {
+        return line.substring(8).trim();
+      }
+    }
+    return 'unknown';
+  }
+
   Future<String> getFlutterVersion(String projectPath) async {
     try {
       final exec = flutterExecutable(projectPath);

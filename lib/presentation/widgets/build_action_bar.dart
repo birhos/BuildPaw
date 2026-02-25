@@ -1,0 +1,133 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../application/build_config/build_config_cubit.dart';
+import '../../application/build_config/build_config_state.dart';
+import '../../application/build_execution/build_execution_bloc.dart';
+import '../../application/build_execution/build_execution_event.dart';
+import '../../application/build_execution/build_execution_state.dart';
+import '../../application/project/project_cubit.dart';
+import '../../application/project/project_state.dart';
+import '../../core/theme/app_colors.dart';
+import '../../domain/enums/build_platform.dart';
+
+class BuildActionBar extends StatelessWidget {
+  const BuildActionBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<BuildExecutionBloc, BuildExecutionState>(
+      builder: (context, buildState) {
+        final isBuilding = buildState is BuildRunning;
+
+        return BlocBuilder<ProjectCubit, ProjectState>(
+          builder: (context, projectState) {
+            return BlocBuilder<BuildConfigCubit, BuildConfigState>(
+              builder: (context, configState) {
+                final canBuild = projectState is ProjectLoaded &&
+                    configState.hasEnabledPlatform &&
+                    !isBuilding;
+
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: _buildButton(
+                            context, canBuild, isBuilding, buildState),
+                      ),
+                      if (isBuilding) ...[
+                        const SizedBox(width: 12),
+                        OutlinedButton.icon(
+                          onPressed: () => context
+                              .read<BuildExecutionBloc>()
+                              .add(const BuildCancelled()),
+                          icon: const Icon(Icons.stop,
+                              color: AppColors.error, size: 18),
+                          label: const Text('Cancel',
+                              style: TextStyle(color: AppColors.error)),
+                          style: OutlinedButton.styleFrom(
+                            side: const BorderSide(color: AppColors.error),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 14),
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                );
+              },
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildButton(BuildContext context, bool canBuild, bool isBuilding,
+      BuildExecutionState buildState) {
+    if (isBuilding) {
+      final running = buildState as BuildRunning;
+      return ElevatedButton(
+        onPressed: null,
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+              width: 18,
+              height: 18,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: AppColors.primary,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Text(
+              running.currentPlatform != null
+                  ? 'Building ${running.currentPlatform!.label}... (${running.completedCount}/${running.totalCount})'
+                  : 'Building...',
+            ),
+          ],
+        ),
+      );
+    }
+
+    return ElevatedButton.icon(
+      onPressed: canBuild ? () => _startBuild(context) : null,
+      icon: const Icon(Icons.build_rounded, size: 20),
+      label: const Text('BUILD', style: TextStyle(letterSpacing: 1.5)),
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+      ),
+    );
+  }
+
+  void _startBuild(BuildContext context) {
+    final projectState = context.read<ProjectCubit>().state;
+    final configState = context.read<BuildConfigCubit>().state;
+
+    if (projectState is! ProjectLoaded) return;
+
+    final info = projectState.info;
+    final platforms = configState.activePlatforms;
+
+    context.read<BuildExecutionBloc>().add(BuildStarted(
+          projectPath: info.path,
+          projectName: info.name,
+          useFvm: info.hasFvm,
+          platforms: platforms,
+          androidConfig: platforms.contains(BuildPlatform.android)
+              ? configState.androidConfig
+              : null,
+          iosConfig: platforms.contains(BuildPlatform.ios)
+              ? configState.iosConfig
+              : null,
+          webConfig: platforms.contains(BuildPlatform.web)
+              ? configState.webConfig
+              : null,
+        ));
+  }
+}

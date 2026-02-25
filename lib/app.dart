@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'application/build_config/build_config_cubit.dart';
+import 'application/build_execution/build_execution_bloc.dart';
+import 'application/project/project_cubit.dart';
+import 'application/services/artifact_manager.dart';
+import 'application/services/build_command_generator.dart';
+import 'core/theme/app_theme.dart';
+import 'infrastructure/services/file_system_service.dart';
+import 'infrastructure/services/flutter_service.dart';
+import 'infrastructure/services/git_service.dart';
+import 'infrastructure/services/process_service.dart';
+import 'presentation/pages/home_page.dart';
+
+class BuildPawApp extends StatelessWidget {
+  const BuildPawApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final processService = ProcessService();
+    final gitService = GitService(processService);
+    final flutterService = FlutterService(processService);
+    final fileSystemService = FileSystemService();
+    final commandGenerator = BuildCommandGenerator();
+    final artifactManager = ArtifactManager(fileSystemService);
+
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => ProjectCubit(
+            gitService: gitService,
+            flutterService: flutterService,
+          ),
+        ),
+        BlocProvider(create: (_) => BuildConfigCubit()),
+        BlocProvider(
+          create: (_) => BuildExecutionBloc(
+            processService: processService,
+            commandGenerator: commandGenerator,
+            artifactManager: artifactManager,
+          ),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'BuildPaw',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.dark,
+        home: const HomePage(),
+      ),
+    );
+  }
+}

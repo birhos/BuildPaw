@@ -18,32 +18,24 @@ final class BuildActionBar extends StatelessWidget {
           builder: (context, projectState) {
             return BlocBuilder<BuildConfigCubit, BuildConfigState>(
               builder: (context, configState) {
-                final canBuild = projectState is ProjectLoaded &&
-                    configState.hasEnabledPlatform &&
-                    !isBuilding;
+                final canBuild = projectState is ProjectLoaded && configState.hasEnabledPlatform && !isBuilding;
 
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Row(
                     children: [
                       Expanded(
-                        child: _buildButton(
-                            context, canBuild, isBuilding, buildState),
+                        child: _buildButton(context, canBuild, isBuilding, buildState),
                       ),
                       if (isBuilding) ...[
                         const SizedBox(width: 12),
                         OutlinedButton.icon(
-                          onPressed: () => context
-                              .read<BuildExecutionBloc>()
-                              .add(const BuildCancelled()),
-                          icon: const Icon(Icons.stop,
-                              color: AppColors.error, size: 18),
-                          label: Text(context.t.build.cancel,
-                              style: const TextStyle(color: AppColors.error)),
+                          onPressed: () => context.read<BuildExecutionBloc>().add(const BuildCancelled()),
+                          icon: const Icon(Icons.stop, color: AppColors.error, size: 18),
+                          label: Text(context.t.build.cancel, style: const TextStyle(color: AppColors.error)),
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(color: AppColors.error),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 14),
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
                           ),
                         ),
                       ],
@@ -58,8 +50,7 @@ final class BuildActionBar extends StatelessWidget {
     );
   }
 
-  Widget _buildButton(BuildContext context, bool canBuild, bool isBuilding,
-      BuildExecutionState buildState) {
+  Widget _buildButton(BuildContext context, bool canBuild, bool isBuilding, BuildExecutionState buildState) {
     if (isBuilding) {
       final running = buildState as BuildRunning;
       return ElevatedButton(
@@ -121,20 +112,16 @@ final class BuildActionBar extends StatelessWidget {
     final info = projectState.info;
     final platforms = configState.activePlatforms;
 
-    context.read<BuildExecutionBloc>().add(BuildStarted(
-          projectPath: info.path,
-          projectName: info.name,
-          useFvm: info.hasFvm,
-          platforms: platforms,
-          androidConfig: platforms.contains(BuildPlatform.android)
-              ? configState.androidConfig
-              : null,
-          iosConfig: platforms.contains(BuildPlatform.ios)
-              ? configState.iosConfig
-              : null,
-          webConfig: platforms.contains(BuildPlatform.web)
-              ? configState.webConfig
-              : null,
-        ));
+    context.read<BuildExecutionBloc>().add(
+      BuildStarted(
+        projectPath: info.path,
+        projectName: info.name,
+        useFvm: info.hasFvm,
+        platforms: platforms,
+        androidConfig: platforms.contains(BuildPlatform.android) ? configState.androidConfig : null,
+        iosConfig: platforms.contains(BuildPlatform.ios) ? configState.iosConfig : null,
+        webConfig: platforms.contains(BuildPlatform.web) ? configState.webConfig : null,
+      ),
+    );
   }
 }

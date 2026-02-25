@@ -7,7 +7,7 @@ import 'core/core.dart';
 import 'infrastructure/infrastructure.dart';
 import 'presentation/presentation.dart';
 
-class BuildPawApp extends StatelessWidget {
+final class BuildPawApp extends StatelessWidget {
   const BuildPawApp({super.key});
 
   @override
@@ -21,13 +21,20 @@ class BuildPawApp extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
+        //
         BlocProvider(
           create: (_) => ProjectCubit(
             gitService: gitService,
             flutterService: flutterService,
           ),
         ),
-        BlocProvider(create: (_) => BuildConfigCubit()),
+
+        //
+        BlocProvider(
+          create: (_) => BuildConfigCubit(),
+        ),
+
+        //
         BlocProvider(
           create: (_) => BuildExecutionBloc(
             processService: processService,
@@ -40,17 +47,18 @@ class BuildPawApp extends StatelessWidget {
         child: BlocBuilder<ThemeCubit, ThemeState>(
           buildWhen: (prev, curr) => prev != curr,
           builder: (context, themeState) {
-            final isDark = switch (themeState) {
-              ThemeLoaded(mode: AppThemeMode.dark) => true,
-              ThemeLoaded(mode: AppThemeMode.light) => false,
-            };
             return Builder(
               builder: (context) => MaterialApp(
                 title: 'BuildPaw',
                 debugShowCheckedModeBanner: false,
+                home: const HomePage(),
+
+                // * Theme
                 theme: AppTheme.light,
                 darkTheme: AppTheme.dark,
-                themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
+                themeMode: themeState.isDark ? ThemeMode.dark : ThemeMode.light,
+
+                // * Localization
                 locale: TranslationProvider.of(context).flutterLocale,
                 supportedLocales: AppLocaleUtils.supportedLocales,
                 localizationsDelegates: const [
@@ -58,7 +66,6 @@ class BuildPawApp extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home: const HomePage(),
               ),
             );
           },

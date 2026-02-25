@@ -10,9 +10,11 @@ final class LanguageSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.t;
+
     return BlocBuilder<LocaleCubit, LocaleState>(
       builder: (context, state) {
-        final currentLocale = state is LocaleLoaded ? state.locale : AppLocale.en;
+        final currentLocale = state.locale;
+
         return PopupMenuButton<AppLocale>(
           tooltip: t.language.title,
           icon: Icon(
@@ -20,27 +22,47 @@ final class LanguageSelector extends StatelessWidget {
             color: Theme.of(context).colorScheme.onSurfaceVariant,
             size: 22,
           ),
-          onSelected: (locale) =>
-              context.read<LocaleCubit>().setLocale(locale),
+          onSelected: (locale) => context.read<LocaleCubit>().setLocale(locale),
           itemBuilder: (context) => [
+            //
             PopupMenuItem(
               value: AppLocale.en,
               child: Row(
                 children: [
-                  if (currentLocale == AppLocale.en)
-                    const Icon(Icons.check, size: 18, color: AppColors.primary),
-                  if (currentLocale == AppLocale.en) const SizedBox(width: 8),
+                  if (currentLocale == AppLocale.en) ...[
+                    const Icon(
+                      Icons.check,
+                      size: 18,
+                      color: AppColors.primary,
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                  ],
+
+                  //
                   Text(t.language.english),
                 ],
               ),
             ),
+
+            //
             PopupMenuItem(
               value: AppLocale.tr,
               child: Row(
                 children: [
-                  if (currentLocale == AppLocale.tr)
-                    const Icon(Icons.check, size: 18, color: AppColors.primary),
-                  if (currentLocale == AppLocale.tr) const SizedBox(width: 8),
+                  if (currentLocale == AppLocale.tr) ...[
+                    const Icon(
+                      Icons.check,
+                      size: 18,
+                      color: AppColors.primary,
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                  ],
+
+                  //
                   Text(t.language.turkish),
                 ],
               ),

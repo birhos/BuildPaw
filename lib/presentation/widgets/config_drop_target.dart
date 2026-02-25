@@ -28,9 +28,7 @@ final class _ConfigDropTargetState extends State<ConfigDropTarget> {
       onDragDone: (detail) async {
         final jsonFiles = detail.files.where(_isJsonFile).toList();
         if (jsonFiles.isEmpty) return;
-
         final presetName = await context.read<BuildConfigCubit>().importConfigFromXFile(jsonFiles.first);
-
         if (!context.mounted) return;
         final t = context.t;
         ScaffoldMessenger.of(context).showSnackBar(

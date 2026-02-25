@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../application/application.dart';
 import '../../core/core.dart';
 
-
 final class BuildLogPanel extends StatefulWidget {
   const BuildLogPanel({super.key});
 
@@ -38,6 +37,7 @@ final class _BuildLogPanelState extends State<BuildLogPanel> {
   @override
   Widget build(BuildContext context) {
     final t = context.t;
+
     return BlocConsumer<BuildExecutionBloc, BuildExecutionState>(
       listener: (context, state) {
         if (state is BuildRunning || state is BuildSuccess || state is BuildError) {
@@ -59,6 +59,7 @@ final class _BuildLogPanelState extends State<BuildLogPanel> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              //
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 child: Row(
@@ -89,7 +90,11 @@ final class _BuildLogPanelState extends State<BuildLogPanel> {
                   ],
                 ),
               ),
+
+              //
               const Divider(height: 1, color: AppColors.outlineVariant),
+
+              //
               SizedBox(
                 height: 300,
                 child: isIdle && logs.isEmpty

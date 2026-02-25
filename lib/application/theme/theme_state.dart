@@ -5,17 +5,13 @@ enum AppThemeMode {
   light,
 }
 
-sealed class ThemeState extends Equatable {
-  const ThemeState();
-
-  @override
-  List<Object?> get props => [];
-}
-
-final class ThemeLoaded extends ThemeState {
-  const ThemeLoaded(this.mode);
+final class ThemeState extends Equatable {
+  const ThemeState(this.mode);
   final AppThemeMode mode;
 
   @override
   List<Object?> get props => [mode];
+
+  bool get isDark => mode == AppThemeMode.dark;
+  bool get isLight => mode == AppThemeMode.light;
 }

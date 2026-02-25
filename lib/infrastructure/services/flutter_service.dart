@@ -23,6 +23,20 @@ class FlutterService {
     return [];
   }
 
+  String dartExecutable(String projectPath) {
+    if (hasFvm(projectPath)) {
+      return 'fvm';
+    }
+    return 'dart';
+  }
+
+  List<String> dartPrefix(String projectPath) {
+    if (hasFvm(projectPath)) {
+      return ['dart'];
+    }
+    return [];
+  }
+
   bool hasFvm(String projectPath) {
     return Directory('$projectPath/.fvm').existsSync();
   }
@@ -50,24 +64,15 @@ class FlutterService {
       final exec = flutterExecutable(projectPath);
       final prefix = flutterPrefix(projectPath);
 
-      final result = await _processService.runAndCapture(
-        executable: exec,
-        arguments: [...prefix, '--version', '--machine'],
-        workingDirectory: projectPath,
-      );
+      final result = await _processService.runAndCapture(executable: exec, arguments: [...prefix, '--version', '--machine'], workingDirectory: projectPath);
 
-      final versionMatch = RegExp(r'"frameworkVersion"\s*:\s*"([^"]+)"')
-          .firstMatch(result);
+      final versionMatch = RegExp(r'"frameworkVersion"\s*:\s*"([^"]+)"').firstMatch(result);
       if (versionMatch != null) {
         return versionMatch.group(1)!;
       }
 
       // Fallback: parse non-machine output
-      final fallback = await _processService.runAndCapture(
-        executable: exec,
-        arguments: [...prefix, '--version'],
-        workingDirectory: projectPath,
-      );
+      final fallback = await _processService.runAndCapture(executable: exec, arguments: [...prefix, '--version'], workingDirectory: projectPath);
       final match = RegExp(r'Flutter\s+(\S+)').firstMatch(fallback);
       return match?.group(1) ?? 'unknown';
     } catch (_) {
@@ -77,11 +82,10 @@ class FlutterService {
 
   Future<String> getDartVersion(String projectPath) async {
     try {
-      final result = await _processService.runAndCapture(
-        executable: 'dart',
-        arguments: ['--version'],
-        workingDirectory: projectPath,
-      );
+      final exec = dartExecutable(projectPath);
+      final prefix = dartPrefix(projectPath);
+
+      final result = await _processService.runAndCapture(executable: exec, arguments: [...prefix, '--version'], workingDirectory: projectPath);
       final match = RegExp(r'Dart SDK version:\s*(\S+)').firstMatch(result);
       return match?.group(1) ?? 'unknown';
     } catch (_) {

@@ -5,6 +5,7 @@ import '../../application/build_config/build_config_cubit.dart';
 import '../../i18n/strings.g.dart';
 import '../widgets/build_action_bar.dart';
 import '../widgets/build_log_panel.dart';
+import '../widgets/config_drop_target.dart';
 import '../widgets/export_config_dialog.dart';
 import '../widgets/platform_config/android_config_panel.dart';
 import '../widgets/platform_config/ios_config_panel.dart';
@@ -17,9 +18,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ConstrainedBox(
+    return ConfigDropTarget(
+      child: Scaffold(
+        body: Center(
+          child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 800),
           child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
@@ -39,6 +41,7 @@ class HomePage extends StatelessWidget {
               const BuildLogPanel(),
               const SizedBox(height: 20),
             ],
+            ),
           ),
         ),
       ),

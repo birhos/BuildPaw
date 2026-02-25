@@ -10,7 +10,9 @@ environment:
   flutter: ">=3.35.6 <4.0.0"
 
 dependencies:
+  cross_file: 0.3.4+9
   cupertino_icons: 1.0.8
+  desktop_drop: 0.7.0
   equatable: 2.0.7
   file_picker: 9.2.1
   flutter:

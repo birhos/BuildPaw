@@ -118,6 +118,7 @@ class _TranslationsConfigTr extends TranslationsConfigEn {
 	@override String get exportCancelled => 'Dışa aktarma iptal edildi.';
 	@override String importSuccess({required Object name}) => 'İçe aktarıldı: ${name}';
 	@override String get importCancelled => 'İçe aktarma iptal edildi veya dosya geçersiz.';
+	@override String get dropToImport => 'Yapılandırmayı içe aktarmak için JSON dosyasını buraya bırakın';
 }
 
 // Path: exportDialog
@@ -299,6 +300,7 @@ extension on TranslationsTr {
 			'config.exportCancelled' => 'Dışa aktarma iptal edildi.',
 			'config.importSuccess' => ({required Object name}) => 'İçe aktarıldı: ${name}',
 			'config.importCancelled' => 'İçe aktarma iptal edildi veya dosya geçersiz.',
+			'config.dropToImport' => 'Yapılandırmayı içe aktarmak için JSON dosyasını buraya bırakın',
 			'exportDialog.title' => 'Yapılandırmayı Dışa Aktar',
 			'exportDialog.presetName' => 'Önayar Adı',
 			'exportDialog.presetNameHint' => 'örn. release-prod',

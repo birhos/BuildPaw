@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:cross_file/cross_file.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -67,6 +68,27 @@ class BuildConfigCubit extends Cubit<BuildConfigState> {
     final file = File(savePath);
     await file.writeAsString(jsonString);
     return savePath;
+  }
+
+  /// Imports a JSON preset from an XFile (e.g. from drag & drop).
+  /// Returns the preset name on success, or null if failed.
+  Future<String?> importConfigFromXFile(XFile file) async {
+    try {
+      final content = await file.readAsString();
+      final json = jsonDecode(content) as Map<String, dynamic>;
+      final preset = BuildPreset.fromJson(json);
+
+      emit(BuildConfigState(
+        enabledPlatforms: preset.enabledPlatforms,
+        androidConfig: preset.androidConfig,
+        iosConfig: preset.iosConfig,
+        webConfig: preset.webConfig,
+      ));
+
+      return '${preset.name} v${preset.version}';
+    } catch (_) {
+      return null;
+    }
   }
 
   /// Imports a JSON preset file and applies it to the current state.

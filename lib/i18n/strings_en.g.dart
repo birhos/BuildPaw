@@ -153,6 +153,9 @@ class TranslationsConfigEn {
 
 	/// en: 'Import cancelled or file invalid.'
 	String get importCancelled => 'Import cancelled or file invalid.';
+
+	/// en: 'Drop JSON file to import config'
+	String get dropToImport => 'Drop JSON file to import config';
 }
 
 // Path: exportDialog
@@ -426,6 +429,7 @@ extension on Translations {
 			'config.exportCancelled' => 'Export cancelled.',
 			'config.importSuccess' => ({required Object name}) => 'Imported: ${name}',
 			'config.importCancelled' => 'Import cancelled or file invalid.',
+			'config.dropToImport' => 'Drop JSON file to import config',
 			'exportDialog.title' => 'Export Build Config',
 			'exportDialog.presetName' => 'Preset Name',
 			'exportDialog.presetNameHint' => 'e.g. release-prod',

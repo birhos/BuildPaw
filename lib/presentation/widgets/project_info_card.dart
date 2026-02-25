@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/project/project_cubit.dart';
-import '../../application/project/project_state.dart';
-import '../../core/theme/app_colors.dart';
-import '../../domain/models/project_info.dart';
-import '../../core/i18n/strings.g.dart';
+import '../../application/application.dart';
+import '../../core/core.dart';
+import '../../domain/domain.dart';
 
-class ProjectInfoCard extends StatelessWidget {
+final class ProjectInfoCard extends StatelessWidget {
   const ProjectInfoCard({super.key});
 
   @override
@@ -72,7 +70,7 @@ class ProjectInfoCard extends StatelessWidget {
   }
 }
 
-class _InfoChip extends StatelessWidget {
+final class _InfoChip extends StatelessWidget {
   const _InfoChip({required this.icon, required this.label, required this.color});
   final IconData icon;
   final String label;
@@ -102,7 +100,7 @@ class _InfoChip extends StatelessWidget {
   }
 }
 
-class _FvmChip extends StatelessWidget {
+final class _FvmChip extends StatelessWidget {
   const _FvmChip({
     required this.info,
     required this.fvmActive,

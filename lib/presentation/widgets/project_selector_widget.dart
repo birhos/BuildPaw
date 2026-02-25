@@ -2,14 +2,11 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/project/project_cubit.dart';
-import '../../application/project/project_state.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/i18n/strings.g.dart';
-import 'language_selector.dart';
-import 'theme_selector.dart';
+import '../../application/application.dart';
+import '../../core/core.dart';
+import '../../presentation/presentation.dart';
 
-class ProjectSelectorWidget extends StatelessWidget {
+final class ProjectSelectorWidget extends StatelessWidget {
   const ProjectSelectorWidget({super.key});
 
   @override

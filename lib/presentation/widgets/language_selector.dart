@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/locale/locale_cubit.dart';
-import '../../application/locale/locale_state.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/i18n/strings.g.dart';
+import '../../application/application.dart';
+import '../../core/core.dart';
 
-class LanguageSelector extends StatelessWidget {
+final class LanguageSelector extends StatelessWidget {
   const LanguageSelector({super.key});
 
   @override

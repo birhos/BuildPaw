@@ -2,13 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/services/artifact_manager.dart';
-import '../../application/services/build_command_generator.dart';
-import '../../domain/enums/build_platform.dart';
-import '../../domain/models/build_result.dart';
-import '../../infrastructure/services/process_service.dart';
-import 'build_execution_event.dart';
-import 'build_execution_state.dart';
+import '../../application/application.dart';
+import '../../domain/domain.dart';
+import '../../infrastructure/infrastructure.dart';
 
 final class BuildExecutionBloc extends Bloc<BuildExecutionEvent, BuildExecutionState> {
   BuildExecutionBloc({

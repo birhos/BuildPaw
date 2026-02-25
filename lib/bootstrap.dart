@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'app.dart';
-import 'application/locale/locale_cubit.dart';
-import 'application/theme/theme_cubit.dart';
+import 'application/application.dart';
 
 Future<void> bootstrap() async {
   final localeCubit = LocaleCubit();

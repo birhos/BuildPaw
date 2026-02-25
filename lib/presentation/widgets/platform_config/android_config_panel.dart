@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../application/build_config/build_config_cubit.dart';
-import '../../../application/build_config/build_config_state.dart';
-import '../../../core/theme/app_colors.dart';
-import '../../../domain/enums/android_output_type.dart';
-import '../../../domain/enums/build_mode.dart';
-import '../../../domain/enums/build_platform.dart';
-import '../../../core/i18n/strings.g.dart';
+import '../../../application/application.dart';
+import '../../../core/core.dart';
+import '../../../domain/domain.dart';
 
-class AndroidConfigPanel extends StatelessWidget {
+final class AndroidConfigPanel extends StatelessWidget {
   const AndroidConfigPanel({super.key});
 
   @override

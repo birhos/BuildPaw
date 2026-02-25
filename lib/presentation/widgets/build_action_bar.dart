@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/build_config/build_config_cubit.dart';
-import '../../application/build_config/build_config_state.dart';
-import '../../application/build_execution/build_execution_bloc.dart';
-import '../../application/build_execution/build_execution_event.dart';
-import '../../application/build_execution/build_execution_state.dart';
-import '../../application/project/project_cubit.dart';
-import '../../application/project/project_state.dart';
-import '../../core/theme/app_colors.dart';
-import '../../domain/enums/build_platform.dart';
-import '../../core/i18n/strings.g.dart';
+import '../../application/application.dart';
+import '../../core/core.dart';
+import '../../domain/domain.dart';
 
-class BuildActionBar extends StatelessWidget {
+final class BuildActionBar extends StatelessWidget {
   const BuildActionBar({super.key});
 
   @override

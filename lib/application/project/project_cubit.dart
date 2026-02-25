@@ -1,9 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/models/project_info.dart';
-import '../../infrastructure/services/flutter_service.dart';
-import '../../infrastructure/services/git_service.dart';
-import 'project_state.dart';
+import '../../application/application.dart';
+import '../../domain/domain.dart';
+import '../../infrastructure/infrastructure.dart';
 
 final class ProjectCubit extends Cubit<ProjectState> {
   ProjectCubit({

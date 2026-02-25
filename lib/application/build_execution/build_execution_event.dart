@@ -1,9 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../domain/enums/build_platform.dart';
-import '../../domain/models/android_build_config.dart';
-import '../../domain/models/ios_build_config.dart';
-import '../../domain/models/web_build_config.dart';
+import '../../domain/domain.dart';
 
 sealed class BuildExecutionEvent extends Equatable {
   const BuildExecutionEvent();

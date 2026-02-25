@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:buildpaw/core/constants/app_constants.dart';
+import '../../core/core.dart';
 
-class FileSystemService {
+final class FileSystemService {
   /// Creates the timestamped output directory structure on the Desktop.
   /// Returns the root output path for this build session.
   Future<String> createOutputDirectory({

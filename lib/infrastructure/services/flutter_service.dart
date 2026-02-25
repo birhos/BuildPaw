@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'process_service.dart';
 
-class FlutterService {
+final class FlutterService {
   FlutterService(this._processService);
   final ProcessService _processService;
 

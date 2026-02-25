@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../domain/enums/build_platform.dart';
-import '../../domain/models/build_result.dart';
+import '../../domain/domain.dart';
 
 sealed class BuildExecutionState extends Equatable {
   const BuildExecutionState();

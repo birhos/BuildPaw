@@ -1,12 +1,10 @@
 import 'dart:io';
 
-import 'package:buildpaw/core/constants/app_constants.dart';
-import 'package:buildpaw/domain/enums/android_output_type.dart';
-import 'package:buildpaw/domain/enums/build_platform.dart';
-import 'package:buildpaw/domain/models/android_build_config.dart';
-import 'package:buildpaw/infrastructure/services/file_system_service.dart';
+import '../../core/core.dart';
+import '../../domain/domain.dart';
+import '../../infrastructure/infrastructure.dart';
 
-class ArtifactManager {
+final class ArtifactManager {
   ArtifactManager(this._fileSystemService);
   final FileSystemService _fileSystemService;
 

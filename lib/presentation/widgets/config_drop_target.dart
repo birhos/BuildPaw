@@ -3,22 +3,18 @@ import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/build_config/build_config_cubit.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/i18n/strings.g.dart';
+import '../../application/application.dart';
+import '../../core/core.dart';
 
-/// Wraps [child] with a [DropTarget] that accepts JSON config files.
-/// When a .json file is dropped, it imports the config and shows a snackbar.
-class ConfigDropTarget extends StatefulWidget {
+final class ConfigDropTarget extends StatefulWidget {
   const ConfigDropTarget({required this.child, super.key});
-
   final Widget child;
 
   @override
   State<ConfigDropTarget> createState() => _ConfigDropTargetState();
 }
 
-class _ConfigDropTargetState extends State<ConfigDropTarget> {
+final class _ConfigDropTargetState extends State<ConfigDropTarget> {
   bool _dragging = false;
 
   bool _isJsonFile(XFile file) {

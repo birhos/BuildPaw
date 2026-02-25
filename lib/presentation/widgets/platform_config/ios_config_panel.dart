@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../application/build_config/build_config_cubit.dart';
-import '../../../application/build_config/build_config_state.dart';
-import '../../../core/theme/app_colors.dart';
-import '../../../domain/enums/build_mode.dart';
-import '../../../domain/enums/build_platform.dart';
-import '../../../domain/enums/ios_output_type.dart';
-import '../../../core/i18n/strings.g.dart';
+import '../../../application/application.dart';
+import '../../../core/core.dart';
+import '../../../domain/domain.dart';
 
-class IosConfigPanel extends StatelessWidget {
+final class IosConfigPanel extends StatelessWidget {
   const IosConfigPanel({super.key});
 
   @override
   Widget build(BuildContext context) {
     final t = context.t;
+
     return BlocBuilder<BuildConfigCubit, BuildConfigState>(
       builder: (context, state) {
         final enabled = state.enabledPlatforms[BuildPlatform.ios] ?? false;

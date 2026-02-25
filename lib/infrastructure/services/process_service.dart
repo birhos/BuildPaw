@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-class ProcessResult {
+final class ProcessResult {
   const ProcessResult({required this.exitCode, required this.logs});
   final int exitCode;
   final List<String> logs;
@@ -10,7 +10,7 @@ class ProcessResult {
   bool get success => exitCode == 0;
 }
 
-class ProcessService {
+final class ProcessService {
   Process? _currentProcess;
 
   bool get isRunning => _currentProcess != null;

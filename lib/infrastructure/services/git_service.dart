@@ -1,6 +1,6 @@
 import 'process_service.dart';
 
-class GitService {
+final class GitService {
   GitService(this._processService);
   final ProcessService _processService;
 

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../core/i18n/strings.g.dart';
+import '../../core/core.dart';
 
-class ExportConfigDialog extends StatefulWidget {
+final class ExportConfigDialog extends StatefulWidget {
   const ExportConfigDialog({super.key});
 
   @override
   State<ExportConfigDialog> createState() => _ExportConfigDialogState();
 }
 
-class _ExportConfigDialogState extends State<ExportConfigDialog> {
+final class _ExportConfigDialogState extends State<ExportConfigDialog> {
   final _nameController = TextEditingController(text: 'my-build-config');
   final _versionController = TextEditingController(text: '1.0.0');
 

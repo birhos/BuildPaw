@@ -1,12 +1,7 @@
-import 'package:buildpaw/core/constants/app_constants.dart';
-import 'package:buildpaw/domain/enums/android_output_type.dart';
-import 'package:buildpaw/domain/enums/build_mode.dart';
-import 'package:buildpaw/domain/enums/pwa_strategy.dart';
-import 'package:buildpaw/domain/models/android_build_config.dart';
-import 'package:buildpaw/domain/models/ios_build_config.dart';
-import 'package:buildpaw/domain/models/web_build_config.dart';
+import '../../core/core.dart';
+import '../../domain/domain.dart';
 
-class BuildCommand {
+final class BuildCommand {
   const BuildCommand({
     required this.executable,
     required this.arguments,
@@ -19,7 +14,7 @@ class BuildCommand {
   String get fullCommand => '$executable ${arguments.join(' ')}';
 }
 
-class BuildCommandGenerator {
+final class BuildCommandGenerator {
   /// Generates Android build commands. Returns 1 or 2 commands depending
   /// on output type (both = apk + aab).
   List<BuildCommand> generateAndroid({

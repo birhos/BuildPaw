@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/theme/theme_cubit.dart';
-import '../../application/theme/theme_state.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/i18n/strings.g.dart';
+import '../../application/application.dart';
+import '../../core/core.dart';
 
-class ThemeSelector extends StatelessWidget {
+final class ThemeSelector extends StatelessWidget {
   const ThemeSelector({super.key});
 
   @override

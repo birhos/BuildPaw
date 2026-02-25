@@ -3,19 +3,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../application/build_execution/build_execution_bloc.dart';
-import '../../application/build_execution/build_execution_state.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/i18n/strings.g.dart';
+import '../../application/application.dart';
+import '../../core/core.dart';
 
-class BuildLogPanel extends StatefulWidget {
+
+final class BuildLogPanel extends StatefulWidget {
   const BuildLogPanel({super.key});
 
   @override
   State<BuildLogPanel> createState() => _BuildLogPanelState();
 }
 
-class _BuildLogPanelState extends State<BuildLogPanel> {
+final class _BuildLogPanelState extends State<BuildLogPanel> {
   final ScrollController _scrollController = ScrollController();
 
   @override

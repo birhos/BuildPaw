@@ -5,12 +5,8 @@ import 'package:cross_file/cross_file.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/enums/build_platform.dart';
-import '../../domain/models/android_build_config.dart';
-import '../../domain/models/build_preset.dart';
-import '../../domain/models/ios_build_config.dart';
-import '../../domain/models/web_build_config.dart';
-import 'build_config_state.dart';
+import '../../application/application.dart';
+import '../../domain/domain.dart';
 
 class BuildConfigCubit extends Cubit<BuildConfigState> {
   BuildConfigCubit() : super(const BuildConfigState());
@@ -53,8 +49,7 @@ class BuildConfigCubit extends Cubit<BuildConfigState> {
       webConfig: state.webConfig,
     );
 
-    final jsonString =
-        const JsonEncoder.withIndent('  ').convert(preset.toJson());
+    final jsonString = const JsonEncoder.withIndent('  ').convert(preset.toJson());
 
     final savePath = await FilePicker.platform.saveFile(
       dialogTitle: 'Export Build Config',
@@ -78,12 +73,14 @@ class BuildConfigCubit extends Cubit<BuildConfigState> {
       final json = jsonDecode(content) as Map<String, dynamic>;
       final preset = BuildPreset.fromJson(json);
 
-      emit(BuildConfigState(
-        enabledPlatforms: preset.enabledPlatforms,
-        androidConfig: preset.androidConfig,
-        iosConfig: preset.iosConfig,
-        webConfig: preset.webConfig,
-      ));
+      emit(
+        BuildConfigState(
+          enabledPlatforms: preset.enabledPlatforms,
+          androidConfig: preset.androidConfig,
+          iosConfig: preset.iosConfig,
+          webConfig: preset.webConfig,
+        ),
+      );
 
       return '${preset.name} v${preset.version}';
     } catch (_) {
@@ -110,12 +107,14 @@ class BuildConfigCubit extends Cubit<BuildConfigState> {
       final json = jsonDecode(content) as Map<String, dynamic>;
       final preset = BuildPreset.fromJson(json);
 
-      emit(BuildConfigState(
-        enabledPlatforms: preset.enabledPlatforms,
-        androidConfig: preset.androidConfig,
-        iosConfig: preset.iosConfig,
-        webConfig: preset.webConfig,
-      ));
+      emit(
+        BuildConfigState(
+          enabledPlatforms: preset.enabledPlatforms,
+          androidConfig: preset.androidConfig,
+          iosConfig: preset.iosConfig,
+          webConfig: preset.webConfig,
+        ),
+      );
 
       return '${preset.name} v${preset.version}';
     } catch (_) {

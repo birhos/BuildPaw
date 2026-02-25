@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,11 +26,7 @@ class _BuildLogPanelState extends State<BuildLogPanel> {
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 100),
-          curve: Curves.easeOut,
-        );
+        _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 100), curve: Curves.easeOut);
       }
     });
   }
@@ -58,57 +55,59 @@ class _BuildLogPanelState extends State<BuildLogPanel> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 child: Row(
                   children: [
-                    const Icon(Icons.terminal,
-                        size: 18, color: AppColors.onSurfaceVariant),
+                    const Icon(Icons.terminal, size: 18, color: AppColors.onSurfaceVariant),
                     const SizedBox(width: 8),
-                    Text(
-                      'Build Output',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                            color: AppColors.onSurfaceVariant,
-                          ),
-                    ),
+                    Text('Build Output', style: Theme.of(context).textTheme.titleSmall?.copyWith(color: AppColors.onSurfaceVariant)),
                     const Spacer(),
+                    if (logs.isNotEmpty)
+                      IconButton(
+                        icon: const Icon(Icons.copy, size: 16),
+                        color: AppColors.onSurfaceVariant,
+                        tooltip: 'Copy logs',
+                        splashRadius: 16,
+                        onPressed: () {
+                          final text = logs.map((e) => '${e.text}\n').join();
+                          Clipboard.setData(ClipboardData(text: text));
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Logs copied to clipboard'), duration: Duration(seconds: 2)));
+                        },
+                      ),
+                    const SizedBox(width: 4),
                     _statusBadge(state),
                   ],
                 ),
               ),
-              const Divider(
-                  height: 1, color: AppColors.outlineVariant),
+              const Divider(height: 1, color: AppColors.outlineVariant),
               SizedBox(
                 height: 300,
                 child: isIdle && logs.isEmpty
                     ? Center(
                         child: Text(
                           'Build output will appear here...',
-                          style: GoogleFonts.jetBrainsMono(
-                            fontSize: 13,
-                            color: AppColors.onSurfaceVariant
-                                .withValues(alpha: 0.5),
-                          ),
+                          style: GoogleFonts.jetBrainsMono(fontSize: 13, color: AppColors.onSurfaceVariant.withValues(alpha: 0.5)),
                         ),
                       )
-                    : ListView.builder(
-                        controller: _scrollController,
-                        padding: const EdgeInsets.all(12),
-                        itemCount: logs.length,
-                        itemBuilder: (context, index) {
-                          final entry = logs[index];
-                          return Text(
-                            entry.text,
-                            style: GoogleFonts.jetBrainsMono(
-                              fontSize: 12,
-                              height: 1.5,
-                              color: _logColor(entry),
-                              fontWeight: entry.isHeader
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
-                            ),
-                          );
-                        },
+                    : SelectableRegion(
+                        selectionControls: MaterialTextSelectionControls(),
+                        child: ListView.builder(
+                          controller: _scrollController,
+                          padding: const EdgeInsets.all(12),
+                          itemCount: logs.length,
+                          itemBuilder: (context, index) {
+                            final entry = logs[index];
+                            return Text(
+                              entry.text,
+                              style: GoogleFonts.jetBrainsMono(
+                                fontSize: 12,
+                                height: 1.5,
+                                color: _logColor(entry),
+                                fontWeight: entry.isHeader ? FontWeight.bold : FontWeight.normal,
+                              ),
+                            );
+                          },
+                        ),
                       ),
               ),
             ],

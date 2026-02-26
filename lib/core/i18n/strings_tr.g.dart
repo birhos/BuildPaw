@@ -293,6 +293,12 @@ class _TranslationsLanguageTr extends TranslationsLanguageEn {
 	@override String get title => 'Dil';
 	@override String get english => 'English';
 	@override String get turkish => 'Türkçe';
+	@override String get arabic => 'العربية';
+	@override String get german => 'Deutsch';
+	@override String get french => 'Français';
+	@override String get chinese => '简体中文';
+	@override String get russian => 'Русский';
+	@override String get hindi => 'हिन्दी';
 }
 
 // Path: theme
@@ -398,6 +404,12 @@ extension on TranslationsTr {
 			'language.title' => 'Dil',
 			'language.english' => 'English',
 			'language.turkish' => 'Türkçe',
+			'language.arabic' => 'العربية',
+			'language.german' => 'Deutsch',
+			'language.french' => 'Français',
+			'language.chinese' => '简体中文',
+			'language.russian' => 'Русский',
+			'language.hindi' => 'हिन्दी',
 			'theme.title' => 'Tema',
 			'theme.dark' => 'Koyu',
 			'theme.light' => 'Açık',

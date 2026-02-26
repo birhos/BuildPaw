@@ -460,6 +460,24 @@ class TranslationsLanguageEn {
 
 	/// en: 'Türkçe'
 	String get turkish => 'Türkçe';
+
+	/// en: 'العربية'
+	String get arabic => 'العربية';
+
+	/// en: 'Deutsch'
+	String get german => 'Deutsch';
+
+	/// en: 'Français'
+	String get french => 'Français';
+
+	/// en: '简体中文'
+	String get chinese => '简体中文';
+
+	/// en: 'Русский'
+	String get russian => 'Русский';
+
+	/// en: 'हिन्दी'
+	String get hindi => 'हिन्दी';
 }
 
 // Path: theme
@@ -571,6 +589,12 @@ extension on Translations {
 			'language.title' => 'Language',
 			'language.english' => 'English',
 			'language.turkish' => 'Türkçe',
+			'language.arabic' => 'العربية',
+			'language.german' => 'Deutsch',
+			'language.french' => 'Français',
+			'language.chinese' => '简体中文',
+			'language.russian' => 'Русский',
+			'language.hindi' => 'हिन्दी',
 			'theme.title' => 'Theme',
 			'theme.dark' => 'Dark',
 			'theme.light' => 'Light',

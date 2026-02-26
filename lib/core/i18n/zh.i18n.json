@@ -1,0 +1,130 @@
+{
+    "app": {
+        "name": "BuildPaw"
+    },
+    "common": {
+        "cancel": "取消",
+        "export": "导出",
+        "browse": "浏览",
+        "save": "保存",
+        "delete": "删除"
+    },
+    "projectSelector": {
+        "title": "BuildPaw",
+        "hint": "选择Flutter项目目录...",
+        "selectDialogTitle": "选择Flutter项目"
+    },
+    "projectInfo": {
+        "title": "项目信息",
+        "generalTab": "概览",
+        "dependenciesTab": "依赖项",
+        "refreshTooltip": "刷新项目信息",
+        "fvmActive": "FVM 已启用",
+        "fvmInactive": "无 FVM",
+        "noDependencies": "未找到依赖项",
+        "package": "包名",
+        "version": "版本"
+    },
+    "config": {
+        "export": "导出配置",
+        "import": "导入配置",
+        "exportSuccess": "配置已导出至 $path",
+        "exportCancelled": "导出已取消。",
+        "importSuccess": "已导入：$name",
+        "importCancelled": "导入已取消或文件无效。",
+        "dropToImport": "拖放JSON文件以导入配置"
+    },
+    "exportDialog": {
+        "title": "导出构建配置",
+        "presetName": "预设名称",
+        "presetNameHint": "例如 release-prod",
+        "version": "版本",
+        "versionHint": "例如 1.0.0"
+    },
+    "profile": {
+        "title": "配置文件",
+        "noProfiles": "没有已保存的配置文件",
+        "saveProfile": "保存配置文件",
+        "newProfile": "新建配置文件",
+        "profileName": "配置文件名称",
+        "profileNameHint": "例如 release-prod",
+        "version": "版本",
+        "versionHint": "例如 1.0.0",
+        "saveSuccess": "配置文件 '$name' 已保存",
+        "deleteConfirm": "删除配置文件 '$name'？",
+        "deleteSuccess": "配置文件已删除",
+        "applied": "已应用配置文件 '$name'",
+        "updateExisting": "更新现有",
+        "saveAsNew": "另存为新",
+        "overwriteConfirm": "配置文件 '$name' 已存在。是否覆盖？"
+    },
+    "build": {
+        "button": "构建",
+        "building": "构建中...",
+        "buildingPlatform": "正在构建 $platform...（$completed/$total）",
+        "cancel": "取消"
+    },
+    "buildLog": {
+        "title": "构建输出",
+        "copyTooltip": "复制日志",
+        "copied": "日志已复制到剪贴板",
+        "placeholder": "构建输出将显示在这里..."
+    },
+    "buildStatus": {
+        "idle": "空闲",
+        "running": "运行中",
+        "success": "成功",
+        "failed": "失败"
+    },
+    "platforms": {
+        "android": "Android",
+        "ios": "iOS",
+        "web": "Web"
+    },
+    "platformConfig": {
+        "outputType": "输出类型",
+        "codeObfuscation": "代码混淆",
+        "splitDebugInfo": "Split Debug Info",
+        "flavor": "Flavor",
+        "flavorHint": "例如 dev, staging, prod",
+        "runMode": "运行模式",
+        "target": "目标",
+        "targetHint": "lib/main.dart",
+        "pwaStrategy": "PWA策略",
+        "noTreeShakeIcons": "No Tree Shake Icons"
+    },
+    "androidOutput": {
+        "apk": "仅APK",
+        "aab": "仅AAB",
+        "both": "APK和AAB"
+    },
+    "iosOutput": {
+        "ios": "iOS (Runner.app)",
+        "ipa": "IPA (可导出)"
+    },
+    "buildMode": {
+        "debug": "Debug",
+        "profile": "Profile",
+        "release": "Release"
+    },
+    "pwaStrategy": {
+        "default": "默认",
+        "none": "无"
+    },
+    "language": {
+        "title": "语言",
+        "english": "English",
+        "turkish": "Türkçe",
+        "arabic": "العربية",
+        "german": "Deutsch",
+        "french": "Français",
+        "chinese": "简体中文",
+        "russian": "Русский",
+        "hindi": "हिन्दी"
+    },
+    "theme": {
+        "title": "主题",
+        "dark": "深色",
+        "light": "浅色"
+    }
+}

@@ -1,0 +1,130 @@
+{
+    "app": {
+        "name": "BuildPaw"
+    },
+    "common": {
+        "cancel": "Annuler",
+        "export": "Exporter",
+        "browse": "Parcourir",
+        "save": "Enregistrer",
+        "delete": "Supprimer"
+    },
+    "projectSelector": {
+        "title": "BuildPaw",
+        "hint": "Sélectionnez un répertoire de projet Flutter...",
+        "selectDialogTitle": "Sélectionner un projet Flutter"
+    },
+    "projectInfo": {
+        "title": "Info projet",
+        "generalTab": "Général",
+        "dependenciesTab": "Dépendances",
+        "refreshTooltip": "Actualiser les infos du projet",
+        "fvmActive": "FVM Actif",
+        "fvmInactive": "Pas de FVM",
+        "noDependencies": "Aucune dépendance trouvée",
+        "package": "Paquet",
+        "version": "Version"
+    },
+    "config": {
+        "export": "Exporter la config",
+        "import": "Importer la config",
+        "exportSuccess": "Config exportée vers $path",
+        "exportCancelled": "Export annulé.",
+        "importSuccess": "Importé : $name",
+        "importCancelled": "Import annulé ou fichier invalide.",
+        "dropToImport": "Déposez un fichier JSON pour importer la config"
+    },
+    "exportDialog": {
+        "title": "Exporter la config de build",
+        "presetName": "Nom du préréglage",
+        "presetNameHint": "ex. release-prod",
+        "version": "Version",
+        "versionHint": "ex. 1.0.0"
+    },
+    "profile": {
+        "title": "Profils",
+        "noProfiles": "Aucun profil enregistré",
+        "saveProfile": "Enregistrer le profil",
+        "newProfile": "Nouveau profil",
+        "profileName": "Nom du profil",
+        "profileNameHint": "ex. release-prod",
+        "version": "Version",
+        "versionHint": "ex. 1.0.0",
+        "saveSuccess": "Profil '$name' enregistré",
+        "deleteConfirm": "Supprimer le profil '$name' ?",
+        "deleteSuccess": "Profil supprimé",
+        "applied": "Profil '$name' appliqué",
+        "updateExisting": "Mettre à jour existant",
+        "saveAsNew": "Enregistrer comme nouveau",
+        "overwriteConfirm": "Le profil '$name' existe déjà. Écraser ?"
+    },
+    "build": {
+        "button": "COMPILER",
+        "building": "Compilation...",
+        "buildingPlatform": "Compilation de $platform... ($completed/$total)",
+        "cancel": "Annuler"
+    },
+    "buildLog": {
+        "title": "Sortie de compilation",
+        "copyTooltip": "Copier les logs",
+        "copied": "Logs copiés dans le presse-papiers",
+        "placeholder": "La sortie de compilation apparaîtra ici..."
+    },
+    "buildStatus": {
+        "idle": "Inactif",
+        "running": "En cours",
+        "success": "Succès",
+        "failed": "Échec"
+    },
+    "platforms": {
+        "android": "Android",
+        "ios": "iOS",
+        "web": "Web"
+    },
+    "platformConfig": {
+        "outputType": "Type de sortie",
+        "codeObfuscation": "Obfuscation du code",
+        "splitDebugInfo": "Split Debug Info",
+        "flavor": "Flavor",
+        "flavorHint": "ex. dev, staging, prod",
+        "runMode": "Mode d'exécution",
+        "target": "Cible",
+        "targetHint": "lib/main.dart",
+        "pwaStrategy": "Stratégie PWA",
+        "noTreeShakeIcons": "No Tree Shake Icons"
+    },
+    "androidOutput": {
+        "apk": "APK uniquement",
+        "aab": "AAB uniquement",
+        "both": "APK & AAB"
+    },
+    "iosOutput": {
+        "ios": "iOS (Runner.app)",
+        "ipa": "IPA (Exportable)"
+    },
+    "buildMode": {
+        "debug": "Debug",
+        "profile": "Profile",
+        "release": "Release"
+    },
+    "pwaStrategy": {
+        "default": "Par défaut",
+        "none": "Aucune"
+    },
+    "language": {
+        "title": "Langue",
+        "english": "English",
+        "turkish": "Türkçe",
+        "arabic": "العربية",
+        "german": "Deutsch",
+        "french": "Français",
+        "chinese": "简体中文",
+        "russian": "Русский",
+        "hindi": "हिन्दी"
+    },
+    "theme": {
+        "title": "Thème",
+        "dark": "Sombre",
+        "light": "Clair"
+    }
+}

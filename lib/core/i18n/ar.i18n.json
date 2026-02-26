@@ -1,0 +1,130 @@
+{
+    "app": {
+        "name": "BuildPaw"
+    },
+    "common": {
+        "cancel": "إلغاء",
+        "export": "تصدير",
+        "browse": "تصفح",
+        "save": "حفظ",
+        "delete": "حذف"
+    },
+    "projectSelector": {
+        "title": "BuildPaw",
+        "hint": "اختر مجلد مشروع Flutter...",
+        "selectDialogTitle": "اختيار مشروع Flutter"
+    },
+    "projectInfo": {
+        "title": "معلومات المشروع",
+        "generalTab": "عام",
+        "dependenciesTab": "التبعيات",
+        "refreshTooltip": "تحديث معلومات المشروع",
+        "fvmActive": "FVM مفعّل",
+        "fvmInactive": "بدون FVM",
+        "noDependencies": "لم يتم العثور على تبعيات",
+        "package": "الحزمة",
+        "version": "الإصدار"
+    },
+    "config": {
+        "export": "تصدير الإعدادات",
+        "import": "استيراد الإعدادات",
+        "exportSuccess": "تم تصدير الإعدادات إلى $path",
+        "exportCancelled": "تم إلغاء التصدير.",
+        "importSuccess": "تم الاستيراد: $name",
+        "importCancelled": "تم إلغاء الاستيراد أو الملف غير صالح.",
+        "dropToImport": "أسقط ملف JSON لاستيراد الإعدادات"
+    },
+    "exportDialog": {
+        "title": "تصدير إعدادات البناء",
+        "presetName": "اسم الإعداد",
+        "presetNameHint": "مثال: release-prod",
+        "version": "الإصدار",
+        "versionHint": "مثال: 1.0.0"
+    },
+    "profile": {
+        "title": "الملفات الشخصية",
+        "noProfiles": "لا توجد ملفات شخصية محفوظة",
+        "saveProfile": "حفظ الملف الشخصي",
+        "newProfile": "ملف شخصي جديد",
+        "profileName": "اسم الملف الشخصي",
+        "profileNameHint": "مثال: release-prod",
+        "version": "الإصدار",
+        "versionHint": "مثال: 1.0.0",
+        "saveSuccess": "تم حفظ الملف الشخصي '$name'",
+        "deleteConfirm": "حذف الملف الشخصي '$name'؟",
+        "deleteSuccess": "تم حذف الملف الشخصي",
+        "applied": "تم تطبيق الملف الشخصي '$name'",
+        "updateExisting": "تحديث الحالي",
+        "saveAsNew": "حفظ كجديد",
+        "overwriteConfirm": "الملف الشخصي '$name' موجود بالفعل. هل تريد الكتابة فوقه؟"
+    },
+    "build": {
+        "button": "بناء",
+        "building": "جارٍ البناء...",
+        "buildingPlatform": "جارٍ بناء $platform... ($completed/$total)",
+        "cancel": "إلغاء"
+    },
+    "buildLog": {
+        "title": "مخرجات البناء",
+        "copyTooltip": "نسخ السجلات",
+        "copied": "تم نسخ السجلات",
+        "placeholder": "ستظهر مخرجات البناء هنا..."
+    },
+    "buildStatus": {
+        "idle": "خامل",
+        "running": "قيد التشغيل",
+        "success": "نجاح",
+        "failed": "فشل"
+    },
+    "platforms": {
+        "android": "Android",
+        "ios": "iOS",
+        "web": "Web"
+    },
+    "platformConfig": {
+        "outputType": "نوع المخرجات",
+        "codeObfuscation": "تشويش الكود",
+        "splitDebugInfo": "Split Debug Info",
+        "flavor": "Flavor",
+        "flavorHint": "مثال: dev, staging, prod",
+        "runMode": "وضع التشغيل",
+        "target": "الهدف",
+        "targetHint": "lib/main.dart",
+        "pwaStrategy": "استراتيجية PWA",
+        "noTreeShakeIcons": "No Tree Shake Icons"
+    },
+    "androidOutput": {
+        "apk": "APK فقط",
+        "aab": "AAB فقط",
+        "both": "APK و AAB"
+    },
+    "iosOutput": {
+        "ios": "iOS (Runner.app)",
+        "ipa": "IPA (قابل للتصدير)"
+    },
+    "buildMode": {
+        "debug": "Debug",
+        "profile": "Profile",
+        "release": "Release"
+    },
+    "pwaStrategy": {
+        "default": "افتراضي",
+        "none": "بدون"
+    },
+    "language": {
+        "title": "اللغة",
+        "english": "English",
+        "turkish": "Türkçe",
+        "arabic": "العربية",
+        "german": "Deutsch",
+        "french": "Français",
+        "chinese": "简体中文",
+        "russian": "Русский",
+        "hindi": "हिन्दी"
+    },
+    "theme": {
+        "title": "المظهر",
+        "dark": "داكن",
+        "light": "فاتح"
+    }
+}

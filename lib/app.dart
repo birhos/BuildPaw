@@ -18,6 +18,7 @@ final class BuildPawApp extends StatelessWidget {
     final fileSystemService = FileSystemService();
     final commandGenerator = BuildCommandGenerator();
     final artifactManager = ArtifactManager(fileSystemService);
+    final profileStorageService = ProfileStorageService();
 
     return MultiBlocProvider(
       providers: [
@@ -36,6 +37,13 @@ final class BuildPawApp extends StatelessWidget {
 
         //
         BlocProvider(
+          create: (_) => ProfileCubit(
+            storageService: profileStorageService,
+          )..loadProfiles(),
+        ),
+
+        //
+        BlocProvider(
           create: (_) => BuildExecutionBloc(
             processService: processService,
             commandGenerator: commandGenerator,
@@ -45,28 +53,36 @@ final class BuildPawApp extends StatelessWidget {
       ],
       child: TranslationProvider(
         child: BlocBuilder<ThemeCubit, ThemeState>(
-          buildWhen: (prev, curr) => prev != curr,
           builder: (context, themeState) {
-            return Builder(
-              builder: (context) => MaterialApp(
-                title: 'BuildPaw',
-                debugShowCheckedModeBanner: false,
-                home: const HomePage(),
+            final locale = TranslationProvider.of(context).flutterLocale;
+            final isRtl = locale.languageCode == 'ar';
 
-                // * Theme
-                theme: AppTheme.light,
-                darkTheme: AppTheme.dark,
-                themeMode: themeState.isDark ? ThemeMode.dark : ThemeMode.light,
+            return MaterialApp(
+              title: 'BuildPaw',
+              debugShowCheckedModeBanner: false,
 
-                // * Localization
-                locale: TranslationProvider.of(context).flutterLocale,
-                supportedLocales: AppLocaleUtils.supportedLocales,
-                localizationsDelegates: const [
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-              ),
+              // * Theme
+              theme: AppTheme.light,
+              darkTheme: AppTheme.dark,
+              themeMode: themeState.isDark ? ThemeMode.dark : ThemeMode.light,
+
+              // * Localization
+              locale: locale,
+              supportedLocales: AppLocaleUtils.supportedLocales,
+              localizationsDelegates: const [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+
+              // * RTL/LTR
+              builder: (context, child) {
+                return Directionality(
+                  textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
+                  child: child!,
+                );
+              },
+              home: const HomePage(),
             );
           },
         ),

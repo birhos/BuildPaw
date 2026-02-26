@@ -71,6 +71,91 @@ final class FlutterService {
     return 'unknown';
   }
 
+  Future<Map<String, String>> getDependencies(String path) async {
+    final pubspec = File('$path/pubspec.yaml');
+    if (!pubspec.existsSync()) return {};
+
+    final yamlDeps = await _parsePubspecYamlDeps(pubspec);
+    if (yamlDeps.isEmpty) return {};
+
+    final lockFile = File('$path/pubspec.lock');
+    if (!lockFile.existsSync()) return yamlDeps;
+
+    final lockVersions = await _parseLockFileVersions(lockFile);
+
+    return yamlDeps.map((name, yamlVersion) {
+      final resolved = lockVersions[name];
+      return MapEntry(name, resolved ?? yamlVersion);
+    });
+  }
+
+  Future<Map<String, String>> _parsePubspecYamlDeps(File pubspec) async {
+    final lines = await pubspec.readAsLines();
+    final deps = <String, String>{};
+    var inDeps = false;
+    var inDevDeps = false;
+    const sdkPackages = {'flutter', 'flutter_test', 'flutter_localizations'};
+    const metaKeys = {'sdk', 'path', 'git', 'url', 'ref'};
+
+    for (final line in lines) {
+      final trimmed = line.trimLeft();
+      final stripped = line.trim();
+
+      if (stripped == 'dependencies:') {
+        inDeps = true;
+        inDevDeps = false;
+        continue;
+      }
+      if (stripped == 'dev_dependencies:') {
+        inDevDeps = true;
+        inDeps = false;
+        continue;
+      }
+      if (stripped.isNotEmpty &&
+          !line.startsWith(' ') &&
+          !line.startsWith('\t') &&
+          !stripped.startsWith('#') &&
+          stripped.endsWith(':')) {
+        inDeps = false;
+        inDevDeps = false;
+        continue;
+      }
+
+      if (!inDeps && !inDevDeps) continue;
+      if (trimmed.startsWith('#') || trimmed.isEmpty) continue;
+
+      if (trimmed.contains(':')) {
+        final colonIdx = trimmed.indexOf(':');
+        final key = trimmed.substring(0, colonIdx).trim();
+        if (metaKeys.contains(key) || sdkPackages.contains(key)) continue;
+        if (key.isEmpty) continue;
+
+        final value = trimmed.substring(colonIdx + 1).trim();
+        deps[key] = value.isEmpty ? 'any' : value;
+      }
+    }
+
+    return deps;
+  }
+
+  Future<Map<String, String>> _parseLockFileVersions(File lockFile) async {
+    final lines = await lockFile.readAsLines();
+    final versions = <String, String>{};
+    String? currentPackage;
+
+    for (final line in lines) {
+      if (line.startsWith('  ') && !line.startsWith('    ') && line.trimRight().endsWith(':')) {
+        currentPackage = line.trim().replaceAll(':', '');
+      } else if (currentPackage != null && line.trimLeft().startsWith('version:')) {
+        final raw = line.trimLeft().substring(8).trim();
+        versions[currentPackage] = raw.replaceAll('"', '').replaceAll("'", '');
+        currentPackage = null;
+      }
+    }
+
+    return versions;
+  }
+
   Future<String> getFlutterVersion(String projectPath) async {
     try {
       final exec = flutterExecutable(projectPath);

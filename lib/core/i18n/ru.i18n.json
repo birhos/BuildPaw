@@ -1,0 +1,130 @@
+{
+    "app": {
+        "name": "BuildPaw"
+    },
+    "common": {
+        "cancel": "Отмена",
+        "export": "Экспорт",
+        "browse": "Обзор",
+        "save": "Сохранить",
+        "delete": "Удалить"
+    },
+    "projectSelector": {
+        "title": "BuildPaw",
+        "hint": "Выберите каталог проекта Flutter...",
+        "selectDialogTitle": "Выбор проекта Flutter"
+    },
+    "projectInfo": {
+        "title": "Информация о проекте",
+        "generalTab": "Общее",
+        "dependenciesTab": "Зависимости",
+        "refreshTooltip": "Обновить информацию о проекте",
+        "fvmActive": "FVM Активен",
+        "fvmInactive": "Нет FVM",
+        "noDependencies": "Зависимости не найдены",
+        "package": "Пакет",
+        "version": "Версия"
+    },
+    "config": {
+        "export": "Экспорт конфигурации",
+        "import": "Импорт конфигурации",
+        "exportSuccess": "Конфигурация экспортирована в $path",
+        "exportCancelled": "Экспорт отменён.",
+        "importSuccess": "Импортировано: $name",
+        "importCancelled": "Импорт отменён или файл недействителен.",
+        "dropToImport": "Перетащите JSON-файл для импорта конфигурации"
+    },
+    "exportDialog": {
+        "title": "Экспорт конфигурации сборки",
+        "presetName": "Название пресета",
+        "presetNameHint": "напр. release-prod",
+        "version": "Версия",
+        "versionHint": "напр. 1.0.0"
+    },
+    "profile": {
+        "title": "Профили",
+        "noProfiles": "Нет сохранённых профилей",
+        "saveProfile": "Сохранить профиль",
+        "newProfile": "Новый профиль",
+        "profileName": "Название профиля",
+        "profileNameHint": "напр. release-prod",
+        "version": "Версия",
+        "versionHint": "напр. 1.0.0",
+        "saveSuccess": "Профиль '$name' сохранён",
+        "deleteConfirm": "Удалить профиль '$name'?",
+        "deleteSuccess": "Профиль удалён",
+        "applied": "Профиль '$name' применён",
+        "updateExisting": "Обновить существующий",
+        "saveAsNew": "Сохранить как новый",
+        "overwriteConfirm": "Профиль '$name' уже существует. Перезаписать?"
+    },
+    "build": {
+        "button": "СБОРКА",
+        "building": "Сборка...",
+        "buildingPlatform": "Сборка $platform... ($completed/$total)",
+        "cancel": "Отмена"
+    },
+    "buildLog": {
+        "title": "Вывод сборки",
+        "copyTooltip": "Копировать логи",
+        "copied": "Логи скопированы в буфер обмена",
+        "placeholder": "Вывод сборки появится здесь..."
+    },
+    "buildStatus": {
+        "idle": "Ожидание",
+        "running": "Выполняется",
+        "success": "Успех",
+        "failed": "Ошибка"
+    },
+    "platforms": {
+        "android": "Android",
+        "ios": "iOS",
+        "web": "Web"
+    },
+    "platformConfig": {
+        "outputType": "Тип вывода",
+        "codeObfuscation": "Обфускация кода",
+        "splitDebugInfo": "Split Debug Info",
+        "flavor": "Flavor",
+        "flavorHint": "напр. dev, staging, prod",
+        "runMode": "Режим запуска",
+        "target": "Цель",
+        "targetHint": "lib/main.dart",
+        "pwaStrategy": "Стратегия PWA",
+        "noTreeShakeIcons": "No Tree Shake Icons"
+    },
+    "androidOutput": {
+        "apk": "Только APK",
+        "aab": "Только AAB",
+        "both": "APK и AAB"
+    },
+    "iosOutput": {
+        "ios": "iOS (Runner.app)",
+        "ipa": "IPA (Экспортируемый)"
+    },
+    "buildMode": {
+        "debug": "Debug",
+        "profile": "Profile",
+        "release": "Release"
+    },
+    "pwaStrategy": {
+        "default": "По умолчанию",
+        "none": "Нет"
+    },
+    "language": {
+        "title": "Язык",
+        "english": "English",
+        "turkish": "Türkçe",
+        "arabic": "العربية",
+        "german": "Deutsch",
+        "french": "Français",
+        "chinese": "简体中文",
+        "russian": "Русский",
+        "hindi": "हिन्दी"
+    },
+    "theme": {
+        "title": "Тема",
+        "dark": "Тёмная",
+        "light": "Светлая"
+    }
+}

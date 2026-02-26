@@ -31,17 +31,19 @@ final class ProjectCubit extends Cubit<ProjectState> {
         _flutterService.getFlutterVersion(path),
         _flutterService.getDartVersion(path),
         _gitService.getLatestTag(path),
+        _flutterService.getDependencies(path),
       ]);
 
       final info = ProjectInfo(
-        name: results[0]!,
+        name: results[0]! as String,
         path: path,
-        version: results[1]!,
-        branch: results[2]!,
-        flutterVersion: results[3]!,
-        dartVersion: results[4]!,
-        latestTag: results[5],
+        version: results[1]! as String,
+        branch: results[2]! as String,
+        flutterVersion: results[3]! as String,
+        dartVersion: results[4]! as String,
+        latestTag: results[5] as String?,
         hasFvm: _flutterService.hasFvm(path),
+        dependencies: results[6]! as Map<String, String>,
       );
 
       emit(ProjectLoaded(info));

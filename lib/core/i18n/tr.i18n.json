@@ -1,1 +1,130 @@
-{"app":{"name":"BuildPaw"},"common":{"cancel":"İptal","export":"Dışa Aktar","browse":"Gözat"},"projectSelector":{"title":"BuildPaw","hint":"Bir Flutter proje dizini seçin...","selectDialogTitle":"Flutter Projesi Seç"},"projectInfo":{"title":"Proje Bilgisi","refreshTooltip":"Proje bilgisini yenile","fvmActive":"FVM Aktif","fvmInactive":"FVM Yok"},"config":{"export":"Yapılandırmayı Dışa Aktar","import":"Yapılandırmayı İçe Aktar","exportSuccess":"Yapılandırma $path konumuna aktarıldı","exportCancelled":"Dışa aktarma iptal edildi.","importSuccess":"İçe aktarıldı: $name","importCancelled":"İçe aktarma iptal edildi veya dosya geçersiz.","dropToImport":"Yapılandırmayı içe aktarmak için JSON dosyasını buraya bırakın"},"exportDialog":{"title":"Yapılandırmayı Dışa Aktar","presetName":"Önayar Adı","presetNameHint":"örn. release-prod","version":"Sürüm","versionHint":"örn. 1.0.0"},"build":{"button":"DERLE","building":"Derleniyor...","buildingPlatform":"$platform derleniyor... ($completed/$total)","cancel":"İptal"},"buildLog":{"title":"Derleme Çıktısı","copyTooltip":"Günlükleri kopyala","copied":"Günlükler panoya kopyalandı","placeholder":"Derleme çıktısı burada görünecek..."},"buildStatus":{"idle":"Beklemede","running":"Çalışıyor","success":"Başarılı","failed":"Başarısız"},"platforms":{"android":"Android","ios":"iOS","web":"Web"},"platformConfig":{"outputType":"Çıktı Türü","codeObfuscation":"Kod Gizleme","splitDebugInfo":"Split Debug Info","flavor":"Flavor","flavorHint":"örn. dev, staging, prod","runMode":"Çalışma Modu","target":"Hedef","targetHint":"lib/main.dart","pwaStrategy":"PWA Stratejisi","noTreeShakeIcons":"No Tree Shake Icons"},"androidOutput":{"apk":"Sadece APK","aab":"Sadece AAB","both":"APK ve AAB"},"iosOutput":{"ios":"iOS (Runner.app)","ipa":"IPA (Dışa Aktarılabilir)"},"buildMode":{"debug":"Debug","profile":"Profile","release":"Release"},"pwaStrategy":{"default":"Varsayılan","none":"Yok"},"language":{"title":"Dil","english":"English","turkish":"Türkçe"},"theme":{"title":"Tema","dark":"Koyu","light":"Açık"}}
+{
+    "app": {
+        "name": "BuildPaw"
+    },
+    "common": {
+        "cancel": "İptal",
+        "export": "Dışa Aktar",
+        "browse": "Gözat",
+        "save": "Kaydet",
+        "delete": "Sil"
+    },
+    "projectSelector": {
+        "title": "BuildPaw",
+        "hint": "Bir Flutter proje dizini seçin...",
+        "selectDialogTitle": "Flutter Projesi Seç"
+    },
+    "projectInfo": {
+        "title": "Proje Bilgisi",
+        "generalTab": "Genel",
+        "dependenciesTab": "Bağımlılıklar",
+        "refreshTooltip": "Proje bilgisini yenile",
+        "fvmActive": "FVM Aktif",
+        "fvmInactive": "FVM Yok",
+        "noDependencies": "Bağımlılık bulunamadı",
+        "package": "Paket",
+        "version": "Sürüm"
+    },
+    "config": {
+        "export": "Yapılandırmayı Dışa Aktar",
+        "import": "Yapılandırmayı İçe Aktar",
+        "exportSuccess": "Yapılandırma $path konumuna aktarıldı",
+        "exportCancelled": "Dışa aktarma iptal edildi.",
+        "importSuccess": "İçe aktarıldı: $name",
+        "importCancelled": "İçe aktarma iptal edildi veya dosya geçersiz.",
+        "dropToImport": "Yapılandırmayı içe aktarmak için JSON dosyasını buraya bırakın"
+    },
+    "exportDialog": {
+        "title": "Yapılandırmayı Dışa Aktar",
+        "presetName": "Önayar Adı",
+        "presetNameHint": "örn. release-prod",
+        "version": "Sürüm",
+        "versionHint": "örn. 1.0.0"
+    },
+    "profile": {
+        "title": "Profiller",
+        "noProfiles": "Kayıtlı profil yok",
+        "saveProfile": "Profili Kaydet",
+        "newProfile": "Yeni Profil",
+        "profileName": "Profil Adı",
+        "profileNameHint": "örn. release-prod",
+        "version": "Sürüm",
+        "versionHint": "örn. 1.0.0",
+        "saveSuccess": "'$name' profili kaydedildi",
+        "deleteConfirm": "'$name' profili silinsin mi?",
+        "deleteSuccess": "Profil silindi",
+        "applied": "'$name' profili uygulandı",
+        "updateExisting": "Mevcut Güncelle",
+        "saveAsNew": "Yeni Olarak Kaydet",
+        "overwriteConfirm": "'$name' profili zaten mevcut. Üzerine yazılsın mı?"
+    },
+    "build": {
+        "button": "DERLE",
+        "building": "Derleniyor...",
+        "buildingPlatform": "$platform derleniyor... ($completed/$total)",
+        "cancel": "İptal"
+    },
+    "buildLog": {
+        "title": "Derleme Çıktısı",
+        "copyTooltip": "Günlükleri kopyala",
+        "copied": "Günlükler panoya kopyalandı",
+        "placeholder": "Derleme çıktısı burada görünecek..."
+    },
+    "buildStatus": {
+        "idle": "Beklemede",
+        "running": "Çalışıyor",
+        "success": "Başarılı",
+        "failed": "Başarısız"
+    },
+    "platforms": {
+        "android": "Android",
+        "ios": "iOS",
+        "web": "Web"
+    },
+    "platformConfig": {
+        "outputType": "Çıktı Türü",
+        "codeObfuscation": "Kod Gizleme",
+        "splitDebugInfo": "Split Debug Info",
+        "flavor": "Flavor",
+        "flavorHint": "örn. dev, staging, prod",
+        "runMode": "Çalışma Modu",
+        "target": "Hedef",
+        "targetHint": "lib/main.dart",
+        "pwaStrategy": "PWA Stratejisi",
+        "noTreeShakeIcons": "No Tree Shake Icons"
+    },
+    "androidOutput": {
+        "apk": "Sadece APK",
+        "aab": "Sadece AAB",
+        "both": "APK ve AAB"
+    },
+    "iosOutput": {
+        "ios": "iOS (Runner.app)",
+        "ipa": "IPA (Dışa Aktarılabilir)"
+    },
+    "buildMode": {
+        "debug": "Debug",
+        "profile": "Profile",
+        "release": "Release"
+    },
+    "pwaStrategy": {
+        "default": "Varsayılan",
+        "none": "Yok"
+    },
+    "language": {
+        "title": "Dil",
+        "english": "English",
+        "turkish": "Türkçe",
+        "arabic": "العربية",
+        "german": "Deutsch",
+        "french": "Français",
+        "chinese": "简体中文",
+        "russian": "Русский",
+        "hindi": "हिन्दी"
+    },
+    "theme": {
+        "title": "Tema",
+        "dark": "Koyu",
+        "light": "Açık"
+    }
+}

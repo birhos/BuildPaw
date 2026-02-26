@@ -1,0 +1,130 @@
+{
+    "app": {
+        "name": "BuildPaw"
+    },
+    "common": {
+        "cancel": "Abbrechen",
+        "export": "Exportieren",
+        "browse": "Durchsuchen",
+        "save": "Speichern",
+        "delete": "Löschen"
+    },
+    "projectSelector": {
+        "title": "BuildPaw",
+        "hint": "Flutter-Projektverzeichnis auswählen...",
+        "selectDialogTitle": "Flutter-Projekt auswählen"
+    },
+    "projectInfo": {
+        "title": "Projektinfo",
+        "generalTab": "Allgemein",
+        "dependenciesTab": "Abhängigkeiten",
+        "refreshTooltip": "Projektinfo aktualisieren",
+        "fvmActive": "FVM Aktiv",
+        "fvmInactive": "Kein FVM",
+        "noDependencies": "Keine Abhängigkeiten gefunden",
+        "package": "Paket",
+        "version": "Version"
+    },
+    "config": {
+        "export": "Konfiguration exportieren",
+        "import": "Konfiguration importieren",
+        "exportSuccess": "Konfiguration exportiert nach $path",
+        "exportCancelled": "Export abgebrochen.",
+        "importSuccess": "Importiert: $name",
+        "importCancelled": "Import abgebrochen oder Datei ungültig.",
+        "dropToImport": "JSON-Datei zum Importieren ablegen"
+    },
+    "exportDialog": {
+        "title": "Build-Konfiguration exportieren",
+        "presetName": "Voreinstellungsname",
+        "presetNameHint": "z.B. release-prod",
+        "version": "Version",
+        "versionHint": "z.B. 1.0.0"
+    },
+    "profile": {
+        "title": "Profile",
+        "noProfiles": "Keine gespeicherten Profile",
+        "saveProfile": "Profil speichern",
+        "newProfile": "Neues Profil",
+        "profileName": "Profilname",
+        "profileNameHint": "z.B. release-prod",
+        "version": "Version",
+        "versionHint": "z.B. 1.0.0",
+        "saveSuccess": "Profil '$name' gespeichert",
+        "deleteConfirm": "Profil '$name' löschen?",
+        "deleteSuccess": "Profil gelöscht",
+        "applied": "Profil '$name' angewendet",
+        "updateExisting": "Vorhandenes aktualisieren",
+        "saveAsNew": "Als neu speichern",
+        "overwriteConfirm": "Profil '$name' existiert bereits. Überschreiben?"
+    },
+    "build": {
+        "button": "BAUEN",
+        "building": "Wird gebaut...",
+        "buildingPlatform": "$platform wird gebaut... ($completed/$total)",
+        "cancel": "Abbrechen"
+    },
+    "buildLog": {
+        "title": "Build-Ausgabe",
+        "copyTooltip": "Logs kopieren",
+        "copied": "Logs in Zwischenablage kopiert",
+        "placeholder": "Build-Ausgabe erscheint hier..."
+    },
+    "buildStatus": {
+        "idle": "Inaktiv",
+        "running": "Läuft",
+        "success": "Erfolg",
+        "failed": "Fehlgeschlagen"
+    },
+    "platforms": {
+        "android": "Android",
+        "ios": "iOS",
+        "web": "Web"
+    },
+    "platformConfig": {
+        "outputType": "Ausgabetyp",
+        "codeObfuscation": "Code-Verschleierung",
+        "splitDebugInfo": "Split Debug Info",
+        "flavor": "Flavor",
+        "flavorHint": "z.B. dev, staging, prod",
+        "runMode": "Ausführungsmodus",
+        "target": "Ziel",
+        "targetHint": "lib/main.dart",
+        "pwaStrategy": "PWA-Strategie",
+        "noTreeShakeIcons": "No Tree Shake Icons"
+    },
+    "androidOutput": {
+        "apk": "Nur APK",
+        "aab": "Nur AAB",
+        "both": "APK & AAB"
+    },
+    "iosOutput": {
+        "ios": "iOS (Runner.app)",
+        "ipa": "IPA (Exportierbar)"
+    },
+    "buildMode": {
+        "debug": "Debug",
+        "profile": "Profile",
+        "release": "Release"
+    },
+    "pwaStrategy": {
+        "default": "Standard",
+        "none": "Keine"
+    },
+    "language": {
+        "title": "Sprache",
+        "english": "English",
+        "turkish": "Türkçe",
+        "arabic": "العربية",
+        "german": "Deutsch",
+        "french": "Français",
+        "chinese": "简体中文",
+        "russian": "Русский",
+        "hindi": "हिन्दी"
+    },
+    "theme": {
+        "title": "Design",
+        "dark": "Dunkel",
+        "light": "Hell"
+    }
+}

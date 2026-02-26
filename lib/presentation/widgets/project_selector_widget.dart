@@ -37,29 +37,35 @@ final class ProjectSelectorWidget extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
+                const ProfileSelector(),
+                const SizedBox(width: 2),
                 const ThemeSelector(),
+                const SizedBox(width: 2),
                 const LanguageSelector(),
-                if (isLoading)
+                if (isLoading) ...[
+                  const SizedBox(width: 8),
                   const SizedBox(
-                    width: 20,
-                    height: 20,
+                    width: 18,
+                    height: 18,
                     child: CircularProgressIndicator(strokeWidth: 2),
                   ),
+                ],
               ],
             ),
             const SizedBox(height: 16),
             Row(
               children: [
                 Expanded(
-                  child: TextField(
-                    readOnly: true,
-                    canRequestFocus: false,
-                    onTap: isLoading ? null : () => _pickProject(context),
-                    controller: TextEditingController(text: path),
-                    decoration: InputDecoration(
-                      hintText: t.projectSelector.hint,
-                      prefixIcon: Icon(Icons.folder_open, color: Theme.of(context).colorScheme.onSurfaceVariant),
-                      errorText: errorMessage,
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: TextField(
+                      readOnly: true,
+                      controller: TextEditingController(text: path),
+                      decoration: InputDecoration(
+                        hintText: t.projectSelector.hint,
+                        prefixIcon: Icon(Icons.folder_open, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                        errorText: errorMessage,
+                      ),
                     ),
                   ),
                 ),

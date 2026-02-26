@@ -10,6 +10,7 @@ class ProjectInfo extends Equatable {
     required this.dartVersion,
     required this.hasFvm,
     this.latestTag,
+    this.dependencies = const {},
   });
   final String name;
   final String path;
@@ -19,6 +20,7 @@ class ProjectInfo extends Equatable {
   final String flutterVersion;
   final String dartVersion;
   final bool hasFvm;
+  final Map<String, String> dependencies;
 
   @override
   List<Object?> get props => [
@@ -30,5 +32,6 @@ class ProjectInfo extends Equatable {
     flutterVersion,
     dartVersion,
     hasFvm,
+    dependencies,
   ];
 }

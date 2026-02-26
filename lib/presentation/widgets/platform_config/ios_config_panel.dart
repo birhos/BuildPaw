@@ -80,13 +80,16 @@ final class IosConfigPanel extends StatelessWidget {
                       const Divider(),
                       _SectionLabel(t.platformConfig.flavor),
                       const SizedBox(height: 4),
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: t.platformConfig.flavorHint,
-                          isDense: true,
+                      Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: t.platformConfig.flavorHint,
+                            isDense: true,
+                          ),
+                          controller: TextEditingController(text: config.flavor),
+                          onChanged: (v) => cubit.updateIosConfig(config.copyWith(flavor: v)),
                         ),
-                        controller: TextEditingController(text: config.flavor),
-                        onChanged: (v) => cubit.updateIosConfig(config.copyWith(flavor: v)),
                       ),
                       const SizedBox(height: 12),
                       _SectionLabel(t.platformConfig.runMode),
@@ -111,13 +114,16 @@ final class IosConfigPanel extends StatelessWidget {
                       const Divider(),
                       _SectionLabel(t.platformConfig.target),
                       const SizedBox(height: 4),
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: t.platformConfig.targetHint,
-                          isDense: true,
+                      Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: t.platformConfig.targetHint,
+                            isDense: true,
+                          ),
+                          controller: TextEditingController(text: config.target),
+                          onChanged: (v) => cubit.updateIosConfig(config.copyWith(target: v)),
                         ),
-                        controller: TextEditingController(text: config.target),
-                        onChanged: (v) => cubit.updateIosConfig(config.copyWith(target: v)),
                       ),
                       const SizedBox(height: 12),
                     ],

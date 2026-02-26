@@ -95,38 +95,41 @@ final class _BuildLogPanelState extends State<BuildLogPanel> {
               const Divider(height: 1, color: AppColors.outlineVariant),
 
               //
-              SizedBox(
-                height: 300,
-                child: isIdle && logs.isEmpty
-                    ? Center(
-                        child: Text(
-                          t.buildLog.placeholder,
-                          style: GoogleFonts.jetBrainsMono(
-                            fontSize: 13,
-                            color: AppColors.onSurfaceVariant.withValues(alpha: 0.5),
+              Directionality(
+                textDirection: TextDirection.ltr,
+                child: SizedBox(
+                  height: 300,
+                  child: isIdle && logs.isEmpty
+                      ? Center(
+                          child: Text(
+                            t.buildLog.placeholder,
+                            style: GoogleFonts.jetBrainsMono(
+                              fontSize: 13,
+                              color: AppColors.onSurfaceVariant.withValues(alpha: 0.5),
+                            ),
+                          ),
+                        )
+                      : SelectableRegion(
+                          selectionControls: MaterialTextSelectionControls(),
+                          child: ListView.builder(
+                            controller: _scrollController,
+                            padding: const EdgeInsets.all(12),
+                            itemCount: logs.length,
+                            itemBuilder: (context, index) {
+                              final entry = logs[index];
+                              return Text(
+                                entry.text,
+                                style: GoogleFonts.jetBrainsMono(
+                                  fontSize: 12,
+                                  height: 1.5,
+                                  color: _logColor(entry),
+                                  fontWeight: entry.isHeader ? FontWeight.bold : FontWeight.normal,
+                                ),
+                              );
+                            },
                           ),
                         ),
-                      )
-                    : SelectableRegion(
-                        selectionControls: MaterialTextSelectionControls(),
-                        child: ListView.builder(
-                          controller: _scrollController,
-                          padding: const EdgeInsets.all(12),
-                          itemCount: logs.length,
-                          itemBuilder: (context, index) {
-                            final entry = logs[index];
-                            return Text(
-                              entry.text,
-                              style: GoogleFonts.jetBrainsMono(
-                                fontSize: 12,
-                                height: 1.5,
-                                color: _logColor(entry),
-                                fontWeight: entry.isHeader ? FontWeight.bold : FontWeight.normal,
-                              ),
-                            );
-                          },
-                        ),
-                      ),
+                ),
               ),
             ],
           ),

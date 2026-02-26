@@ -2,188 +2,184 @@
 
 ## v0.0.1 - MVP Release (2026-02-26)
 
-### Yeni Özellikler
+### New Features
 
-#### Çoklu Dil Desteği (i18n Genişletme)
-- 6 yeni dil eklendi: Arapça (AR), Almanca (DE), Fransızca (FR), Basitleştirilmiş Çince (ZH), Rusça (RU), Hintçe (HI)
-- Toplam desteklenen dil sayısı 8'e çıktı (EN, TR, AR, DE, FR, ZH, RU, HI)
-- Her dil için tüm UI metinlerinin tam çevirisi
-- Dil seçiciye tüm yeni diller eklendi
+#### Multi-Language Support (i18n Expansion)
+- Added 6 new languages: Arabic (AR), German (DE), French (FR), Simplified Chinese (ZH), Russian (RU), Hindi (HI)
+- Total supported languages increased to 8 (EN, TR, AR, DE, FR, ZH, RU, HI)
+- Full translation of all UI texts for each language
+- All new languages added to the language selector
 
-#### RTL (Sağdan Sola) Desteği
-- Arapça seçildiğinde uygulama otomatik olarak RTL moduna geçer
-- Diğer tüm dillerde LTR modu korunur
-- `MaterialApp.builder` üzerinden `Directionality` widget ile explicit RTL/LTR kontrolü
-- `EdgeInsets.fromLTRB` → `EdgeInsetsDirectional.fromSTEB` dönüşümleri
+#### RTL (Right-to-Left) Support
+- App automatically switches to RTL mode when Arabic is selected
+- LTR mode is preserved for all other languages
+- Explicit RTL/LTR control via `Directionality` widget through `MaterialApp.builder`
+- `EdgeInsets.fromLTRB` → `EdgeInsetsDirectional.fromSTEB` conversions
 
-#### RTL'de LTR Zorlanan Alanlar
-- **Terminal/Log paneli**: Kod çıktısı her zaman LTR
-- **Dosya yolu TextField'ları**: Sistem yolları her zaman LTR
-- **Dependency tablosu**: Paket isimleri ve versiyonlar her zaman LTR
-- **Config panel input'ları**: Flavor ve target alanları (tüm platformlar) her zaman LTR
+#### Forced LTR Areas in RTL Mode
+- **Terminal/Log panel**: Code output is always LTR
+- **File path TextFields**: System paths are always LTR
+- **Dependency table**: Package names and versions are always LTR
+- **Config panel inputs**: Flavor and target fields (all platforms) are always LTR
 
-### Hata Düzeltmeleri
+### Bug Fixes
 
-- Web build `--web-renderer` deprecated flag hatası düzeltildi
-- FVM Dart execution desteği düzeltildi
-- `file_picker` entitlement hatası düzeltildi
-- `RadioListTile` ve `DropdownButtonFormField` deprecated API uyarıları düzeltildi
+- Fixed web build `--web-renderer` deprecated flag error
+- Fixed FVM Dart execution support
+- Fixed `file_picker` entitlement error
+- Fixed `RadioListTile` and `DropdownButtonFormField` deprecated API warnings
 
-#### YAML Parser Top-Level Key Algılama
-- `_parsePubspecYamlDeps` metodundaki top-level YAML key algılama hatası düzeltildi
-- Eski kod: `!stripped.startsWith(' ')` (trimmed string'de her zaman true) ve `stripped == trimmed` (trailing whitespace kontrolü — yanlış mantık)
-- Yeni kod: `!line.startsWith(' ') && !line.startsWith('\t')` ile orijinal satırda leading indentation kontrolü
-- İndentli alt-key'lerin (`  git:`) yanlışlıkla top-level key olarak algılanması engellendi
-- Trailing whitespace'li top-level key'lerin (`flutter_icons:  `) doğru algılanması sağlandı
+#### YAML Parser Top-Level Key Detection
+- Fixed top-level YAML key detection bug in `_parsePubspecYamlDeps` method
+- Old code: `!stripped.startsWith(' ')` (always true on trimmed string) and `stripped == trimmed` (trailing whitespace check — incorrect logic)
+- New code: `!line.startsWith(' ') && !line.startsWith('\t')` for leading indentation check on the original line
+- Prevented indented sub-keys (`  git:`) from being incorrectly detected as top-level keys
+- Ensured correct detection of top-level keys with trailing whitespace (`flutter_icons:  `)
 
-#### RTL/LTR Rebuild Sorunu
-- `app.dart`'daki gereksiz `Builder` widget'ı kaldırıldı
-- `BlocBuilder<ThemeCubit>` artık `TranslationProvider`'a doğrudan abone
-- Locale ve tema değişikliklerinde güvenilir rebuild garantisi
+#### RTL/LTR Rebuild Issue
+- Removed redundant `Builder` widget from `app.dart`
+- `BlocBuilder<ThemeCubit>` now subscribes directly to `TranslationProvider`
+- Guaranteed reliable rebuild on locale and theme changes
 
-### Teknik Değişiklikler
+### Technical Changes
 
-#### Yeni Dosyalar
-- `lib/core/i18n/ar.i18n.json` — Arapça çeviriler
-- `lib/core/i18n/de.i18n.json` — Almanca çeviriler
-- `lib/core/i18n/fr.i18n.json` — Fransızca çeviriler
-- `lib/core/i18n/zh.i18n.json` — Basitleştirilmiş Çince çeviriler
-- `lib/core/i18n/ru.i18n.json` — Rusça çeviriler
-- `lib/core/i18n/hi.i18n.json` — Hintçe çeviriler
+#### New Files
+- `lib/core/i18n/ar.i18n.json` — Arabic translations
+- `lib/core/i18n/de.i18n.json` — German translations
+- `lib/core/i18n/fr.i18n.json` — French translations
+- `lib/core/i18n/zh.i18n.json` — Simplified Chinese translations
+- `lib/core/i18n/ru.i18n.json` — Russian translations
+- `lib/core/i18n/hi.i18n.json` — Hindi translations
 
-#### Güncellenen Dosyalar
-- `lib/core/i18n/en.i18n.json` / `tr.i18n.json` — Yeni dil isim key'leri eklendi
-- `lib/core/i18n/strings*.g.dart` — Slang ile 8 locale için yeniden oluşturuldu
-- `lib/app.dart` — RTL/LTR desteği, Builder kaldırıldı, locale doğrudan BlocBuilder context'inde
-- `lib/presentation/widgets/language_selector.dart` — 8 dil seçeneği
-- `lib/presentation/widgets/project_info_card.dart` — `EdgeInsetsDirectional`, dependency tablosu LTR
-- `lib/presentation/widgets/build_log_panel.dart` — Terminal çıktısı LTR
-- `lib/presentation/widgets/project_selector_widget.dart` — Dosya yolu LTR
+#### Updated Files
+- `lib/core/i18n/en.i18n.json` / `tr.i18n.json` — Added new language name keys
+- `lib/core/i18n/strings*.g.dart` — Regenerated with Slang for 8 locales
+- `lib/app.dart` — RTL/LTR support, Builder removed, locale directly in BlocBuilder context
+- `lib/presentation/widgets/language_selector.dart` — 8 language options
+- `lib/presentation/widgets/project_info_card.dart` — `EdgeInsetsDirectional`, dependency table LTR
+- `lib/presentation/widgets/build_log_panel.dart` — Terminal output LTR
+- `lib/presentation/widgets/project_selector_widget.dart` — File path LTR
 - `lib/presentation/widgets/platform_config/android_config_panel.dart` — Flavor/target LTR
 - `lib/presentation/widgets/platform_config/ios_config_panel.dart` — Flavor/target LTR
 - `lib/presentation/widgets/platform_config/web_config_panel.dart` — Flavor/target LTR
-- `lib/infrastructure/services/flutter_service.dart` — YAML parser top-level key algılama düzeltmesi
+- `lib/infrastructure/services/flutter_service.dart` — YAML parser top-level key detection fix
 
 ---
 
+#### Profile Management
+- Added in-app **profile mode**
+- Current build configurations can be saved as profiles with name + version
+- Saved profiles are stored persistently on device via `shared_preferences`
+- One-click configuration apply from profile list
+- Save (overwrite) support for the active profile
+- Overwrite confirmation when a profile with the same name exists
+- Profile deletion (with confirmation dialog)
 
+#### Profile Selector (Top-Right Menu)
+- Profile area moved to top-right corner as `PopupMenuButton`
+- Consistent design with language and theme selectors
+- Section header, radio-button style icons, two-line profile items (name + version)
+- Primary (orange) icon color when an active profile exists
+- In-menu actions: profile list, save, new profile, delete
 
-#### Profil Yönetimi
-- Uygulama içi **profil modu** eklendi
-- Mevcut build konfigürasyonları isim + versiyon ile profil olarak kaydedilebilir
-- Kaydedilen profiller `shared_preferences` ile cihazda kalıcı olarak saklanır
-- Profil listesinden tek tıkla konfigürasyon uygulanabilir
-- Aktif profilin üzerine kaydetme (save) desteği
-- Aynı isimde profil varsa üzerine yazma onayı
-- Profil silme (onay dialogu ile)
+#### Project Info TabBar Structure
+- `ProjectInfoCard` converted to a two-tab layout:
+  - **General**: Project name, version, branch, tag, Flutter/Dart versions, FVM status
+  - **Dependencies**: All dependencies read from `pubspec.yaml` and `pubspec.lock`
+- Dependencies tab features:
+  - Alphabetically sorted table view
+  - PACKAGE / VERSION column headers
+  - Zebra-stripe row coloring
+  - Monospace font for version numbers
+  - Package count in tab title: `Dependencies (12)`
 
-#### Profil Selector (Sağ Üst Menü)
-- Profil alanı sağ üst köşeye `PopupMenuButton` olarak taşındı
-- Dil ve tema seçicileriyle tutarlı tasarım
-- Bölüm başlığı, radio-button stili ikonlar, iki satırlı profil itemları (isim + versiyon)
-- Aktif profil varsa ikon rengi primary (turuncu)
-- Menü içinde: profil listesi, kaydet, yeni profil, sil aksiyonları
+#### Resolved Dependency Versions
+- Dependency versions are now read from `pubspec.lock` (resolved/actual version)
+- Falls back to `pubspec.yaml` constraint version if lock file is unavailable
+- Shows actual resolved versions like `9.1.0` instead of `^9.1.0`
 
-#### Project Info TabBar Yapısı
-- `ProjectInfoCard` iki tab'lı yapıya dönüştürüldü:
-  - **General**: Proje adı, versiyon, branch, tag, Flutter/Dart sürümleri, FVM durumu
-  - **Dependencies**: `pubspec.yaml` ve `pubspec.lock`'tan okunan tüm bağımlılıklar
-- Dependencies tabında:
-  - Alfabetik sıralanmış tablo görünümü
-  - PACKAGE / VERSION sütun başlıkları
-  - Zebra-stripe satır renklendirmesi
-  - Monospace font ile versiyon numaraları
-  - Tab başlığında paket sayısı: `Dependencies (12)`
+### UI/UX Improvements
 
-#### Gerçek Dependency Versiyonları
-- Dependency versiyonları artık `pubspec.lock` dosyasından okunur (resolved/actual version)
-- Lock dosyası yoksa `pubspec.yaml`'daki constraint versiyonu gösterilir
-- `^9.1.0` yerine `9.1.0` gibi gerçek çözümlenmiş versiyonlar
+#### Popup Menu Design Overhaul
+- All popup menu buttons (profile, theme, language) given a consistent design
+- `popupMenuTheme` added to both themes (12px radius, 8 elevation, thin border)
+- Consistent design pattern:
+  - Menus open below the button via `PopupMenuPosition.under`
+  - Consistent menu width via `constraints`
+  - Selected item: `fontWeight: w600` + primary color + check icon on the right
+  - Fixed item heights (40px)
+  - 20px button icons, 16px in-menu icons
+- **Theme Selector**: `dark_mode_rounded` / `light_mode_rounded` icons
+- **Language Selector**: "EN" / "TR" text badges, 11px bold
+- **Profile Selector**: Radio-button style, two-line items, minimal close icon
 
-### UI/UX İyileştirmeleri
+### Technical Changes
 
-#### Popup Menü Tasarım Revizyonu
-- Tüm popup menü butonları (profil, tema, dil) tutarlı tasarıma kavuşturuldu
-- `popupMenuTheme` her iki temaya da eklendi (12px radius, 8 elevation, ince kenarlık)
-- Tutarlı tasarım deseni:
-  - `PopupMenuPosition.under` ile menüler butonun altında açılır
-  - `constraints` ile tutarlı menü genişliği
-  - Seçili item: `fontWeight: w600` + primary renk + sağda check ikonu
-  - Sabit item yükseklikleri (40px)
-  - 20px buton ikonları, 16px menü içi ikonlar
-- **Tema Seçici**: `dark_mode_rounded` / `light_mode_rounded` ikonlar
-- **Dil Seçici**: "EN" / "TR" text badge'ler, 11px bold
-- **Profil Seçici**: Radio-button stili, iki satırlı itemlar, minimal close ikonu
-
-### Teknik Değişiklikler
-
-#### Yeni Dosyalar
-- `lib/infrastructure/services/profile_storage_service.dart` — SharedPreferences ile profil CRUD
-- `lib/application/profile/profile_cubit.dart` — Profil state yönetimi
-- `lib/application/profile/profile_state.dart` — Profil state modeli
+#### New Files
+- `lib/infrastructure/services/profile_storage_service.dart` — Profile CRUD via SharedPreferences
+- `lib/application/profile/profile_cubit.dart` — Profile state management
+- `lib/application/profile/profile_state.dart` — Profile state model
 - `lib/presentation/widgets/profile_panel.dart` — ProfileSelector PopupMenuButton
-- `lib/presentation/widgets/save_profile_dialog.dart` — Profil kaydetme dialogu
+- `lib/presentation/widgets/save_profile_dialog.dart` — Profile save dialog
 
-#### Güncellenen Dosyalar
-- `lib/infrastructure/services/flutter_service.dart` — `getDependencies()`, `_parseLockFileVersions()` eklendi
-- `lib/domain/models/project_info.dart` — `dependencies` alanı eklendi
-- `lib/application/project/project_cubit.dart` — Dependency fetch paralel olarak yapılıyor
-- `lib/presentation/widgets/project_info_card.dart` — TabBar + AnimatedCrossFade ile tab yapısı
-- `lib/presentation/widgets/theme_selector.dart` — Tutarlı popup menü tasarımı
-- `lib/presentation/widgets/language_selector.dart` — Tutarlı popup menü tasarımı
-- `lib/presentation/widgets/project_selector_widget.dart` — Header'a ProfileSelector eklendi
-- `lib/presentation/pages/home_page.dart` — ProfilePanel card kaldırıldı
-- `lib/core/theme/app_theme.dart` — `popupMenuTheme` eklendi (dark + light)
-- `lib/core/i18n/en.i18n.json` / `tr.i18n.json` — Profil ve dependency çevirileri
+#### Updated Files
+- `lib/infrastructure/services/flutter_service.dart` — Added `getDependencies()`, `_parseLockFileVersions()`
+- `lib/domain/models/project_info.dart` — Added `dependencies` field
+- `lib/application/project/project_cubit.dart` — Dependency fetch runs in parallel
+- `lib/presentation/widgets/project_info_card.dart` — TabBar + AnimatedCrossFade tab structure
+- `lib/presentation/widgets/theme_selector.dart` — Consistent popup menu design
+- `lib/presentation/widgets/language_selector.dart` — Consistent popup menu design
+- `lib/presentation/widgets/project_selector_widget.dart` — ProfileSelector added to header
+- `lib/presentation/pages/home_page.dart` — ProfilePanel card removed
+- `lib/core/theme/app_theme.dart` — Added `popupMenuTheme` (dark + light)
+- `lib/core/i18n/en.i18n.json` / `tr.i18n.json` — Profile and dependency translations
 
 ---
 
+#### Localization Support
+- Added i18n infrastructure with Slang (EN / TR)
+- All UI texts are read from translation files
+- Language selector in the top-right corner
 
-
-#### Lokalizasyon Desteği
-- Slang ile i18n altyapısı eklendi (EN / TR)
-- Tüm UI metinleri çeviri dosyalarından okunur
-- Sağ üst köşede dil seçici
-
-#### Tema Desteği
-- Light tema eklendi
-- Dark/Light tema geçişi
-- Sağ üst köşede tema seçici
-- Tema tercihi kalıcı olarak saklanır
+#### Theme Support
+- Added light theme
+- Dark/Light theme toggle
+- Theme selector in the top-right corner
+- Theme preference stored persistently
 
 #### Drag & Drop Config Import
-- JSON dosyasını sürükle-bırak ile yapılandırma içe aktarma
-- `desktop_drop` + `cross_file` entegrasyonu
-- Drop zone overlay gösterimi
+- Import configuration by dragging and dropping a JSON file
+- `desktop_drop` + `cross_file` integration
+- Drop zone overlay display
 
 #### Config Export/Import
-- Mevcut yapılandırmayı versiyonlu JSON olarak dışa aktarma
-- JSON preset dosyasını içe aktararak tüm alanları otomatik doldurma
-- Postman collection benzeri metadata yapısı
+- Export current configuration as versioned JSON
+- Import JSON preset file to auto-fill all fields
+- Postman collection-like metadata structure
 
-#### Proje Bilgisi Geliştirmeleri
-- Proje versiyonu gösterimi
-- Refresh butonu ile bilgileri yeniden çekme
-- Son git tag versiyonu gösterimi
+#### Project Info Enhancements
+- Project version display
+- Refresh button to reload project info
+- Latest git tag version display
 
-#### Log Kopyalama
-- Build log paneline kopyalama butonu eklendi
-- Her log satırına newline eklenerek panoya kopyalama
+#### Log Copy
+- Added copy button to the build log panel
+- Copies all log lines to clipboard with newline characters
 
 ---
 
-### Proje Yapısı
+### Project Structure
 
 ```
 lib/
-  main.dart                                  # Uygulama giriş noktası
-  app.dart                                   # MultiBlocProvider + MaterialApp kurulumu
+  main.dart                                  # App entry point
+  app.dart                                   # MultiBlocProvider + MaterialApp setup
   core/
     theme/
-      app_theme.dart                         # Material 3 dark tema
-      app_colors.dart                        # Paw-themed renk paleti (amber/turuncu)
+      app_theme.dart                         # Material 3 dark theme
+      app_colors.dart                        # Paw-themed color palette (amber/orange)
     constants/
-      app_constants.dart                     # Sabit değerler
+      app_constants.dart                     # Constant values
   domain/
     enums/
       build_mode.dart                        # debug / profile / release
@@ -192,57 +188,57 @@ lib/
       pwa_strategy.dart                      # default / none
       build_platform.dart                    # android / ios / web
     models/
-      project_info.dart                      # Proje bilgileri modeli
-      android_build_config.dart              # Android yapılandırma modeli
-      ios_build_config.dart                  # iOS yapılandırma modeli
-      web_build_config.dart                  # Web yapılandırma modeli
-      build_result.dart                      # Build sonuç modeli
-      build_preset.dart                      # Export/Import preset modeli
+      project_info.dart                      # Project info model
+      android_build_config.dart              # Android configuration model
+      ios_build_config.dart                  # iOS configuration model
+      web_build_config.dart                  # Web configuration model
+      build_result.dart                      # Build result model
+      build_preset.dart                      # Export/Import preset model
   application/
-    project/                                 # Proje seçimi ve bilgi yükleme
-    build_config/                            # Platform enable/disable + config yönetimi
-    build_execution/                         # Build süreci yönetimi
+    project/                                 # Project selection and info loading
+    build_config/                            # Platform enable/disable + config management
+    build_execution/                         # Build process management
     services/                                # Command generator + artifact manager
   infrastructure/
-    services/                                # Process, Git, Flutter, FileSystem servisleri
+    services/                                # Process, Git, Flutter, FileSystem services
   presentation/
-    pages/home_page.dart                     # Ana sayfa
-    widgets/                                 # Tüm UI widget'ları
+    pages/home_page.dart                     # Main page
+    widgets/                                 # All UI widgets
 ```
 
-### Özellikler
+### Features
 
-#### Proje Seçimi ve Bilgi Gösterimi
-- Finder üzerinden Flutter proje dizini seçimi
-- `pubspec.yaml` varlık kontrolü ile validasyon
-- Proje bilgileri otomatik yükleme (ad, versiyon, branch, tag, Flutter/Dart sürüm, FVM)
+#### Project Selection & Info Display
+- Flutter project directory selection via Finder
+- Validation with `pubspec.yaml` existence check
+- Automatic project info loading (name, version, branch, tag, Flutter/Dart version, FVM)
 
-#### Platform Bazlı Build Yapılandırması
-- **Android**: APK / AAB / ikisi birden, obfuscation, split debug info, flavor, build mode, target
+#### Platform-Based Build Configuration
+- **Android**: APK / AAB / both, obfuscation, split debug info, flavor, build mode, target
 - **iOS**: Runner.app / IPA, obfuscation, split debug info, flavor, build mode, target
 - **Web**: PWA strategy, no tree shake icons, flavor, build mode, target
 
-#### Build Çalıştırma
-- CLI komutları otomatik oluşturma
-- FVM algılandığında `fvm flutter` prefix
+#### Build Execution
+- Automatic CLI command generation
+- `fvm flutter` prefix when FVM is detected
 - Real-time log streaming
-- Sıralı platform build (Android → iOS → Web)
-- Cancel desteği
+- Sequential platform build (Android → iOS → Web)
+- Cancel support
 
-#### Log Paneli
-- Terminal-style görüntüleyici (JetBrains Mono)
-- Renk kodlu log satırları
-- Otomatik alta kayma
-- Durum badge: Idle / Running / Success / Failed
+#### Log Panel
+- Terminal-style viewer (JetBrains Mono)
+- Color-coded log lines
+- Auto-scroll to bottom
+- Status badge: Idle / Running / Success / Failed
 
-#### Artifact Yönetimi
-- Build sonrası otomatik artifact toplama
-- Masaüstünde zaman damgalı klasör yapısı
-- Build sonrası Finder otomatik açılır
+#### Artifact Management
+- Automatic artifact collection after build
+- Timestamped folder structure on Desktop
+- Finder opens automatically after build
 
-### Teknik Detaylar
+### Technical Details
 - **State Management**: Bloc / Cubit (flutter_bloc)
 - **UI Framework**: Material Design 3
-- **macOS**: Sandbox devre dışı, file read-write izni
-- **Minimum Pencere**: 1000x700
-- **Bağımlılıklar**: flutter_bloc, equatable, file_picker, google_fonts, shared_preferences, slang
+- **macOS**: Sandbox disabled, file read-write permission
+- **Minimum Window**: 1000x700
+- **Dependencies**: flutter_bloc, equatable, file_picker, google_fonts, shared_preferences, slang

@@ -129,6 +129,20 @@ abstract final class AppTheme {
         color: AppColors.outlineVariant,
         thickness: 1,
       ),
+      popupMenuTheme: PopupMenuThemeData(
+        color: AppColors.surfaceContainer,
+        surfaceTintColor: Colors.transparent,
+        elevation: 8,
+        shadowColor: Colors.black54,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: const BorderSide(color: AppColors.outline, width: 0.5),
+        ),
+        textStyle: const TextStyle(
+          fontSize: 13,
+          color: AppColors.onSurface,
+        ),
+      ),
       tooltipTheme: TooltipThemeData(
         decoration: BoxDecoration(
           color: AppColors.surfaceContainerHighest,
@@ -263,6 +277,20 @@ abstract final class AppTheme {
       dividerTheme: const DividerThemeData(
         color: AppColors.lightOutlineVariant,
         thickness: 1,
+      ),
+      popupMenuTheme: PopupMenuThemeData(
+        color: AppColors.lightSurfaceContainer,
+        surfaceTintColor: Colors.transparent,
+        elevation: 8,
+        shadowColor: Colors.black26,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: const BorderSide(color: AppColors.lightOutline, width: 0.5),
+        ),
+        textStyle: const TextStyle(
+          fontSize: 13,
+          color: AppColors.lightOnSurface,
+        ),
       ),
       tooltipTheme: TooltipThemeData(
         decoration: BoxDecoration(

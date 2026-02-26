@@ -45,6 +45,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _TranslationsProjectInfoTr projectInfo = _TranslationsProjectInfoTr._(_root);
 	@override late final _TranslationsConfigTr config = _TranslationsConfigTr._(_root);
 	@override late final _TranslationsExportDialogTr exportDialog = _TranslationsExportDialogTr._(_root);
+	@override late final _TranslationsProfileTr profile = _TranslationsProfileTr._(_root);
 	@override late final _TranslationsBuildTr build = _TranslationsBuildTr._(_root);
 	@override late final _TranslationsBuildLogTr buildLog = _TranslationsBuildLogTr._(_root);
 	@override late final _TranslationsBuildStatusTr buildStatus = _TranslationsBuildStatusTr._(_root);
@@ -78,6 +79,8 @@ class _TranslationsCommonTr extends TranslationsCommonEn {
 	@override String get cancel => 'İptal';
 	@override String get export => 'Dışa Aktar';
 	@override String get browse => 'Gözat';
+	@override String get save => 'Kaydet';
+	@override String get delete => 'Sil';
 }
 
 // Path: projectSelector
@@ -100,9 +103,14 @@ class _TranslationsProjectInfoTr extends TranslationsProjectInfoEn {
 
 	// Translations
 	@override String get title => 'Proje Bilgisi';
+	@override String get generalTab => 'Genel';
+	@override String get dependenciesTab => 'Bağımlılıklar';
 	@override String get refreshTooltip => 'Proje bilgisini yenile';
 	@override String get fvmActive => 'FVM Aktif';
 	@override String get fvmInactive => 'FVM Yok';
+	@override String get noDependencies => 'Bağımlılık bulunamadı';
+	@override String get package => 'Paket';
+	@override String get version => 'Sürüm';
 }
 
 // Path: config
@@ -133,6 +141,30 @@ class _TranslationsExportDialogTr extends TranslationsExportDialogEn {
 	@override String get presetNameHint => 'örn. release-prod';
 	@override String get version => 'Sürüm';
 	@override String get versionHint => 'örn. 1.0.0';
+}
+
+// Path: profile
+class _TranslationsProfileTr extends TranslationsProfileEn {
+	_TranslationsProfileTr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Profiller';
+	@override String get noProfiles => 'Kayıtlı profil yok';
+	@override String get saveProfile => 'Profili Kaydet';
+	@override String get newProfile => 'Yeni Profil';
+	@override String get profileName => 'Profil Adı';
+	@override String get profileNameHint => 'örn. release-prod';
+	@override String get version => 'Sürüm';
+	@override String get versionHint => 'örn. 1.0.0';
+	@override String saveSuccess({required Object name}) => '\'${name}\' profili kaydedildi';
+	@override String deleteConfirm({required Object name}) => '\'${name}\' profili silinsin mi?';
+	@override String get deleteSuccess => 'Profil silindi';
+	@override String applied({required Object name}) => '\'${name}\' profili uygulandı';
+	@override String get updateExisting => 'Mevcut Güncelle';
+	@override String get saveAsNew => 'Yeni Olarak Kaydet';
+	@override String overwriteConfirm({required Object name}) => '\'${name}\' profili zaten mevcut. Üzerine yazılsın mı?';
 }
 
 // Path: build
@@ -287,13 +319,20 @@ extension on TranslationsTr {
 			'common.cancel' => 'İptal',
 			'common.export' => 'Dışa Aktar',
 			'common.browse' => 'Gözat',
+			'common.save' => 'Kaydet',
+			'common.delete' => 'Sil',
 			'projectSelector.title' => 'BuildPaw',
 			'projectSelector.hint' => 'Bir Flutter proje dizini seçin...',
 			'projectSelector.selectDialogTitle' => 'Flutter Projesi Seç',
 			'projectInfo.title' => 'Proje Bilgisi',
+			'projectInfo.generalTab' => 'Genel',
+			'projectInfo.dependenciesTab' => 'Bağımlılıklar',
 			'projectInfo.refreshTooltip' => 'Proje bilgisini yenile',
 			'projectInfo.fvmActive' => 'FVM Aktif',
 			'projectInfo.fvmInactive' => 'FVM Yok',
+			'projectInfo.noDependencies' => 'Bağımlılık bulunamadı',
+			'projectInfo.package' => 'Paket',
+			'projectInfo.version' => 'Sürüm',
 			'config.export' => 'Yapılandırmayı Dışa Aktar',
 			'config.import' => 'Yapılandırmayı İçe Aktar',
 			'config.exportSuccess' => ({required Object path}) => 'Yapılandırma ${path} konumuna aktarıldı',
@@ -306,6 +345,21 @@ extension on TranslationsTr {
 			'exportDialog.presetNameHint' => 'örn. release-prod',
 			'exportDialog.version' => 'Sürüm',
 			'exportDialog.versionHint' => 'örn. 1.0.0',
+			'profile.title' => 'Profiller',
+			'profile.noProfiles' => 'Kayıtlı profil yok',
+			'profile.saveProfile' => 'Profili Kaydet',
+			'profile.newProfile' => 'Yeni Profil',
+			'profile.profileName' => 'Profil Adı',
+			'profile.profileNameHint' => 'örn. release-prod',
+			'profile.version' => 'Sürüm',
+			'profile.versionHint' => 'örn. 1.0.0',
+			'profile.saveSuccess' => ({required Object name}) => '\'${name}\' profili kaydedildi',
+			'profile.deleteConfirm' => ({required Object name}) => '\'${name}\' profili silinsin mi?',
+			'profile.deleteSuccess' => 'Profil silindi',
+			'profile.applied' => ({required Object name}) => '\'${name}\' profili uygulandı',
+			'profile.updateExisting' => 'Mevcut Güncelle',
+			'profile.saveAsNew' => 'Yeni Olarak Kaydet',
+			'profile.overwriteConfirm' => ({required Object name}) => '\'${name}\' profili zaten mevcut. Üzerine yazılsın mı?',
 			'build.button' => 'DERLE',
 			'build.building' => 'Derleniyor...',
 			'build.buildingPlatform' => ({required Object platform, required Object completed, required Object total}) => '${platform} derleniyor... (${completed}/${total})',

@@ -46,6 +46,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final TranslationsProjectInfoEn projectInfo = TranslationsProjectInfoEn.internal(_root);
 	late final TranslationsConfigEn config = TranslationsConfigEn.internal(_root);
 	late final TranslationsExportDialogEn exportDialog = TranslationsExportDialogEn.internal(_root);
+	late final TranslationsProfileEn profile = TranslationsProfileEn.internal(_root);
 	late final TranslationsBuildEn build = TranslationsBuildEn.internal(_root);
 	late final TranslationsBuildLogEn buildLog = TranslationsBuildLogEn.internal(_root);
 	late final TranslationsBuildStatusEn buildStatus = TranslationsBuildStatusEn.internal(_root);
@@ -87,6 +88,12 @@ class TranslationsCommonEn {
 
 	/// en: 'Browse'
 	String get browse => 'Browse';
+
+	/// en: 'Save'
+	String get save => 'Save';
+
+	/// en: 'Delete'
+	String get delete => 'Delete';
 }
 
 // Path: projectSelector
@@ -118,6 +125,12 @@ class TranslationsProjectInfoEn {
 	/// en: 'Project Info'
 	String get title => 'Project Info';
 
+	/// en: 'General'
+	String get generalTab => 'General';
+
+	/// en: 'Dependencies'
+	String get dependenciesTab => 'Dependencies';
+
 	/// en: 'Refresh project info'
 	String get refreshTooltip => 'Refresh project info';
 
@@ -126,6 +139,15 @@ class TranslationsProjectInfoEn {
 
 	/// en: 'No FVM'
 	String get fvmInactive => 'No FVM';
+
+	/// en: 'No dependencies found'
+	String get noDependencies => 'No dependencies found';
+
+	/// en: 'Package'
+	String get package => 'Package';
+
+	/// en: 'Version'
+	String get version => 'Version';
 }
 
 // Path: config
@@ -180,6 +202,60 @@ class TranslationsExportDialogEn {
 
 	/// en: 'e.g. 1.0.0'
 	String get versionHint => 'e.g. 1.0.0';
+}
+
+// Path: profile
+class TranslationsProfileEn {
+	TranslationsProfileEn.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Profiles'
+	String get title => 'Profiles';
+
+	/// en: 'No saved profiles'
+	String get noProfiles => 'No saved profiles';
+
+	/// en: 'Save Profile'
+	String get saveProfile => 'Save Profile';
+
+	/// en: 'New Profile'
+	String get newProfile => 'New Profile';
+
+	/// en: 'Profile Name'
+	String get profileName => 'Profile Name';
+
+	/// en: 'e.g. release-prod'
+	String get profileNameHint => 'e.g. release-prod';
+
+	/// en: 'Version'
+	String get version => 'Version';
+
+	/// en: 'e.g. 1.0.0'
+	String get versionHint => 'e.g. 1.0.0';
+
+	/// en: 'Profile '$name' saved'
+	String saveSuccess({required Object name}) => 'Profile \'${name}\' saved';
+
+	/// en: 'Delete profile '$name'?'
+	String deleteConfirm({required Object name}) => 'Delete profile \'${name}\'?';
+
+	/// en: 'Profile deleted'
+	String get deleteSuccess => 'Profile deleted';
+
+	/// en: 'Profile '$name' applied'
+	String applied({required Object name}) => 'Profile \'${name}\' applied';
+
+	/// en: 'Update Existing'
+	String get updateExisting => 'Update Existing';
+
+	/// en: 'Save as New'
+	String get saveAsNew => 'Save as New';
+
+	/// en: 'Profile '$name' already exists. Overwrite?'
+	String overwriteConfirm({required Object name}) => 'Profile \'${name}\' already exists. Overwrite?';
 }
 
 // Path: build
@@ -416,13 +492,20 @@ extension on Translations {
 			'common.cancel' => 'Cancel',
 			'common.export' => 'Export',
 			'common.browse' => 'Browse',
+			'common.save' => 'Save',
+			'common.delete' => 'Delete',
 			'projectSelector.title' => 'BuildPaw',
 			'projectSelector.hint' => 'Select a Flutter project directory...',
 			'projectSelector.selectDialogTitle' => 'Select Flutter Project',
 			'projectInfo.title' => 'Project Info',
+			'projectInfo.generalTab' => 'General',
+			'projectInfo.dependenciesTab' => 'Dependencies',
 			'projectInfo.refreshTooltip' => 'Refresh project info',
 			'projectInfo.fvmActive' => 'FVM Active',
 			'projectInfo.fvmInactive' => 'No FVM',
+			'projectInfo.noDependencies' => 'No dependencies found',
+			'projectInfo.package' => 'Package',
+			'projectInfo.version' => 'Version',
 			'config.export' => 'Export Config',
 			'config.import' => 'Import Config',
 			'config.exportSuccess' => ({required Object path}) => 'Config exported to ${path}',
@@ -435,6 +518,21 @@ extension on Translations {
 			'exportDialog.presetNameHint' => 'e.g. release-prod',
 			'exportDialog.version' => 'Version',
 			'exportDialog.versionHint' => 'e.g. 1.0.0',
+			'profile.title' => 'Profiles',
+			'profile.noProfiles' => 'No saved profiles',
+			'profile.saveProfile' => 'Save Profile',
+			'profile.newProfile' => 'New Profile',
+			'profile.profileName' => 'Profile Name',
+			'profile.profileNameHint' => 'e.g. release-prod',
+			'profile.version' => 'Version',
+			'profile.versionHint' => 'e.g. 1.0.0',
+			'profile.saveSuccess' => ({required Object name}) => 'Profile \'${name}\' saved',
+			'profile.deleteConfirm' => ({required Object name}) => 'Delete profile \'${name}\'?',
+			'profile.deleteSuccess' => 'Profile deleted',
+			'profile.applied' => ({required Object name}) => 'Profile \'${name}\' applied',
+			'profile.updateExisting' => 'Update Existing',
+			'profile.saveAsNew' => 'Save as New',
+			'profile.overwriteConfirm' => ({required Object name}) => 'Profile \'${name}\' already exists. Overwrite?',
 			'build.button' => 'BUILD',
 			'build.building' => 'Building...',
 			'build.buildingPlatform' => ({required Object platform, required Object completed, required Object total}) => 'Building ${platform}... (${completed}/${total})',

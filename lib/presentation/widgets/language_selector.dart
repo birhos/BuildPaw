@@ -18,58 +18,80 @@ final class LanguageSelector extends StatelessWidget {
         return PopupMenuButton<AppLocale>(
           tooltip: t.language.title,
           icon: Icon(
-            Icons.language,
+            Icons.translate_rounded,
             color: Theme.of(context).colorScheme.onSurfaceVariant,
-            size: 22,
+            size: 20,
           ),
-          onSelected: (locale) => context.read<LocaleCubit>().setLocale(locale),
-          itemBuilder: (context) => [
-            //
-            PopupMenuItem(
+          onSelected: (locale) =>
+              context.read<LocaleCubit>().setLocale(locale),
+          position: PopupMenuPosition.under,
+          constraints: const BoxConstraints(minWidth: 160),
+          itemBuilder: (_) => [
+            _buildItem(
+              flag: 'EN',
+              label: t.language.english,
               value: AppLocale.en,
-              child: Row(
-                children: [
-                  if (currentLocale == AppLocale.en) ...[
-                    const Icon(
-                      Icons.check,
-                      size: 18,
-                      color: AppColors.primary,
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                  ],
-
-                  //
-                  Text(t.language.english),
-                ],
-              ),
+              isSelected: currentLocale == AppLocale.en,
+              context: context,
             ),
-
-            //
-            PopupMenuItem(
+            _buildItem(
+              flag: 'TR',
+              label: t.language.turkish,
               value: AppLocale.tr,
-              child: Row(
-                children: [
-                  if (currentLocale == AppLocale.tr) ...[
-                    const Icon(
-                      Icons.check,
-                      size: 18,
-                      color: AppColors.primary,
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                  ],
-
-                  //
-                  Text(t.language.turkish),
-                ],
-              ),
+              isSelected: currentLocale == AppLocale.tr,
+              context: context,
             ),
           ],
         );
       },
+    );
+  }
+
+  PopupMenuItem<AppLocale> _buildItem({
+    required String flag,
+    required String label,
+    required AppLocale value,
+    required bool isSelected,
+    required BuildContext context,
+  }) {
+    return PopupMenuItem<AppLocale>(
+      value: value,
+      height: 40,
+      child: Row(
+        children: [
+          SizedBox(
+            width: 24,
+            child: Text(
+              flag,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.5,
+                color: isSelected
+                    ? AppColors.primary
+                    : Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight:
+                    isSelected ? FontWeight.w600 : FontWeight.normal,
+                color: isSelected
+                    ? AppColors.primary
+                    : Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
+          ),
+          if (isSelected)
+            const Icon(Icons.check_rounded, size: 16, color: AppColors.primary),
+        ],
+      ),
     );
   }
 }

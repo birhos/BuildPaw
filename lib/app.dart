@@ -18,6 +18,7 @@ final class BuildPawApp extends StatelessWidget {
     final fileSystemService = FileSystemService();
     final commandGenerator = BuildCommandGenerator();
     final artifactManager = ArtifactManager(fileSystemService);
+    final profileStorageService = ProfileStorageService();
 
     return MultiBlocProvider(
       providers: [
@@ -32,6 +33,13 @@ final class BuildPawApp extends StatelessWidget {
         //
         BlocProvider(
           create: (_) => BuildConfigCubit(),
+        ),
+
+        //
+        BlocProvider(
+          create: (_) => ProfileCubit(
+            storageService: profileStorageService,
+          )..loadProfiles(),
         ),
 
         //

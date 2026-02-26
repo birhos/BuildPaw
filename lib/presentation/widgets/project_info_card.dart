@@ -43,7 +43,7 @@ class _ProjectInfoCardState extends State<ProjectInfoCard>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 12, 8, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 8, 0),
                 child: Row(
                   children: [
                     Text(
@@ -221,9 +221,11 @@ class _DependenciesTab extends StatelessWidget {
     final sorted = dependencies.entries.toList()
       ..sort((a, b) => a.key.compareTo(b.key));
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
-      child: Column(
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+        child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
@@ -265,6 +267,7 @@ class _DependenciesTab extends StatelessWidget {
             ),
           ),
         ],
+        ),
       ),
     );
   }

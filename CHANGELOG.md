@@ -1,8 +1,72 @@
 # BuildPaw - Changelog
 
-## v1.2.0 (2026-02-26)
+## v0.0.1 - MVP Release (2026-02-26)
 
 ### Yeni Özellikler
+
+#### Çoklu Dil Desteği (i18n Genişletme)
+- 6 yeni dil eklendi: Arapça (AR), Almanca (DE), Fransızca (FR), Basitleştirilmiş Çince (ZH), Rusça (RU), Hintçe (HI)
+- Toplam desteklenen dil sayısı 8'e çıktı (EN, TR, AR, DE, FR, ZH, RU, HI)
+- Her dil için tüm UI metinlerinin tam çevirisi
+- Dil seçiciye tüm yeni diller eklendi
+
+#### RTL (Sağdan Sola) Desteği
+- Arapça seçildiğinde uygulama otomatik olarak RTL moduna geçer
+- Diğer tüm dillerde LTR modu korunur
+- `MaterialApp.builder` üzerinden `Directionality` widget ile explicit RTL/LTR kontrolü
+- `EdgeInsets.fromLTRB` → `EdgeInsetsDirectional.fromSTEB` dönüşümleri
+
+#### RTL'de LTR Zorlanan Alanlar
+- **Terminal/Log paneli**: Kod çıktısı her zaman LTR
+- **Dosya yolu TextField'ları**: Sistem yolları her zaman LTR
+- **Dependency tablosu**: Paket isimleri ve versiyonlar her zaman LTR
+- **Config panel input'ları**: Flavor ve target alanları (tüm platformlar) her zaman LTR
+
+### Hata Düzeltmeleri
+
+- Web build `--web-renderer` deprecated flag hatası düzeltildi
+- FVM Dart execution desteği düzeltildi
+- `file_picker` entitlement hatası düzeltildi
+- `RadioListTile` ve `DropdownButtonFormField` deprecated API uyarıları düzeltildi
+
+#### YAML Parser Top-Level Key Algılama
+- `_parsePubspecYamlDeps` metodundaki top-level YAML key algılama hatası düzeltildi
+- Eski kod: `!stripped.startsWith(' ')` (trimmed string'de her zaman true) ve `stripped == trimmed` (trailing whitespace kontrolü — yanlış mantık)
+- Yeni kod: `!line.startsWith(' ') && !line.startsWith('\t')` ile orijinal satırda leading indentation kontrolü
+- İndentli alt-key'lerin (`  git:`) yanlışlıkla top-level key olarak algılanması engellendi
+- Trailing whitespace'li top-level key'lerin (`flutter_icons:  `) doğru algılanması sağlandı
+
+#### RTL/LTR Rebuild Sorunu
+- `app.dart`'daki gereksiz `Builder` widget'ı kaldırıldı
+- `BlocBuilder<ThemeCubit>` artık `TranslationProvider`'a doğrudan abone
+- Locale ve tema değişikliklerinde güvenilir rebuild garantisi
+
+### Teknik Değişiklikler
+
+#### Yeni Dosyalar
+- `lib/core/i18n/ar.i18n.json` — Arapça çeviriler
+- `lib/core/i18n/de.i18n.json` — Almanca çeviriler
+- `lib/core/i18n/fr.i18n.json` — Fransızca çeviriler
+- `lib/core/i18n/zh.i18n.json` — Basitleştirilmiş Çince çeviriler
+- `lib/core/i18n/ru.i18n.json` — Rusça çeviriler
+- `lib/core/i18n/hi.i18n.json` — Hintçe çeviriler
+
+#### Güncellenen Dosyalar
+- `lib/core/i18n/en.i18n.json` / `tr.i18n.json` — Yeni dil isim key'leri eklendi
+- `lib/core/i18n/strings*.g.dart` — Slang ile 8 locale için yeniden oluşturuldu
+- `lib/app.dart` — RTL/LTR desteği, Builder kaldırıldı, locale doğrudan BlocBuilder context'inde
+- `lib/presentation/widgets/language_selector.dart` — 8 dil seçeneği
+- `lib/presentation/widgets/project_info_card.dart` — `EdgeInsetsDirectional`, dependency tablosu LTR
+- `lib/presentation/widgets/build_log_panel.dart` — Terminal çıktısı LTR
+- `lib/presentation/widgets/project_selector_widget.dart` — Dosya yolu LTR
+- `lib/presentation/widgets/platform_config/android_config_panel.dart` — Flavor/target LTR
+- `lib/presentation/widgets/platform_config/ios_config_panel.dart` — Flavor/target LTR
+- `lib/presentation/widgets/platform_config/web_config_panel.dart` — Flavor/target LTR
+- `lib/infrastructure/services/flutter_service.dart` — YAML parser top-level key algılama düzeltmesi
+
+---
+
+
 
 #### Profil Yönetimi
 - Uygulama içi **profil modu** eklendi
@@ -74,9 +138,7 @@
 
 ---
 
-## v1.1.0 (2026-02-25)
 
-### Yeni Özellikler
 
 #### Lokalizasyon Desteği
 - Slang ile i18n altyapısı eklendi (EN / TR)
@@ -108,15 +170,7 @@
 - Build log paneline kopyalama butonu eklendi
 - Her log satırına newline eklenerek panoya kopyalama
 
-### Hata Düzeltmeleri
-- Web build `--web-renderer` deprecated flag hatası düzeltildi
-- FVM Dart execution desteği düzeltildi
-- `file_picker` entitlement hatası düzeltildi
-- `RadioListTile` ve `DropdownButtonFormField` deprecated API uyarıları düzeltildi
-
 ---
-
-## v1.0.0 - MVP Release (2026-02-25)
 
 ### Proje Yapısı
 

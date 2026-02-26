@@ -56,13 +56,16 @@ final class ProjectSelectorWidget extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: TextField(
-                    readOnly: true,
-                    controller: TextEditingController(text: path),
-                    decoration: InputDecoration(
-                      hintText: t.projectSelector.hint,
-                      prefixIcon: Icon(Icons.folder_open, color: Theme.of(context).colorScheme.onSurfaceVariant),
-                      errorText: errorMessage,
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: TextField(
+                      readOnly: true,
+                      controller: TextEditingController(text: path),
+                      decoration: InputDecoration(
+                        hintText: t.projectSelector.hint,
+                        prefixIcon: Icon(Icons.folder_open, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                        errorText: errorMessage,
+                      ),
                     ),
                   ),
                 ),

@@ -112,9 +112,9 @@ final class FlutterService {
         continue;
       }
       if (stripped.isNotEmpty &&
-          !stripped.startsWith(' ') &&
+          !line.startsWith(' ') &&
+          !line.startsWith('\t') &&
           !stripped.startsWith('#') &&
-          stripped == trimmed &&
           stripped.endsWith(':')) {
         inDeps = false;
         inDevDeps = false;

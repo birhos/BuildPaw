@@ -60,6 +60,8 @@ final class ProjectSelectorWidget extends StatelessWidget {
                     textDirection: TextDirection.ltr,
                     child: TextField(
                       readOnly: true,
+                      canRequestFocus: false,
+                      onTap: isLoading ? null : () => _pickProject(context),
                       controller: TextEditingController(text: path),
                       decoration: InputDecoration(
                         hintText: t.projectSelector.hint,

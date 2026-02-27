@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/application.dart';
 import '../../core/core.dart';
-import '../../infrastructure/services/notification_service.dart';
 import '../widgets/build_action_bar.dart';
 import '../widgets/build_log_panel.dart';
 import '../widgets/config_drop_target.dart';

@@ -19,6 +19,8 @@ final class BuildPawApp extends StatelessWidget {
     final commandGenerator = BuildCommandGenerator();
     final artifactManager = ArtifactManager(fileSystemService);
     final profileStorageService = ProfileStorageService();
+    final publishProfileRepo = PublishProfileRepository();
+    final notificationService = NotificationService();
 
     return MultiBlocProvider(
       providers: [
@@ -50,10 +52,47 @@ final class BuildPawApp extends StatelessWidget {
             artifactManager: artifactManager,
           ),
         ),
+
+        //
+        BlocProvider(create: (_) => LastBuildOutputCubit()),
+
+        //
+        BlocProvider(
+          create: (_) => PublishProfileCubit(
+            repository: publishProfileRepo,
+          )..loadProfiles(),
+        ),
+
+        //
+        BlocProvider(
+          create: (context) => PublishCubit(
+            fastlaneDetector: FastlaneDetector(processService),
+            fastlaneInstaller: FastlaneInstaller(processService),
+            fastlaneExecutor: FastlaneExecutor(processService),
+            notificationService: notificationService,
+            lastBuildOutput: context.read<LastBuildOutputCubit>(),
+            profileRepository: publishProfileRepo,
+            processService: processService,
+            flutterService: flutterService,
+          ),
+        ),
       ],
       child: TranslationProvider(
-        child: BlocBuilder<ThemeCubit, ThemeState>(
-          builder: (context, themeState) {
+        child: BlocListener<BuildExecutionBloc, BuildExecutionState>(
+          listenWhen: (prev, curr) => curr is BuildSuccess,
+          listener: (context, state) {
+            if (state is BuildSuccess &&
+                state.outputPath.isNotEmpty &&
+                state.projectPath.isNotEmpty) {
+              context.read<LastBuildOutputCubit>().setLastBuild(
+                    outputPath: state.outputPath,
+                    projectName: state.projectName,
+                    projectPath: state.projectPath,
+                  );
+            }
+          },
+          child: BlocBuilder<ThemeCubit, ThemeState>(
+            builder: (context, themeState) {
             final locale = TranslationProvider.of(context).flutterLocale;
             final isRtl = locale.languageCode == 'ar';
 
@@ -85,6 +124,7 @@ final class BuildPawApp extends StatelessWidget {
               home: const HomePage(),
             );
           },
+        ),
         ),
       ),
     );

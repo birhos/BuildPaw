@@ -57,6 +57,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _TranslationsPwaStrategyRu pwaStrategy = _TranslationsPwaStrategyRu._(_root);
 	@override late final _TranslationsLanguageRu language = _TranslationsLanguageRu._(_root);
 	@override late final _TranslationsThemeRu theme = _TranslationsThemeRu._(_root);
+	@override late final _TranslationsPublishRu publish = _TranslationsPublishRu._(_root);
 }
 
 // Path: app
@@ -313,6 +314,71 @@ class _TranslationsThemeRu extends TranslationsThemeEn {
 	@override String get light => 'Светлая';
 }
 
+// Path: publish
+class _TranslationsPublishRu extends TranslationsPublishEn {
+	_TranslationsPublishRu._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get tab => 'Публикация';
+	@override String get button => 'Опубликовать';
+	@override String get target => 'Цель';
+	@override String get profile => 'Профиль';
+	@override String get releaseNotes => 'Заметки о выпуске';
+	@override String get releaseNotesHint => 'Необязательные заметки о выпуске...';
+	@override String get testerGroup => 'Группа тестировщиков';
+	@override String get testerGroupHint => 'напр. testers';
+	@override String get track => 'Трек';
+	@override String get noProfile => 'Профиль не выбран';
+	@override String get noProject => 'Сначала выберите проект';
+	@override String get noBuildOutput => 'Сначала выполните сборку для публикации артефактов';
+	@override String get lastBuild => 'Последняя сборка';
+	@override String get configureNow => 'Настроить сейчас';
+	@override String get fastlaneMissing => 'Fastlane не найден';
+	@override String get fastlaneMissingMessage => 'Для публикации требуется Fastlane. Установить?';
+	@override String get install => 'Установить';
+	@override String get configMissing => 'Конфигурация Fastlane не найдена';
+	@override String get configMissingMessage => 'Для публикации требуется конфигурация Fastlane (Fastfile, Appfile).';
+	@override String get retry => 'Повторить';
+	@override String get stop => 'Остановить';
+	@override String get publishLogTitle => 'Вывод публикации';
+	@override String get firebase => 'Firebase App Distribution';
+	@override String get googlePlay => 'Google Play Console';
+	@override String get appStoreConnect => 'App Store Connect (TestFlight)';
+	@override String get internal => 'Внутренний';
+	@override String get closed => 'Закрытый';
+	@override String get production => 'Продакшн';
+	@override String get publishProfiles => 'Профили публикации';
+	@override String get configureProfile => 'Настроить профиль';
+	@override String get newPublishProfile => 'Новый профиль публикации';
+	@override String get firebaseAppId => 'ID приложения Firebase';
+	@override String get firebaseAppIdHint => '1:123:android:abc';
+	@override String get firebaseToken => 'Токен Firebase (хранится безопасно)';
+	@override String get playPackageName => 'Имя пакета';
+	@override String get playPackageNameHint => 'com.example.app';
+	@override String get playServiceAccount => 'Путь к JSON учётной записи сервиса';
+	@override String get ascBundleId => 'Bundle ID';
+	@override String get ascBundleIdHint => 'com.example.app';
+	@override String get ascAppleId => 'Apple ID (email)';
+	@override String get ascAppleIdHint => 'developer@example.com';
+	@override String get ascTeamId => 'ID команды (Developer Portal)';
+	@override String get ascItcTeamId => 'ITC ID команды (App Store Connect)';
+	@override String get ascApplePassword => 'Пароль приложения (хранится безопасно)';
+	@override String get ascApiKeyId => 'ID ключа API';
+	@override String get ascIssuerId => 'ID издателя';
+	@override String get ascApiKeyPath => 'Путь к ключу API (.p8)';
+	@override String get ascAppleIdAuth => 'Аутентификация Apple ID';
+	@override String get ascApiKeyAuth => 'Аутентификация по ключу API (альтернатива)';
+	@override String get notificationSuccessTitle => '✅ Публикация успешна!';
+	@override String get notificationSuccessBody => 'Ваша сборка распространена.';
+	@override String notificationSuccessSubtitle({required Object platform, required Object track}) => 'Платформа: ${platform} • Трек: ${track}';
+	@override String notificationSuccessSubtitlePlatform({required Object platform}) => 'Платформа: ${platform}';
+	@override String get notificationErrorTitle => '❌ Публикация не удалась';
+	@override String get notificationErrorSubtitle => 'BuildPaw';
+	@override String get notificationErrorBody => 'Проверьте логи для деталей.';
+}
+
 /// The flat map containing all translations for locale <ru>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -413,6 +479,62 @@ extension on TranslationsRu {
 			'theme.title' => 'Тема',
 			'theme.dark' => 'Тёмная',
 			'theme.light' => 'Светлая',
+			'publish.tab' => 'Публикация',
+			'publish.button' => 'Опубликовать',
+			'publish.target' => 'Цель',
+			'publish.profile' => 'Профиль',
+			'publish.releaseNotes' => 'Заметки о выпуске',
+			'publish.releaseNotesHint' => 'Необязательные заметки о выпуске...',
+			'publish.testerGroup' => 'Группа тестировщиков',
+			'publish.testerGroupHint' => 'напр. testers',
+			'publish.track' => 'Трек',
+			'publish.noProfile' => 'Профиль не выбран',
+			'publish.noProject' => 'Сначала выберите проект',
+			'publish.noBuildOutput' => 'Сначала выполните сборку для публикации артефактов',
+			'publish.lastBuild' => 'Последняя сборка',
+			'publish.configureNow' => 'Настроить сейчас',
+			'publish.fastlaneMissing' => 'Fastlane не найден',
+			'publish.fastlaneMissingMessage' => 'Для публикации требуется Fastlane. Установить?',
+			'publish.install' => 'Установить',
+			'publish.configMissing' => 'Конфигурация Fastlane не найдена',
+			'publish.configMissingMessage' => 'Для публикации требуется конфигурация Fastlane (Fastfile, Appfile).',
+			'publish.retry' => 'Повторить',
+			'publish.stop' => 'Остановить',
+			'publish.publishLogTitle' => 'Вывод публикации',
+			'publish.firebase' => 'Firebase App Distribution',
+			'publish.googlePlay' => 'Google Play Console',
+			'publish.appStoreConnect' => 'App Store Connect (TestFlight)',
+			'publish.internal' => 'Внутренний',
+			'publish.closed' => 'Закрытый',
+			'publish.production' => 'Продакшн',
+			'publish.publishProfiles' => 'Профили публикации',
+			'publish.configureProfile' => 'Настроить профиль',
+			'publish.newPublishProfile' => 'Новый профиль публикации',
+			'publish.firebaseAppId' => 'ID приложения Firebase',
+			'publish.firebaseAppIdHint' => '1:123:android:abc',
+			'publish.firebaseToken' => 'Токен Firebase (хранится безопасно)',
+			'publish.playPackageName' => 'Имя пакета',
+			'publish.playPackageNameHint' => 'com.example.app',
+			'publish.playServiceAccount' => 'Путь к JSON учётной записи сервиса',
+			'publish.ascBundleId' => 'Bundle ID',
+			'publish.ascBundleIdHint' => 'com.example.app',
+			'publish.ascAppleId' => 'Apple ID (email)',
+			'publish.ascAppleIdHint' => 'developer@example.com',
+			'publish.ascTeamId' => 'ID команды (Developer Portal)',
+			'publish.ascItcTeamId' => 'ITC ID команды (App Store Connect)',
+			'publish.ascApplePassword' => 'Пароль приложения (хранится безопасно)',
+			'publish.ascApiKeyId' => 'ID ключа API',
+			'publish.ascIssuerId' => 'ID издателя',
+			'publish.ascApiKeyPath' => 'Путь к ключу API (.p8)',
+			'publish.ascAppleIdAuth' => 'Аутентификация Apple ID',
+			'publish.ascApiKeyAuth' => 'Аутентификация по ключу API (альтернатива)',
+			'publish.notificationSuccessTitle' => '✅ Публикация успешна!',
+			'publish.notificationSuccessBody' => 'Ваша сборка распространена.',
+			'publish.notificationSuccessSubtitle' => ({required Object platform, required Object track}) => 'Платформа: ${platform} • Трек: ${track}',
+			'publish.notificationSuccessSubtitlePlatform' => ({required Object platform}) => 'Платформа: ${platform}',
+			'publish.notificationErrorTitle' => '❌ Публикация не удалась',
+			'publish.notificationErrorSubtitle' => 'BuildPaw',
+			'publish.notificationErrorBody' => 'Проверьте логи для деталей.',
 			_ => null,
 		};
 	}

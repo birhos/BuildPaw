@@ -57,6 +57,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _TranslationsPwaStrategyZh pwaStrategy = _TranslationsPwaStrategyZh._(_root);
 	@override late final _TranslationsLanguageZh language = _TranslationsLanguageZh._(_root);
 	@override late final _TranslationsThemeZh theme = _TranslationsThemeZh._(_root);
+	@override late final _TranslationsPublishZh publish = _TranslationsPublishZh._(_root);
 }
 
 // Path: app
@@ -313,6 +314,71 @@ class _TranslationsThemeZh extends TranslationsThemeEn {
 	@override String get light => '浅色';
 }
 
+// Path: publish
+class _TranslationsPublishZh extends TranslationsPublishEn {
+	_TranslationsPublishZh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get tab => '发布';
+	@override String get button => '发布';
+	@override String get target => '目标';
+	@override String get profile => '配置文件';
+	@override String get releaseNotes => '发布说明';
+	@override String get releaseNotesHint => '可选发布说明...';
+	@override String get testerGroup => '测试组';
+	@override String get testerGroupHint => '例如 testers';
+	@override String get track => '轨道';
+	@override String get noProfile => '未选择配置文件';
+	@override String get noProject => '请先选择项目';
+	@override String get noBuildOutput => '请先运行构建以发布产物';
+	@override String get lastBuild => '上次构建';
+	@override String get configureNow => '立即配置';
+	@override String get fastlaneMissing => '未找到 Fastlane';
+	@override String get fastlaneMissingMessage => '发布需要 Fastlane。是否安装？';
+	@override String get install => '安装';
+	@override String get configMissing => '未找到 Fastlane 配置';
+	@override String get configMissingMessage => '发布需要 Fastlane 配置（Fastfile、Appfile）。';
+	@override String get retry => '重试';
+	@override String get stop => '停止';
+	@override String get publishLogTitle => '发布输出';
+	@override String get firebase => 'Firebase App Distribution';
+	@override String get googlePlay => 'Google Play Console';
+	@override String get appStoreConnect => 'App Store Connect (TestFlight)';
+	@override String get internal => '内部';
+	@override String get closed => '封闭';
+	@override String get production => '生产';
+	@override String get publishProfiles => '发布配置文件';
+	@override String get configureProfile => '配置配置文件';
+	@override String get newPublishProfile => '新建发布配置文件';
+	@override String get firebaseAppId => 'Firebase 应用 ID';
+	@override String get firebaseAppIdHint => '1:123:android:abc';
+	@override String get firebaseToken => 'Firebase 令牌（安全存储）';
+	@override String get playPackageName => '包名';
+	@override String get playPackageNameHint => 'com.example.app';
+	@override String get playServiceAccount => '服务账号 JSON 路径';
+	@override String get ascBundleId => 'Bundle ID';
+	@override String get ascBundleIdHint => 'com.example.app';
+	@override String get ascAppleId => 'Apple ID（邮箱）';
+	@override String get ascAppleIdHint => 'developer@example.com';
+	@override String get ascTeamId => '团队 ID（Developer Portal）';
+	@override String get ascItcTeamId => 'ITC 团队 ID（App Store Connect）';
+	@override String get ascApplePassword => '应用专用密码（安全存储）';
+	@override String get ascApiKeyId => 'API 密钥 ID';
+	@override String get ascIssuerId => '颁发者 ID';
+	@override String get ascApiKeyPath => 'API 密钥 (.p8) 路径';
+	@override String get ascAppleIdAuth => 'Apple ID 认证';
+	@override String get ascApiKeyAuth => 'API 密钥认证（替代）';
+	@override String get notificationSuccessTitle => '✅ 发布成功！';
+	@override String get notificationSuccessBody => '您的构建已分发。';
+	@override String notificationSuccessSubtitle({required Object platform, required Object track}) => '平台：${platform} • 轨道：${track}';
+	@override String notificationSuccessSubtitlePlatform({required Object platform}) => '平台：${platform}';
+	@override String get notificationErrorTitle => '❌ 发布失败';
+	@override String get notificationErrorSubtitle => 'BuildPaw';
+	@override String get notificationErrorBody => '请查看日志了解详情。';
+}
+
 /// The flat map containing all translations for locale <zh>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -413,6 +479,62 @@ extension on TranslationsZh {
 			'theme.title' => '主题',
 			'theme.dark' => '深色',
 			'theme.light' => '浅色',
+			'publish.tab' => '发布',
+			'publish.button' => '发布',
+			'publish.target' => '目标',
+			'publish.profile' => '配置文件',
+			'publish.releaseNotes' => '发布说明',
+			'publish.releaseNotesHint' => '可选发布说明...',
+			'publish.testerGroup' => '测试组',
+			'publish.testerGroupHint' => '例如 testers',
+			'publish.track' => '轨道',
+			'publish.noProfile' => '未选择配置文件',
+			'publish.noProject' => '请先选择项目',
+			'publish.noBuildOutput' => '请先运行构建以发布产物',
+			'publish.lastBuild' => '上次构建',
+			'publish.configureNow' => '立即配置',
+			'publish.fastlaneMissing' => '未找到 Fastlane',
+			'publish.fastlaneMissingMessage' => '发布需要 Fastlane。是否安装？',
+			'publish.install' => '安装',
+			'publish.configMissing' => '未找到 Fastlane 配置',
+			'publish.configMissingMessage' => '发布需要 Fastlane 配置（Fastfile、Appfile）。',
+			'publish.retry' => '重试',
+			'publish.stop' => '停止',
+			'publish.publishLogTitle' => '发布输出',
+			'publish.firebase' => 'Firebase App Distribution',
+			'publish.googlePlay' => 'Google Play Console',
+			'publish.appStoreConnect' => 'App Store Connect (TestFlight)',
+			'publish.internal' => '内部',
+			'publish.closed' => '封闭',
+			'publish.production' => '生产',
+			'publish.publishProfiles' => '发布配置文件',
+			'publish.configureProfile' => '配置配置文件',
+			'publish.newPublishProfile' => '新建发布配置文件',
+			'publish.firebaseAppId' => 'Firebase 应用 ID',
+			'publish.firebaseAppIdHint' => '1:123:android:abc',
+			'publish.firebaseToken' => 'Firebase 令牌（安全存储）',
+			'publish.playPackageName' => '包名',
+			'publish.playPackageNameHint' => 'com.example.app',
+			'publish.playServiceAccount' => '服务账号 JSON 路径',
+			'publish.ascBundleId' => 'Bundle ID',
+			'publish.ascBundleIdHint' => 'com.example.app',
+			'publish.ascAppleId' => 'Apple ID（邮箱）',
+			'publish.ascAppleIdHint' => 'developer@example.com',
+			'publish.ascTeamId' => '团队 ID（Developer Portal）',
+			'publish.ascItcTeamId' => 'ITC 团队 ID（App Store Connect）',
+			'publish.ascApplePassword' => '应用专用密码（安全存储）',
+			'publish.ascApiKeyId' => 'API 密钥 ID',
+			'publish.ascIssuerId' => '颁发者 ID',
+			'publish.ascApiKeyPath' => 'API 密钥 (.p8) 路径',
+			'publish.ascAppleIdAuth' => 'Apple ID 认证',
+			'publish.ascApiKeyAuth' => 'API 密钥认证（替代）',
+			'publish.notificationSuccessTitle' => '✅ 发布成功！',
+			'publish.notificationSuccessBody' => '您的构建已分发。',
+			'publish.notificationSuccessSubtitle' => ({required Object platform, required Object track}) => '平台：${platform} • 轨道：${track}',
+			'publish.notificationSuccessSubtitlePlatform' => ({required Object platform}) => '平台：${platform}',
+			'publish.notificationErrorTitle' => '❌ 发布失败',
+			'publish.notificationErrorSubtitle' => 'BuildPaw',
+			'publish.notificationErrorBody' => '请查看日志了解详情。',
 			_ => null,
 		};
 	}

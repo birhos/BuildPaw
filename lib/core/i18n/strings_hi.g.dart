@@ -57,6 +57,7 @@ class TranslationsHi extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _TranslationsPwaStrategyHi pwaStrategy = _TranslationsPwaStrategyHi._(_root);
 	@override late final _TranslationsLanguageHi language = _TranslationsLanguageHi._(_root);
 	@override late final _TranslationsThemeHi theme = _TranslationsThemeHi._(_root);
+	@override late final _TranslationsPublishHi publish = _TranslationsPublishHi._(_root);
 }
 
 // Path: app
@@ -313,6 +314,71 @@ class _TranslationsThemeHi extends TranslationsThemeEn {
 	@override String get light => 'लाइट';
 }
 
+// Path: publish
+class _TranslationsPublishHi extends TranslationsPublishEn {
+	_TranslationsPublishHi._(TranslationsHi root) : this._root = root, super.internal(root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get tab => 'प्रकाशित करें';
+	@override String get button => 'प्रकाशित करें';
+	@override String get target => 'लक्ष्य';
+	@override String get profile => 'प्रोफ़ाइल';
+	@override String get releaseNotes => 'रिलीज़ नोट्स';
+	@override String get releaseNotesHint => 'वैकल्पिक रिलीज़ नोट्स...';
+	@override String get testerGroup => 'टेस्टर समूह';
+	@override String get testerGroupHint => 'उदा. testers';
+	@override String get track => 'ट्रैक';
+	@override String get noProfile => 'कोई प्रोफ़ाइल चयनित नहीं';
+	@override String get noProject => 'पहले प्रोजेक्ट चुनें';
+	@override String get noBuildOutput => 'आर्टिफैक्ट प्रकाशित करने के लिए पहले बिल्ड चलाएं';
+	@override String get lastBuild => 'अंतिम बिल्ड';
+	@override String get configureNow => 'अभी कॉन्फ़िगर करें';
+	@override String get fastlaneMissing => 'Fastlane नहीं मिला';
+	@override String get fastlaneMissingMessage => 'प्रकाशन के लिए Fastlane आवश्यक है। इंस्टॉल करें?';
+	@override String get install => 'इंस्टॉल करें';
+	@override String get configMissing => 'Fastlane कॉन्फ़िग नहीं मिला';
+	@override String get configMissingMessage => 'प्रकाशन के लिए Fastlane कॉन्फ़िग (Fastfile, Appfile) आवश्यक है।';
+	@override String get retry => 'पुनः प्रयास करें';
+	@override String get stop => 'रोकें';
+	@override String get publishLogTitle => 'प्रकाशन आउटपुट';
+	@override String get firebase => 'Firebase App Distribution';
+	@override String get googlePlay => 'Google Play Console';
+	@override String get appStoreConnect => 'App Store Connect (TestFlight)';
+	@override String get internal => 'आंतरिक';
+	@override String get closed => 'बंद';
+	@override String get production => 'प्रोडक्शन';
+	@override String get publishProfiles => 'प्रकाशन प्रोफ़ाइल';
+	@override String get configureProfile => 'प्रोफ़ाइल कॉन्फ़िगर करें';
+	@override String get newPublishProfile => 'नई प्रकाशन प्रोफ़ाइल';
+	@override String get firebaseAppId => 'Firebase ऐप ID';
+	@override String get firebaseAppIdHint => '1:123:android:abc';
+	@override String get firebaseToken => 'Firebase टोकन (सुरक्षित संग्रहीत)';
+	@override String get playPackageName => 'पैकेज नाम';
+	@override String get playPackageNameHint => 'com.example.app';
+	@override String get playServiceAccount => 'सर्विस अकाउंट JSON पथ';
+	@override String get ascBundleId => 'Bundle ID';
+	@override String get ascBundleIdHint => 'com.example.app';
+	@override String get ascAppleId => 'Apple ID (ईमेल)';
+	@override String get ascAppleIdHint => 'developer@example.com';
+	@override String get ascTeamId => 'टीम ID (Developer Portal)';
+	@override String get ascItcTeamId => 'ITC टीम ID (App Store Connect)';
+	@override String get ascApplePassword => 'ऐप पासवर्ड (सुरक्षित संग्रहीत)';
+	@override String get ascApiKeyId => 'API कुंजी ID';
+	@override String get ascIssuerId => 'इश्यूअर ID';
+	@override String get ascApiKeyPath => 'API कुंजी (.p8) पथ';
+	@override String get ascAppleIdAuth => 'Apple ID प्रमाणीकरण';
+	@override String get ascApiKeyAuth => 'API कुंजी प्रमाणीकरण (विकल्प)';
+	@override String get notificationSuccessTitle => '✅ प्रकाशन सफल!';
+	@override String get notificationSuccessBody => 'आपका बिल्ड वितरित किया गया।';
+	@override String notificationSuccessSubtitle({required Object platform, required Object track}) => 'प्लेटफ़ॉर्म: ${platform} • ट्रैक: ${track}';
+	@override String notificationSuccessSubtitlePlatform({required Object platform}) => 'प्लेटफ़ॉर्म: ${platform}';
+	@override String get notificationErrorTitle => '❌ प्रकाशन विफल';
+	@override String get notificationErrorSubtitle => 'BuildPaw';
+	@override String get notificationErrorBody => 'विवरण के लिए लॉग देखें।';
+}
+
 /// The flat map containing all translations for locale <hi>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -413,6 +479,62 @@ extension on TranslationsHi {
 			'theme.title' => 'थीम',
 			'theme.dark' => 'डार्क',
 			'theme.light' => 'लाइट',
+			'publish.tab' => 'प्रकाशित करें',
+			'publish.button' => 'प्रकाशित करें',
+			'publish.target' => 'लक्ष्य',
+			'publish.profile' => 'प्रोफ़ाइल',
+			'publish.releaseNotes' => 'रिलीज़ नोट्स',
+			'publish.releaseNotesHint' => 'वैकल्पिक रिलीज़ नोट्स...',
+			'publish.testerGroup' => 'टेस्टर समूह',
+			'publish.testerGroupHint' => 'उदा. testers',
+			'publish.track' => 'ट्रैक',
+			'publish.noProfile' => 'कोई प्रोफ़ाइल चयनित नहीं',
+			'publish.noProject' => 'पहले प्रोजेक्ट चुनें',
+			'publish.noBuildOutput' => 'आर्टिफैक्ट प्रकाशित करने के लिए पहले बिल्ड चलाएं',
+			'publish.lastBuild' => 'अंतिम बिल्ड',
+			'publish.configureNow' => 'अभी कॉन्फ़िगर करें',
+			'publish.fastlaneMissing' => 'Fastlane नहीं मिला',
+			'publish.fastlaneMissingMessage' => 'प्रकाशन के लिए Fastlane आवश्यक है। इंस्टॉल करें?',
+			'publish.install' => 'इंस्टॉल करें',
+			'publish.configMissing' => 'Fastlane कॉन्फ़िग नहीं मिला',
+			'publish.configMissingMessage' => 'प्रकाशन के लिए Fastlane कॉन्फ़िग (Fastfile, Appfile) आवश्यक है।',
+			'publish.retry' => 'पुनः प्रयास करें',
+			'publish.stop' => 'रोकें',
+			'publish.publishLogTitle' => 'प्रकाशन आउटपुट',
+			'publish.firebase' => 'Firebase App Distribution',
+			'publish.googlePlay' => 'Google Play Console',
+			'publish.appStoreConnect' => 'App Store Connect (TestFlight)',
+			'publish.internal' => 'आंतरिक',
+			'publish.closed' => 'बंद',
+			'publish.production' => 'प्रोडक्शन',
+			'publish.publishProfiles' => 'प्रकाशन प्रोफ़ाइल',
+			'publish.configureProfile' => 'प्रोफ़ाइल कॉन्फ़िगर करें',
+			'publish.newPublishProfile' => 'नई प्रकाशन प्रोफ़ाइल',
+			'publish.firebaseAppId' => 'Firebase ऐप ID',
+			'publish.firebaseAppIdHint' => '1:123:android:abc',
+			'publish.firebaseToken' => 'Firebase टोकन (सुरक्षित संग्रहीत)',
+			'publish.playPackageName' => 'पैकेज नाम',
+			'publish.playPackageNameHint' => 'com.example.app',
+			'publish.playServiceAccount' => 'सर्विस अकाउंट JSON पथ',
+			'publish.ascBundleId' => 'Bundle ID',
+			'publish.ascBundleIdHint' => 'com.example.app',
+			'publish.ascAppleId' => 'Apple ID (ईमेल)',
+			'publish.ascAppleIdHint' => 'developer@example.com',
+			'publish.ascTeamId' => 'टीम ID (Developer Portal)',
+			'publish.ascItcTeamId' => 'ITC टीम ID (App Store Connect)',
+			'publish.ascApplePassword' => 'ऐप पासवर्ड (सुरक्षित संग्रहीत)',
+			'publish.ascApiKeyId' => 'API कुंजी ID',
+			'publish.ascIssuerId' => 'इश्यूअर ID',
+			'publish.ascApiKeyPath' => 'API कुंजी (.p8) पथ',
+			'publish.ascAppleIdAuth' => 'Apple ID प्रमाणीकरण',
+			'publish.ascApiKeyAuth' => 'API कुंजी प्रमाणीकरण (विकल्प)',
+			'publish.notificationSuccessTitle' => '✅ प्रकाशन सफल!',
+			'publish.notificationSuccessBody' => 'आपका बिल्ड वितरित किया गया।',
+			'publish.notificationSuccessSubtitle' => ({required Object platform, required Object track}) => 'प्लेटफ़ॉर्म: ${platform} • ट्रैक: ${track}',
+			'publish.notificationSuccessSubtitlePlatform' => ({required Object platform}) => 'प्लेटफ़ॉर्म: ${platform}',
+			'publish.notificationErrorTitle' => '❌ प्रकाशन विफल',
+			'publish.notificationErrorSubtitle' => 'BuildPaw',
+			'publish.notificationErrorBody' => 'विवरण के लिए लॉग देखें।',
 			_ => null,
 		};
 	}

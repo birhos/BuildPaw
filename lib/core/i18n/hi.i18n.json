@@ -1,1 +1,188 @@
-{"app":{"name":"BuildPaw"},"common":{"cancel":"रद्द करें","export":"निर्यात","browse":"ब्राउज़","save":"सहेजें","delete":"हटाएं"},"projectSelector":{"title":"BuildPaw","hint":"Flutter प्रोजेक्ट डायरेक्टरी चुनें...","selectDialogTitle":"Flutter प्रोजेक्ट चुनें"},"projectInfo":{"title":"प्रोजेक्ट जानकारी","generalTab":"सामान्य","dependenciesTab":"डिपेंडेंसी","refreshTooltip":"प्रोजेक्ट जानकारी रीफ्रेश करें","fvmActive":"FVM सक्रिय","fvmInactive":"FVM नहीं","noDependencies":"कोई डिपेंडेंसी नहीं मिली","package":"पैकेज","version":"संस्करण"},"config":{"export":"कॉन्फ़िग निर्यात करें","import":"कॉन्फ़िग आयात करें","exportSuccess":"कॉन्फ़िग $path पर निर्यात किया गया","exportCancelled":"निर्यात रद्द किया गया।","importSuccess":"आयातित: $name","importCancelled":"आयात रद्द किया गया या फ़ाइल अमान्य।","dropToImport":"कॉन्फ़िग आयात करने के लिए JSON फ़ाइल छोड़ें"},"exportDialog":{"title":"बिल्ड कॉन्फ़िग निर्यात करें","presetName":"प्रीसेट नाम","presetNameHint":"उदा. release-prod","version":"संस्करण","versionHint":"उदा. 1.0.0"},"profile":{"title":"प्रोफ़ाइल","noProfiles":"कोई सहेजी गई प्रोफ़ाइल नहीं","saveProfile":"प्रोफ़ाइल सहेजें","newProfile":"नई प्रोफ़ाइल","profileName":"प्रोफ़ाइल नाम","profileNameHint":"उदा. release-prod","version":"संस्करण","versionHint":"उदा. 1.0.0","saveSuccess":"प्रोफ़ाइल '$name' सहेजी गई","deleteConfirm":"प्रोफ़ाइल '$name' हटाएं?","deleteSuccess":"प्रोफ़ाइल हटाई गई","applied":"प्रोफ़ाइल '$name' लागू की गई","updateExisting":"मौजूदा अपडेट करें","saveAsNew":"नए के रूप में सहेजें","overwriteConfirm":"प्रोफ़ाइल '$name' पहले से मौजूद है। ओवरराइट करें?"},"build":{"button":"बिल्ड","building":"बिल्ड हो रहा है...","buildingPlatform":"$platform बिल्ड हो रहा है... ($completed/$total)","cancel":"रद्द करें"},"buildLog":{"title":"बिल्ड आउटपुट","copyTooltip":"लॉग कॉपी करें","copied":"लॉग क्लिपबोर्ड पर कॉपी किए गए","placeholder":"बिल्ड आउटपुट यहां दिखाई देगा..."},"buildStatus":{"idle":"निष्क्रिय","running":"चल रहा है","success":"सफल","failed":"विफल"},"platforms":{"android":"Android","ios":"iOS","web":"Web"},"platformConfig":{"outputType":"आउटपुट प्रकार","codeObfuscation":"कोड ऑब्फ़स्केशन","splitDebugInfo":"Split Debug Info","flavor":"Flavor","flavorHint":"उदा. dev, staging, prod","runMode":"रन मोड","target":"लक्ष्य","targetHint":"lib/main.dart","pwaStrategy":"PWA रणनीति","noTreeShakeIcons":"No Tree Shake Icons"},"androidOutput":{"apk":"केवल APK","aab":"केवल AAB","both":"APK और AAB"},"iosOutput":{"ios":"iOS (Runner.app)","ipa":"IPA (निर्यात योग्य)"},"buildMode":{"debug":"Debug","profile":"Profile","release":"Release"},"pwaStrategy":{"default":"डिफ़ॉल्ट","none":"कोई नहीं"},"language":{"title":"भाषा","english":"English","turkish":"Türkçe","arabic":"العربية","german":"Deutsch","french":"Français","chinese":"简体中文","russian":"Русский","hindi":"हिन्दी"},"theme":{"title":"थीम","dark":"डार्क","light":"लाइट"}}
+{
+    "app": {
+        "name": "BuildPaw"
+    },
+    "common": {
+        "cancel": "रद्द करें",
+        "export": "निर्यात",
+        "browse": "ब्राउज़",
+        "save": "सहेजें",
+        "delete": "हटाएं"
+    },
+    "projectSelector": {
+        "title": "BuildPaw",
+        "hint": "Flutter प्रोजेक्ट डायरेक्टरी चुनें...",
+        "selectDialogTitle": "Flutter प्रोजेक्ट चुनें"
+    },
+    "projectInfo": {
+        "title": "प्रोजेक्ट जानकारी",
+        "generalTab": "सामान्य",
+        "dependenciesTab": "डिपेंडेंसी",
+        "refreshTooltip": "प्रोजेक्ट जानकारी रीफ्रेश करें",
+        "fvmActive": "FVM सक्रिय",
+        "fvmInactive": "FVM नहीं",
+        "noDependencies": "कोई डिपेंडेंसी नहीं मिली",
+        "package": "पैकेज",
+        "version": "संस्करण"
+    },
+    "config": {
+        "export": "कॉन्फ़िग निर्यात करें",
+        "import": "कॉन्फ़िग आयात करें",
+        "exportSuccess": "कॉन्फ़िग $path पर निर्यात किया गया",
+        "exportCancelled": "निर्यात रद्द किया गया।",
+        "importSuccess": "आयातित: $name",
+        "importCancelled": "आयात रद्द किया गया या फ़ाइल अमान्य।",
+        "dropToImport": "कॉन्फ़िग आयात करने के लिए JSON फ़ाइल छोड़ें"
+    },
+    "exportDialog": {
+        "title": "बिल्ड कॉन्फ़िग निर्यात करें",
+        "presetName": "प्रीसेट नाम",
+        "presetNameHint": "उदा. release-prod",
+        "version": "संस्करण",
+        "versionHint": "उदा. 1.0.0"
+    },
+    "profile": {
+        "title": "प्रोफ़ाइल",
+        "noProfiles": "कोई सहेजी गई प्रोफ़ाइल नहीं",
+        "saveProfile": "प्रोफ़ाइल सहेजें",
+        "newProfile": "नई प्रोफ़ाइल",
+        "profileName": "प्रोफ़ाइल नाम",
+        "profileNameHint": "उदा. release-prod",
+        "version": "संस्करण",
+        "versionHint": "उदा. 1.0.0",
+        "saveSuccess": "प्रोफ़ाइल '$name' सहेजी गई",
+        "deleteConfirm": "प्रोफ़ाइल '$name' हटाएं?",
+        "deleteSuccess": "प्रोफ़ाइल हटाई गई",
+        "applied": "प्रोफ़ाइल '$name' लागू की गई",
+        "updateExisting": "मौजूदा अपडेट करें",
+        "saveAsNew": "नए के रूप में सहेजें",
+        "overwriteConfirm": "प्रोफ़ाइल '$name' पहले से मौजूद है। ओवरराइट करें?"
+    },
+    "build": {
+        "button": "बिल्ड",
+        "building": "बिल्ड हो रहा है...",
+        "buildingPlatform": "$platform बिल्ड हो रहा है... ($completed/$total)",
+        "cancel": "रद्द करें"
+    },
+    "buildLog": {
+        "title": "बिल्ड आउटपुट",
+        "copyTooltip": "लॉग कॉपी करें",
+        "copied": "लॉग क्लिपबोर्ड पर कॉपी किए गए",
+        "placeholder": "बिल्ड आउटपुट यहां दिखाई देगा..."
+    },
+    "buildStatus": {
+        "idle": "निष्क्रिय",
+        "running": "चल रहा है",
+        "success": "सफल",
+        "failed": "विफल"
+    },
+    "platforms": {
+        "android": "Android",
+        "ios": "iOS",
+        "web": "Web"
+    },
+    "platformConfig": {
+        "outputType": "आउटपुट प्रकार",
+        "codeObfuscation": "कोड ऑब्फ़स्केशन",
+        "splitDebugInfo": "Split Debug Info",
+        "flavor": "Flavor",
+        "flavorHint": "उदा. dev, staging, prod",
+        "runMode": "रन मोड",
+        "target": "लक्ष्य",
+        "targetHint": "lib/main.dart",
+        "pwaStrategy": "PWA रणनीति",
+        "noTreeShakeIcons": "No Tree Shake Icons"
+    },
+    "androidOutput": {
+        "apk": "केवल APK",
+        "aab": "केवल AAB",
+        "both": "APK और AAB"
+    },
+    "iosOutput": {
+        "ios": "iOS (Runner.app)",
+        "ipa": "IPA (निर्यात योग्य)"
+    },
+    "buildMode": {
+        "debug": "Debug",
+        "profile": "Profile",
+        "release": "Release"
+    },
+    "pwaStrategy": {
+        "default": "डिफ़ॉल्ट",
+        "none": "कोई नहीं"
+    },
+    "language": {
+        "title": "भाषा",
+        "english": "English",
+        "turkish": "Türkçe",
+        "arabic": "العربية",
+        "german": "Deutsch",
+        "french": "Français",
+        "chinese": "简体中文",
+        "russian": "Русский",
+        "hindi": "हिन्दी"
+    },
+    "theme": {
+        "title": "थीम",
+        "dark": "डार्क",
+        "light": "लाइट"
+    },
+    "publish": {
+        "tab": "प्रकाशित करें",
+        "button": "प्रकाशित करें",
+        "target": "लक्ष्य",
+        "profile": "प्रोफ़ाइल",
+        "releaseNotes": "रिलीज़ नोट्स",
+        "releaseNotesHint": "वैकल्पिक रिलीज़ नोट्स...",
+        "testerGroup": "टेस्टर समूह",
+        "testerGroupHint": "उदा. testers",
+        "track": "ट्रैक",
+        "noProfile": "कोई प्रोफ़ाइल चयनित नहीं",
+        "noProject": "पहले प्रोजेक्ट चुनें",
+        "noBuildOutput": "आर्टिफैक्ट प्रकाशित करने के लिए पहले बिल्ड चलाएं",
+        "lastBuild": "अंतिम बिल्ड",
+        "configureNow": "अभी कॉन्फ़िगर करें",
+        "fastlaneMissing": "Fastlane नहीं मिला",
+        "fastlaneMissingMessage": "प्रकाशन के लिए Fastlane आवश्यक है। इंस्टॉल करें?",
+        "install": "इंस्टॉल करें",
+        "configMissing": "Fastlane कॉन्फ़िग नहीं मिला",
+        "configMissingMessage": "प्रकाशन के लिए Fastlane कॉन्फ़िग (Fastfile, Appfile) आवश्यक है।",
+        "retry": "पुनः प्रयास करें",
+        "stop": "रोकें",
+        "publishLogTitle": "प्रकाशन आउटपुट",
+        "firebase": "Firebase App Distribution",
+        "googlePlay": "Google Play Console",
+        "appStoreConnect": "App Store Connect (TestFlight)",
+        "internal": "आंतरिक",
+        "closed": "बंद",
+        "production": "प्रोडक्शन",
+        "publishProfiles": "प्रकाशन प्रोफ़ाइल",
+        "configureProfile": "प्रोफ़ाइल कॉन्फ़िगर करें",
+        "newPublishProfile": "नई प्रकाशन प्रोफ़ाइल",
+        "firebaseAppId": "Firebase ऐप ID",
+        "firebaseAppIdHint": "1:123:android:abc",
+        "firebaseToken": "Firebase टोकन (सुरक्षित संग्रहीत)",
+        "playPackageName": "पैकेज नाम",
+        "playPackageNameHint": "com.example.app",
+        "playServiceAccount": "सर्विस अकाउंट JSON पथ",
+        "ascBundleId": "Bundle ID",
+        "ascBundleIdHint": "com.example.app",
+        "ascAppleId": "Apple ID (ईमेल)",
+        "ascAppleIdHint": "developer@example.com",
+        "ascTeamId": "टीम ID (Developer Portal)",
+        "ascItcTeamId": "ITC टीम ID (App Store Connect)",
+        "ascApplePassword": "ऐप पासवर्ड (सुरक्षित संग्रहीत)",
+        "ascApiKeyId": "API कुंजी ID",
+        "ascIssuerId": "इश्यूअर ID",
+        "ascApiKeyPath": "API कुंजी (.p8) पथ",
+        "ascAppleIdAuth": "Apple ID प्रमाणीकरण",
+        "ascApiKeyAuth": "API कुंजी प्रमाणीकरण (विकल्प)",
+        "notificationSuccessTitle": "✅ प्रकाशन सफल!",
+        "notificationSuccessBody": "आपका बिल्ड वितरित किया गया।",
+        "notificationSuccessSubtitle": "प्लेटफ़ॉर्म: $platform • ट्रैक: $track",
+        "notificationSuccessSubtitlePlatform": "प्लेटफ़ॉर्म: $platform",
+        "notificationErrorTitle": "❌ प्रकाशन विफल",
+        "notificationErrorSubtitle": "BuildPaw",
+        "notificationErrorBody": "विवरण के लिए लॉग देखें।"
+    }
+}

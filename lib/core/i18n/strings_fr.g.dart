@@ -57,6 +57,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _TranslationsPwaStrategyFr pwaStrategy = _TranslationsPwaStrategyFr._(_root);
 	@override late final _TranslationsLanguageFr language = _TranslationsLanguageFr._(_root);
 	@override late final _TranslationsThemeFr theme = _TranslationsThemeFr._(_root);
+	@override late final _TranslationsPublishFr publish = _TranslationsPublishFr._(_root);
 }
 
 // Path: app
@@ -313,6 +314,71 @@ class _TranslationsThemeFr extends TranslationsThemeEn {
 	@override String get light => 'Clair';
 }
 
+// Path: publish
+class _TranslationsPublishFr extends TranslationsPublishEn {
+	_TranslationsPublishFr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get tab => 'Publier';
+	@override String get button => 'Publier';
+	@override String get target => 'Cible';
+	@override String get profile => 'Profil';
+	@override String get releaseNotes => 'Notes de version';
+	@override String get releaseNotesHint => 'Notes de version facultatives...';
+	@override String get testerGroup => 'Groupe de testeurs';
+	@override String get testerGroupHint => 'ex. testers';
+	@override String get track => 'Piste';
+	@override String get noProfile => 'Aucun profil sélectionné';
+	@override String get noProject => 'Sélectionnez d\'abord un projet';
+	@override String get noBuildOutput => 'Effectuez d\'abord une compilation pour publier les artefacts';
+	@override String get lastBuild => 'Dernière compilation';
+	@override String get configureNow => 'Configurer maintenant';
+	@override String get fastlaneMissing => 'Fastlane introuvable';
+	@override String get fastlaneMissingMessage => 'Fastlane est requis pour la publication. L\'installer ?';
+	@override String get install => 'Installer';
+	@override String get configMissing => 'Configuration Fastlane introuvable';
+	@override String get configMissingMessage => 'La configuration Fastlane (Fastfile, Appfile) est requise pour la publication.';
+	@override String get retry => 'Réessayer';
+	@override String get stop => 'Arrêter';
+	@override String get publishLogTitle => 'Sortie de publication';
+	@override String get firebase => 'Firebase App Distribution';
+	@override String get googlePlay => 'Google Play Console';
+	@override String get appStoreConnect => 'App Store Connect (TestFlight)';
+	@override String get internal => 'Interne';
+	@override String get closed => 'Fermé';
+	@override String get production => 'Production';
+	@override String get publishProfiles => 'Profils de publication';
+	@override String get configureProfile => 'Configurer le profil';
+	@override String get newPublishProfile => 'Nouveau profil de publication';
+	@override String get firebaseAppId => 'ID d\'application Firebase';
+	@override String get firebaseAppIdHint => '1:123:android:abc';
+	@override String get firebaseToken => 'Token Firebase (stocké de manière sécurisée)';
+	@override String get playPackageName => 'Nom du paquet';
+	@override String get playPackageNameHint => 'com.example.app';
+	@override String get playServiceAccount => 'Chemin du JSON du compte de service';
+	@override String get ascBundleId => 'ID de bundle';
+	@override String get ascBundleIdHint => 'com.example.app';
+	@override String get ascAppleId => 'Apple ID (e-mail)';
+	@override String get ascAppleIdHint => 'developer@example.com';
+	@override String get ascTeamId => 'ID d\'équipe (Developer Portal)';
+	@override String get ascItcTeamId => 'ID d\'équipe ITC (App Store Connect)';
+	@override String get ascApplePassword => 'Mot de passe spécifique à l\'app (stocké de manière sécurisée)';
+	@override String get ascApiKeyId => 'ID de clé API';
+	@override String get ascIssuerId => 'ID d\'émetteur';
+	@override String get ascApiKeyPath => 'Chemin de la clé API (.p8)';
+	@override String get ascAppleIdAuth => 'Authentification Apple ID';
+	@override String get ascApiKeyAuth => 'Authentification par clé API (alternative)';
+	@override String get notificationSuccessTitle => '✅ Publication réussie !';
+	@override String get notificationSuccessBody => 'Votre build a été distribué.';
+	@override String notificationSuccessSubtitle({required Object platform, required Object track}) => 'Plateforme : ${platform} • Piste : ${track}';
+	@override String notificationSuccessSubtitlePlatform({required Object platform}) => 'Plateforme : ${platform}';
+	@override String get notificationErrorTitle => '❌ Publication échouée';
+	@override String get notificationErrorSubtitle => 'BuildPaw';
+	@override String get notificationErrorBody => 'Consultez les logs pour plus de détails.';
+}
+
 /// The flat map containing all translations for locale <fr>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -413,6 +479,62 @@ extension on TranslationsFr {
 			'theme.title' => 'Thème',
 			'theme.dark' => 'Sombre',
 			'theme.light' => 'Clair',
+			'publish.tab' => 'Publier',
+			'publish.button' => 'Publier',
+			'publish.target' => 'Cible',
+			'publish.profile' => 'Profil',
+			'publish.releaseNotes' => 'Notes de version',
+			'publish.releaseNotesHint' => 'Notes de version facultatives...',
+			'publish.testerGroup' => 'Groupe de testeurs',
+			'publish.testerGroupHint' => 'ex. testers',
+			'publish.track' => 'Piste',
+			'publish.noProfile' => 'Aucun profil sélectionné',
+			'publish.noProject' => 'Sélectionnez d\'abord un projet',
+			'publish.noBuildOutput' => 'Effectuez d\'abord une compilation pour publier les artefacts',
+			'publish.lastBuild' => 'Dernière compilation',
+			'publish.configureNow' => 'Configurer maintenant',
+			'publish.fastlaneMissing' => 'Fastlane introuvable',
+			'publish.fastlaneMissingMessage' => 'Fastlane est requis pour la publication. L\'installer ?',
+			'publish.install' => 'Installer',
+			'publish.configMissing' => 'Configuration Fastlane introuvable',
+			'publish.configMissingMessage' => 'La configuration Fastlane (Fastfile, Appfile) est requise pour la publication.',
+			'publish.retry' => 'Réessayer',
+			'publish.stop' => 'Arrêter',
+			'publish.publishLogTitle' => 'Sortie de publication',
+			'publish.firebase' => 'Firebase App Distribution',
+			'publish.googlePlay' => 'Google Play Console',
+			'publish.appStoreConnect' => 'App Store Connect (TestFlight)',
+			'publish.internal' => 'Interne',
+			'publish.closed' => 'Fermé',
+			'publish.production' => 'Production',
+			'publish.publishProfiles' => 'Profils de publication',
+			'publish.configureProfile' => 'Configurer le profil',
+			'publish.newPublishProfile' => 'Nouveau profil de publication',
+			'publish.firebaseAppId' => 'ID d\'application Firebase',
+			'publish.firebaseAppIdHint' => '1:123:android:abc',
+			'publish.firebaseToken' => 'Token Firebase (stocké de manière sécurisée)',
+			'publish.playPackageName' => 'Nom du paquet',
+			'publish.playPackageNameHint' => 'com.example.app',
+			'publish.playServiceAccount' => 'Chemin du JSON du compte de service',
+			'publish.ascBundleId' => 'ID de bundle',
+			'publish.ascBundleIdHint' => 'com.example.app',
+			'publish.ascAppleId' => 'Apple ID (e-mail)',
+			'publish.ascAppleIdHint' => 'developer@example.com',
+			'publish.ascTeamId' => 'ID d\'équipe (Developer Portal)',
+			'publish.ascItcTeamId' => 'ID d\'équipe ITC (App Store Connect)',
+			'publish.ascApplePassword' => 'Mot de passe spécifique à l\'app (stocké de manière sécurisée)',
+			'publish.ascApiKeyId' => 'ID de clé API',
+			'publish.ascIssuerId' => 'ID d\'émetteur',
+			'publish.ascApiKeyPath' => 'Chemin de la clé API (.p8)',
+			'publish.ascAppleIdAuth' => 'Authentification Apple ID',
+			'publish.ascApiKeyAuth' => 'Authentification par clé API (alternative)',
+			'publish.notificationSuccessTitle' => '✅ Publication réussie !',
+			'publish.notificationSuccessBody' => 'Votre build a été distribué.',
+			'publish.notificationSuccessSubtitle' => ({required Object platform, required Object track}) => 'Plateforme : ${platform} • Piste : ${track}',
+			'publish.notificationSuccessSubtitlePlatform' => ({required Object platform}) => 'Plateforme : ${platform}',
+			'publish.notificationErrorTitle' => '❌ Publication échouée',
+			'publish.notificationErrorSubtitle' => 'BuildPaw',
+			'publish.notificationErrorBody' => 'Consultez les logs pour plus de détails.',
 			_ => null,
 		};
 	}

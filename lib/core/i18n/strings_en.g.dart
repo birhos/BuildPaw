@@ -58,6 +58,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final TranslationsPwaStrategyEn pwaStrategy = TranslationsPwaStrategyEn.internal(_root);
 	late final TranslationsLanguageEn language = TranslationsLanguageEn.internal(_root);
 	late final TranslationsThemeEn theme = TranslationsThemeEn.internal(_root);
+	late final TranslationsPublishEn publish = TranslationsPublishEn.internal(_root);
 }
 
 // Path: app
@@ -498,6 +499,183 @@ class TranslationsThemeEn {
 	String get light => 'Light';
 }
 
+// Path: publish
+class TranslationsPublishEn {
+	TranslationsPublishEn.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Publish'
+	String get tab => 'Publish';
+
+	/// en: 'Publish'
+	String get button => 'Publish';
+
+	/// en: 'Target'
+	String get target => 'Target';
+
+	/// en: 'Profile'
+	String get profile => 'Profile';
+
+	/// en: 'Release notes'
+	String get releaseNotes => 'Release notes';
+
+	/// en: 'Optional release notes...'
+	String get releaseNotesHint => 'Optional release notes...';
+
+	/// en: 'Tester group'
+	String get testerGroup => 'Tester group';
+
+	/// en: 'e.g. testers'
+	String get testerGroupHint => 'e.g. testers';
+
+	/// en: 'Track'
+	String get track => 'Track';
+
+	/// en: 'No profile selected'
+	String get noProfile => 'No profile selected';
+
+	/// en: 'Select a project first'
+	String get noProject => 'Select a project first';
+
+	/// en: 'Run a build first to publish artifacts'
+	String get noBuildOutput => 'Run a build first to publish artifacts';
+
+	/// en: 'Last build'
+	String get lastBuild => 'Last build';
+
+	/// en: 'Configure Now'
+	String get configureNow => 'Configure Now';
+
+	/// en: 'Fastlane not found'
+	String get fastlaneMissing => 'Fastlane not found';
+
+	/// en: 'Fastlane is required for publishing. Install it?'
+	String get fastlaneMissingMessage => 'Fastlane is required for publishing. Install it?';
+
+	/// en: 'Install'
+	String get install => 'Install';
+
+	/// en: 'Fastlane config not found'
+	String get configMissing => 'Fastlane config not found';
+
+	/// en: 'Fastlane configuration (Fastfile, Appfile) is required for publishing.'
+	String get configMissingMessage => 'Fastlane configuration (Fastfile, Appfile) is required for publishing.';
+
+	/// en: 'Retry'
+	String get retry => 'Retry';
+
+	/// en: 'Stop'
+	String get stop => 'Stop';
+
+	/// en: 'Publish Output'
+	String get publishLogTitle => 'Publish Output';
+
+	/// en: 'Firebase App Distribution'
+	String get firebase => 'Firebase App Distribution';
+
+	/// en: 'Google Play Console'
+	String get googlePlay => 'Google Play Console';
+
+	/// en: 'App Store Connect (TestFlight)'
+	String get appStoreConnect => 'App Store Connect (TestFlight)';
+
+	/// en: 'Internal'
+	String get internal => 'Internal';
+
+	/// en: 'Closed'
+	String get closed => 'Closed';
+
+	/// en: 'Production'
+	String get production => 'Production';
+
+	/// en: 'Publish Profiles'
+	String get publishProfiles => 'Publish Profiles';
+
+	/// en: 'Configure Profile'
+	String get configureProfile => 'Configure Profile';
+
+	/// en: 'New Publish Profile'
+	String get newPublishProfile => 'New Publish Profile';
+
+	/// en: 'Firebase App ID'
+	String get firebaseAppId => 'Firebase App ID';
+
+	/// en: '1:123:android:abc'
+	String get firebaseAppIdHint => '1:123:android:abc';
+
+	/// en: 'Firebase Token (stored securely)'
+	String get firebaseToken => 'Firebase Token (stored securely)';
+
+	/// en: 'Package name'
+	String get playPackageName => 'Package name';
+
+	/// en: 'com.example.app'
+	String get playPackageNameHint => 'com.example.app';
+
+	/// en: 'Service account JSON path'
+	String get playServiceAccount => 'Service account JSON path';
+
+	/// en: 'Bundle ID'
+	String get ascBundleId => 'Bundle ID';
+
+	/// en: 'com.example.app'
+	String get ascBundleIdHint => 'com.example.app';
+
+	/// en: 'Apple ID (email)'
+	String get ascAppleId => 'Apple ID (email)';
+
+	/// en: 'developer@example.com'
+	String get ascAppleIdHint => 'developer@example.com';
+
+	/// en: 'Team ID (Developer Portal)'
+	String get ascTeamId => 'Team ID (Developer Portal)';
+
+	/// en: 'ITC Team ID (App Store Connect)'
+	String get ascItcTeamId => 'ITC Team ID (App Store Connect)';
+
+	/// en: 'App-specific password (stored securely)'
+	String get ascApplePassword => 'App-specific password (stored securely)';
+
+	/// en: 'API Key ID'
+	String get ascApiKeyId => 'API Key ID';
+
+	/// en: 'Issuer ID'
+	String get ascIssuerId => 'Issuer ID';
+
+	/// en: 'API Key (.p8) path'
+	String get ascApiKeyPath => 'API Key (.p8) path';
+
+	/// en: 'Apple ID authentication'
+	String get ascAppleIdAuth => 'Apple ID authentication';
+
+	/// en: 'API Key authentication (alternative)'
+	String get ascApiKeyAuth => 'API Key authentication (alternative)';
+
+	/// en: '✅ Publish successful!'
+	String get notificationSuccessTitle => '✅ Publish successful!';
+
+	/// en: 'Your build has been distributed.'
+	String get notificationSuccessBody => 'Your build has been distributed.';
+
+	/// en: 'Platform: $platform • Track: $track'
+	String notificationSuccessSubtitle({required Object platform, required Object track}) => 'Platform: ${platform} • Track: ${track}';
+
+	/// en: 'Platform: $platform'
+	String notificationSuccessSubtitlePlatform({required Object platform}) => 'Platform: ${platform}';
+
+	/// en: '❌ Publish failed'
+	String get notificationErrorTitle => '❌ Publish failed';
+
+	/// en: 'BuildPaw'
+	String get notificationErrorSubtitle => 'BuildPaw';
+
+	/// en: 'Check the logs for details.'
+	String get notificationErrorBody => 'Check the logs for details.';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -598,6 +776,62 @@ extension on Translations {
 			'theme.title' => 'Theme',
 			'theme.dark' => 'Dark',
 			'theme.light' => 'Light',
+			'publish.tab' => 'Publish',
+			'publish.button' => 'Publish',
+			'publish.target' => 'Target',
+			'publish.profile' => 'Profile',
+			'publish.releaseNotes' => 'Release notes',
+			'publish.releaseNotesHint' => 'Optional release notes...',
+			'publish.testerGroup' => 'Tester group',
+			'publish.testerGroupHint' => 'e.g. testers',
+			'publish.track' => 'Track',
+			'publish.noProfile' => 'No profile selected',
+			'publish.noProject' => 'Select a project first',
+			'publish.noBuildOutput' => 'Run a build first to publish artifacts',
+			'publish.lastBuild' => 'Last build',
+			'publish.configureNow' => 'Configure Now',
+			'publish.fastlaneMissing' => 'Fastlane not found',
+			'publish.fastlaneMissingMessage' => 'Fastlane is required for publishing. Install it?',
+			'publish.install' => 'Install',
+			'publish.configMissing' => 'Fastlane config not found',
+			'publish.configMissingMessage' => 'Fastlane configuration (Fastfile, Appfile) is required for publishing.',
+			'publish.retry' => 'Retry',
+			'publish.stop' => 'Stop',
+			'publish.publishLogTitle' => 'Publish Output',
+			'publish.firebase' => 'Firebase App Distribution',
+			'publish.googlePlay' => 'Google Play Console',
+			'publish.appStoreConnect' => 'App Store Connect (TestFlight)',
+			'publish.internal' => 'Internal',
+			'publish.closed' => 'Closed',
+			'publish.production' => 'Production',
+			'publish.publishProfiles' => 'Publish Profiles',
+			'publish.configureProfile' => 'Configure Profile',
+			'publish.newPublishProfile' => 'New Publish Profile',
+			'publish.firebaseAppId' => 'Firebase App ID',
+			'publish.firebaseAppIdHint' => '1:123:android:abc',
+			'publish.firebaseToken' => 'Firebase Token (stored securely)',
+			'publish.playPackageName' => 'Package name',
+			'publish.playPackageNameHint' => 'com.example.app',
+			'publish.playServiceAccount' => 'Service account JSON path',
+			'publish.ascBundleId' => 'Bundle ID',
+			'publish.ascBundleIdHint' => 'com.example.app',
+			'publish.ascAppleId' => 'Apple ID (email)',
+			'publish.ascAppleIdHint' => 'developer@example.com',
+			'publish.ascTeamId' => 'Team ID (Developer Portal)',
+			'publish.ascItcTeamId' => 'ITC Team ID (App Store Connect)',
+			'publish.ascApplePassword' => 'App-specific password (stored securely)',
+			'publish.ascApiKeyId' => 'API Key ID',
+			'publish.ascIssuerId' => 'Issuer ID',
+			'publish.ascApiKeyPath' => 'API Key (.p8) path',
+			'publish.ascAppleIdAuth' => 'Apple ID authentication',
+			'publish.ascApiKeyAuth' => 'API Key authentication (alternative)',
+			'publish.notificationSuccessTitle' => '✅ Publish successful!',
+			'publish.notificationSuccessBody' => 'Your build has been distributed.',
+			'publish.notificationSuccessSubtitle' => ({required Object platform, required Object track}) => 'Platform: ${platform} • Track: ${track}',
+			'publish.notificationSuccessSubtitlePlatform' => ({required Object platform}) => 'Platform: ${platform}',
+			'publish.notificationErrorTitle' => '❌ Publish failed',
+			'publish.notificationErrorSubtitle' => 'BuildPaw',
+			'publish.notificationErrorBody' => 'Check the logs for details.',
 			_ => null,
 		};
 	}

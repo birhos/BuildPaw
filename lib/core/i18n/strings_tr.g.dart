@@ -57,6 +57,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _TranslationsPwaStrategyTr pwaStrategy = _TranslationsPwaStrategyTr._(_root);
 	@override late final _TranslationsLanguageTr language = _TranslationsLanguageTr._(_root);
 	@override late final _TranslationsThemeTr theme = _TranslationsThemeTr._(_root);
+	@override late final _TranslationsPublishTr publish = _TranslationsPublishTr._(_root);
 }
 
 // Path: app
@@ -313,6 +314,71 @@ class _TranslationsThemeTr extends TranslationsThemeEn {
 	@override String get light => 'Açık';
 }
 
+// Path: publish
+class _TranslationsPublishTr extends TranslationsPublishEn {
+	_TranslationsPublishTr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get tab => 'Yayınla';
+	@override String get button => 'Yayınla';
+	@override String get target => 'Hedef';
+	@override String get profile => 'Profil';
+	@override String get releaseNotes => 'Sürüm notları';
+	@override String get releaseNotesHint => 'İsteğe bağlı sürüm notları...';
+	@override String get testerGroup => 'Test grubu';
+	@override String get testerGroupHint => 'örn. testers';
+	@override String get track => 'Track';
+	@override String get noProfile => 'Profil seçilmedi';
+	@override String get noProject => 'Önce proje seçin';
+	@override String get noBuildOutput => 'Yayınlamak için önce build alın';
+	@override String get lastBuild => 'Son build';
+	@override String get configureNow => 'Şimdi Yapılandır';
+	@override String get fastlaneMissing => 'Fastlane bulunamadı';
+	@override String get fastlaneMissingMessage => 'Yayınlama için Fastlane gereklidir. Kurulsun mu?';
+	@override String get install => 'Kur';
+	@override String get configMissing => 'Fastlane yapılandırması bulunamadı';
+	@override String get configMissingMessage => 'Yayınlama için Fastlane yapılandırması (Fastfile, Appfile) gereklidir.';
+	@override String get retry => 'Tekrar Dene';
+	@override String get stop => 'Durdur';
+	@override String get publishLogTitle => 'Yayın Çıktısı';
+	@override String get firebase => 'Firebase App Distribution';
+	@override String get googlePlay => 'Google Play Console';
+	@override String get appStoreConnect => 'App Store Connect (TestFlight)';
+	@override String get internal => 'Internal';
+	@override String get closed => 'Closed';
+	@override String get production => 'Production';
+	@override String get publishProfiles => 'Yayın Profilleri';
+	@override String get configureProfile => 'Profili Yapılandır';
+	@override String get newPublishProfile => 'Yeni Yayın Profili';
+	@override String get firebaseAppId => 'Firebase App ID';
+	@override String get firebaseAppIdHint => '1:123:android:abc';
+	@override String get firebaseToken => 'Firebase Token (güvenli saklanır)';
+	@override String get playPackageName => 'Paket adı';
+	@override String get playPackageNameHint => 'com.example.app';
+	@override String get playServiceAccount => 'Service account JSON yolu';
+	@override String get ascBundleId => 'Bundle ID';
+	@override String get ascBundleIdHint => 'com.example.app';
+	@override String get ascAppleId => 'Apple ID (e-posta)';
+	@override String get ascAppleIdHint => 'developer@example.com';
+	@override String get ascTeamId => 'Team ID (Developer Portal)';
+	@override String get ascItcTeamId => 'ITC Team ID (App Store Connect)';
+	@override String get ascApplePassword => 'Uygulama parolası (güvenli saklanır)';
+	@override String get ascApiKeyId => 'API Key ID';
+	@override String get ascIssuerId => 'Issuer ID';
+	@override String get ascApiKeyPath => 'API Key (.p8) yolu';
+	@override String get ascAppleIdAuth => 'Apple ID kimlik doğrulama';
+	@override String get ascApiKeyAuth => 'API Key kimlik doğrulama (alternatif)';
+	@override String get notificationSuccessTitle => '✅ Yayın başarılı!';
+	@override String get notificationSuccessBody => 'Build\'iniz dağıtıldı.';
+	@override String notificationSuccessSubtitle({required Object platform, required Object track}) => 'Platform: ${platform} • Track: ${track}';
+	@override String notificationSuccessSubtitlePlatform({required Object platform}) => 'Platform: ${platform}';
+	@override String get notificationErrorTitle => '❌ Yayın başarısız';
+	@override String get notificationErrorSubtitle => 'BuildPaw';
+	@override String get notificationErrorBody => 'Detaylar için logları kontrol edin.';
+}
+
 /// The flat map containing all translations for locale <tr>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -413,6 +479,62 @@ extension on TranslationsTr {
 			'theme.title' => 'Tema',
 			'theme.dark' => 'Koyu',
 			'theme.light' => 'Açık',
+			'publish.tab' => 'Yayınla',
+			'publish.button' => 'Yayınla',
+			'publish.target' => 'Hedef',
+			'publish.profile' => 'Profil',
+			'publish.releaseNotes' => 'Sürüm notları',
+			'publish.releaseNotesHint' => 'İsteğe bağlı sürüm notları...',
+			'publish.testerGroup' => 'Test grubu',
+			'publish.testerGroupHint' => 'örn. testers',
+			'publish.track' => 'Track',
+			'publish.noProfile' => 'Profil seçilmedi',
+			'publish.noProject' => 'Önce proje seçin',
+			'publish.noBuildOutput' => 'Yayınlamak için önce build alın',
+			'publish.lastBuild' => 'Son build',
+			'publish.configureNow' => 'Şimdi Yapılandır',
+			'publish.fastlaneMissing' => 'Fastlane bulunamadı',
+			'publish.fastlaneMissingMessage' => 'Yayınlama için Fastlane gereklidir. Kurulsun mu?',
+			'publish.install' => 'Kur',
+			'publish.configMissing' => 'Fastlane yapılandırması bulunamadı',
+			'publish.configMissingMessage' => 'Yayınlama için Fastlane yapılandırması (Fastfile, Appfile) gereklidir.',
+			'publish.retry' => 'Tekrar Dene',
+			'publish.stop' => 'Durdur',
+			'publish.publishLogTitle' => 'Yayın Çıktısı',
+			'publish.firebase' => 'Firebase App Distribution',
+			'publish.googlePlay' => 'Google Play Console',
+			'publish.appStoreConnect' => 'App Store Connect (TestFlight)',
+			'publish.internal' => 'Internal',
+			'publish.closed' => 'Closed',
+			'publish.production' => 'Production',
+			'publish.publishProfiles' => 'Yayın Profilleri',
+			'publish.configureProfile' => 'Profili Yapılandır',
+			'publish.newPublishProfile' => 'Yeni Yayın Profili',
+			'publish.firebaseAppId' => 'Firebase App ID',
+			'publish.firebaseAppIdHint' => '1:123:android:abc',
+			'publish.firebaseToken' => 'Firebase Token (güvenli saklanır)',
+			'publish.playPackageName' => 'Paket adı',
+			'publish.playPackageNameHint' => 'com.example.app',
+			'publish.playServiceAccount' => 'Service account JSON yolu',
+			'publish.ascBundleId' => 'Bundle ID',
+			'publish.ascBundleIdHint' => 'com.example.app',
+			'publish.ascAppleId' => 'Apple ID (e-posta)',
+			'publish.ascAppleIdHint' => 'developer@example.com',
+			'publish.ascTeamId' => 'Team ID (Developer Portal)',
+			'publish.ascItcTeamId' => 'ITC Team ID (App Store Connect)',
+			'publish.ascApplePassword' => 'Uygulama parolası (güvenli saklanır)',
+			'publish.ascApiKeyId' => 'API Key ID',
+			'publish.ascIssuerId' => 'Issuer ID',
+			'publish.ascApiKeyPath' => 'API Key (.p8) yolu',
+			'publish.ascAppleIdAuth' => 'Apple ID kimlik doğrulama',
+			'publish.ascApiKeyAuth' => 'API Key kimlik doğrulama (alternatif)',
+			'publish.notificationSuccessTitle' => '✅ Yayın başarılı!',
+			'publish.notificationSuccessBody' => 'Build\'iniz dağıtıldı.',
+			'publish.notificationSuccessSubtitle' => ({required Object platform, required Object track}) => 'Platform: ${platform} • Track: ${track}',
+			'publish.notificationSuccessSubtitlePlatform' => ({required Object platform}) => 'Platform: ${platform}',
+			'publish.notificationErrorTitle' => '❌ Yayın başarısız',
+			'publish.notificationErrorSubtitle' => 'BuildPaw',
+			'publish.notificationErrorBody' => 'Detaylar için logları kontrol edin.',
 			_ => null,
 		};
 	}

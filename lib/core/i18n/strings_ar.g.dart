@@ -57,6 +57,7 @@ class TranslationsAr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _TranslationsPwaStrategyAr pwaStrategy = _TranslationsPwaStrategyAr._(_root);
 	@override late final _TranslationsLanguageAr language = _TranslationsLanguageAr._(_root);
 	@override late final _TranslationsThemeAr theme = _TranslationsThemeAr._(_root);
+	@override late final _TranslationsPublishAr publish = _TranslationsPublishAr._(_root);
 }
 
 // Path: app
@@ -313,6 +314,71 @@ class _TranslationsThemeAr extends TranslationsThemeEn {
 	@override String get light => 'فاتح';
 }
 
+// Path: publish
+class _TranslationsPublishAr extends TranslationsPublishEn {
+	_TranslationsPublishAr._(TranslationsAr root) : this._root = root, super.internal(root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get tab => 'نشر';
+	@override String get button => 'نشر';
+	@override String get target => 'الهدف';
+	@override String get profile => 'الملف الشخصي';
+	@override String get releaseNotes => 'ملاحظات الإصدار';
+	@override String get releaseNotesHint => 'ملاحظات إصدار اختيارية...';
+	@override String get testerGroup => 'مجموعة المختبرين';
+	@override String get testerGroupHint => 'مثال: testers';
+	@override String get track => 'المسار';
+	@override String get noProfile => 'لم يتم اختيار ملف شخصي';
+	@override String get noProject => 'اختر مشروعاً أولاً';
+	@override String get noBuildOutput => 'قم بعملية بناء أولاً لنشر المخرجات';
+	@override String get lastBuild => 'آخر بناء';
+	@override String get configureNow => 'تكوين الآن';
+	@override String get fastlaneMissing => 'Fastlane غير موجود';
+	@override String get fastlaneMissingMessage => 'Fastlane مطلوب للنشر. تريد تثبيته؟';
+	@override String get install => 'تثبيت';
+	@override String get configMissing => 'إعداد Fastlane غير موجود';
+	@override String get configMissingMessage => 'إعداد Fastlane (Fastfile, Appfile) مطلوب للنشر.';
+	@override String get retry => 'إعادة المحاولة';
+	@override String get stop => 'إيقاف';
+	@override String get publishLogTitle => 'مخرجات النشر';
+	@override String get firebase => 'Firebase App Distribution';
+	@override String get googlePlay => 'Google Play Console';
+	@override String get appStoreConnect => 'App Store Connect (TestFlight)';
+	@override String get internal => 'داخلي';
+	@override String get closed => 'مغلق';
+	@override String get production => 'إنتاج';
+	@override String get publishProfiles => 'ملفات النشر الشخصية';
+	@override String get configureProfile => 'تكوين الملف الشخصي';
+	@override String get newPublishProfile => 'ملف نشر شخصي جديد';
+	@override String get firebaseAppId => 'معرف تطبيق Firebase';
+	@override String get firebaseAppIdHint => '1:123:android:abc';
+	@override String get firebaseToken => 'رمز Firebase (يُخزّن بأمان)';
+	@override String get playPackageName => 'اسم الحزمة';
+	@override String get playPackageNameHint => 'com.example.app';
+	@override String get playServiceAccount => 'مسار JSON لحساب الخدمة';
+	@override String get ascBundleId => 'معرف الحزمة';
+	@override String get ascBundleIdHint => 'com.example.app';
+	@override String get ascAppleId => 'Apple ID (البريد الإلكتروني)';
+	@override String get ascAppleIdHint => 'developer@example.com';
+	@override String get ascTeamId => 'معرف الفريق (Developer Portal)';
+	@override String get ascItcTeamId => 'معرف فريق ITC (App Store Connect)';
+	@override String get ascApplePassword => 'كلمة مرور التطبيق (يُخزّن بأمان)';
+	@override String get ascApiKeyId => 'معرف مفتاح API';
+	@override String get ascIssuerId => 'معرف المُصدر';
+	@override String get ascApiKeyPath => 'مسار مفتاح API (.p8)';
+	@override String get ascAppleIdAuth => 'مصادقة Apple ID';
+	@override String get ascApiKeyAuth => 'مصادقة مفتاح API (بديل)';
+	@override String get notificationSuccessTitle => '✅ تم النشر بنجاح!';
+	@override String get notificationSuccessBody => 'تم توزيع البناء الخاص بك.';
+	@override String notificationSuccessSubtitle({required Object platform, required Object track}) => 'المنصة: ${platform} • المسار: ${track}';
+	@override String notificationSuccessSubtitlePlatform({required Object platform}) => 'المنصة: ${platform}';
+	@override String get notificationErrorTitle => '❌ فشل النشر';
+	@override String get notificationErrorSubtitle => 'BuildPaw';
+	@override String get notificationErrorBody => 'تحقق من السجلات للتفاصيل.';
+}
+
 /// The flat map containing all translations for locale <ar>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -413,6 +479,62 @@ extension on TranslationsAr {
 			'theme.title' => 'المظهر',
 			'theme.dark' => 'داكن',
 			'theme.light' => 'فاتح',
+			'publish.tab' => 'نشر',
+			'publish.button' => 'نشر',
+			'publish.target' => 'الهدف',
+			'publish.profile' => 'الملف الشخصي',
+			'publish.releaseNotes' => 'ملاحظات الإصدار',
+			'publish.releaseNotesHint' => 'ملاحظات إصدار اختيارية...',
+			'publish.testerGroup' => 'مجموعة المختبرين',
+			'publish.testerGroupHint' => 'مثال: testers',
+			'publish.track' => 'المسار',
+			'publish.noProfile' => 'لم يتم اختيار ملف شخصي',
+			'publish.noProject' => 'اختر مشروعاً أولاً',
+			'publish.noBuildOutput' => 'قم بعملية بناء أولاً لنشر المخرجات',
+			'publish.lastBuild' => 'آخر بناء',
+			'publish.configureNow' => 'تكوين الآن',
+			'publish.fastlaneMissing' => 'Fastlane غير موجود',
+			'publish.fastlaneMissingMessage' => 'Fastlane مطلوب للنشر. تريد تثبيته؟',
+			'publish.install' => 'تثبيت',
+			'publish.configMissing' => 'إعداد Fastlane غير موجود',
+			'publish.configMissingMessage' => 'إعداد Fastlane (Fastfile, Appfile) مطلوب للنشر.',
+			'publish.retry' => 'إعادة المحاولة',
+			'publish.stop' => 'إيقاف',
+			'publish.publishLogTitle' => 'مخرجات النشر',
+			'publish.firebase' => 'Firebase App Distribution',
+			'publish.googlePlay' => 'Google Play Console',
+			'publish.appStoreConnect' => 'App Store Connect (TestFlight)',
+			'publish.internal' => 'داخلي',
+			'publish.closed' => 'مغلق',
+			'publish.production' => 'إنتاج',
+			'publish.publishProfiles' => 'ملفات النشر الشخصية',
+			'publish.configureProfile' => 'تكوين الملف الشخصي',
+			'publish.newPublishProfile' => 'ملف نشر شخصي جديد',
+			'publish.firebaseAppId' => 'معرف تطبيق Firebase',
+			'publish.firebaseAppIdHint' => '1:123:android:abc',
+			'publish.firebaseToken' => 'رمز Firebase (يُخزّن بأمان)',
+			'publish.playPackageName' => 'اسم الحزمة',
+			'publish.playPackageNameHint' => 'com.example.app',
+			'publish.playServiceAccount' => 'مسار JSON لحساب الخدمة',
+			'publish.ascBundleId' => 'معرف الحزمة',
+			'publish.ascBundleIdHint' => 'com.example.app',
+			'publish.ascAppleId' => 'Apple ID (البريد الإلكتروني)',
+			'publish.ascAppleIdHint' => 'developer@example.com',
+			'publish.ascTeamId' => 'معرف الفريق (Developer Portal)',
+			'publish.ascItcTeamId' => 'معرف فريق ITC (App Store Connect)',
+			'publish.ascApplePassword' => 'كلمة مرور التطبيق (يُخزّن بأمان)',
+			'publish.ascApiKeyId' => 'معرف مفتاح API',
+			'publish.ascIssuerId' => 'معرف المُصدر',
+			'publish.ascApiKeyPath' => 'مسار مفتاح API (.p8)',
+			'publish.ascAppleIdAuth' => 'مصادقة Apple ID',
+			'publish.ascApiKeyAuth' => 'مصادقة مفتاح API (بديل)',
+			'publish.notificationSuccessTitle' => '✅ تم النشر بنجاح!',
+			'publish.notificationSuccessBody' => 'تم توزيع البناء الخاص بك.',
+			'publish.notificationSuccessSubtitle' => ({required Object platform, required Object track}) => 'المنصة: ${platform} • المسار: ${track}',
+			'publish.notificationSuccessSubtitlePlatform' => ({required Object platform}) => 'المنصة: ${platform}',
+			'publish.notificationErrorTitle' => '❌ فشل النشر',
+			'publish.notificationErrorSubtitle' => 'BuildPaw',
+			'publish.notificationErrorBody' => 'تحقق من السجلات للتفاصيل.',
 			_ => null,
 		};
 	}

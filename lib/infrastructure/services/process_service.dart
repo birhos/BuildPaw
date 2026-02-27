@@ -17,20 +17,26 @@ final class ProcessService {
 
   /// Runs a command and streams output line-by-line.
   /// [onOutput] receives each line (both stdout and stderr).
+  /// [environment] is merged with the default environment (PATH etc.).
   /// Returns a [ProcessResult] when complete.
   Future<ProcessResult> run({
     required String executable,
     required List<String> arguments,
     required String workingDirectory,
     required void Function(String line, bool isError) onOutput,
+    Map<String, String>? environment,
   }) async {
     final logs = <String>[];
+    final env = _buildEnvironment();
+    if (environment != null) {
+      env.addAll(environment);
+    }
 
     _currentProcess = await Process.start(
       executable,
       arguments,
       workingDirectory: workingDirectory,
-      environment: _buildEnvironment(),
+      environment: env,
       runInShell: true,
     );
 
@@ -74,6 +80,25 @@ final class ProcessService {
       runInShell: true,
     );
     return (result.stdout as String).trim();
+  }
+
+  /// Runs a command and returns stdout and exit code.
+  Future<({String stdout, int exitCode})> runWithExitCode({
+    required String executable,
+    required List<String> arguments,
+    String? workingDirectory,
+  }) async {
+    final result = await Process.run(
+      executable,
+      arguments,
+      workingDirectory: workingDirectory,
+      environment: _buildEnvironment(),
+      runInShell: true,
+    );
+    return (
+      stdout: (result.stdout as String).trim(),
+      exitCode: result.exitCode,
+    );
   }
 
   void cancel() {

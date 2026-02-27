@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/build_config/build_config_cubit.dart';
-import '../../core/i18n/strings.g.dart';
+import '../../application/application.dart';
+import '../../core/core.dart';
+import '../../infrastructure/services/notification_service.dart';
 import '../widgets/build_action_bar.dart';
 import '../widgets/build_log_panel.dart';
 import '../widgets/config_drop_target.dart';
@@ -12,37 +13,101 @@ import '../widgets/platform_config/ios_config_panel.dart';
 import '../widgets/platform_config/web_config_panel.dart';
 import '../widgets/project_info_card.dart';
 import '../widgets/project_selector_widget.dart';
+import '../widgets/publish_log_panel.dart';
+import '../widgets/publish_tab_content.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final t = context.t;
     return ConfigDropTarget(
-      child: Scaffold(
-        body: Center(
-          child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 800),
-          child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+      child: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          body: Column(
             children: [
-              const ProjectSelectorWidget(),
-              const SizedBox(height: 12),
-              const ProjectInfoCard(),
-              const SizedBox(height: 8),
-              const AndroidConfigPanel(),
-              const IosConfigPanel(),
-              const WebConfigPanel(),
-              const SizedBox(height: 8),
-              _ConfigActionRow(),
-              const SizedBox(height: 4),
-              const BuildActionBar(),
-              const SizedBox(height: 4),
-              const BuildLogPanel(),
-              const SizedBox(height: 20),
+              TabBar(
+                labelColor: Theme.of(context).colorScheme.primary,
+                tabs: [
+                  const Tab(
+                    icon: Icon(Icons.build_rounded, size: 18),
+                    text: 'Build',
+                  ),
+                  Tab(
+                    icon: const Icon(Icons.upload_rounded, size: 18),
+                    text: t.publish.tab,
+                  ),
+                ],
+              ),
+              const Expanded(
+                child: TabBarView(
+                  children: [
+                    _BuildTab(),
+                    _PublishTab(),
+                  ],
+                ),
+              ),
             ],
-            ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _BuildTab extends StatelessWidget {
+  const _BuildTab();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 800),
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          children: [
+            const ProjectSelectorWidget(),
+            const SizedBox(height: 12),
+            const SizedBox(height: 12),
+            const ProjectInfoCard(),
+            const SizedBox(height: 8),
+            const AndroidConfigPanel(),
+            const IosConfigPanel(),
+            const WebConfigPanel(),
+            const SizedBox(height: 8),
+            _ConfigActionRow(),
+            const SizedBox(height: 4),
+            const BuildActionBar(),
+            const SizedBox(height: 4),
+            const BuildLogPanel(),
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PublishTab extends StatelessWidget {
+  const _PublishTab();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 800),
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          children: const [
+            ProjectSelectorWidget(),
+            SizedBox(height: 12),
+            PublishTabContent(),
+            SizedBox(height: 8),
+            PublishLogPanel(),
+            SizedBox(height: 20),
+          ],
         ),
       ),
     );
@@ -82,35 +147,30 @@ class _ConfigActionRow extends StatelessWidget {
     if (result == null || !context.mounted) return;
 
     final path = await context.read<BuildConfigCubit>().exportConfig(
-          name: result.name,
-          version: result.version,
-        );
+      name: result.name,
+      version: result.version,
+    );
 
     if (!context.mounted) return;
     final t = context.t;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          path != null
-              ? t.config.exportSuccess(path: path)
-              : t.config.exportCancelled,
+          path != null ? t.config.exportSuccess(path: path) : t.config.exportCancelled,
         ),
       ),
     );
   }
 
   Future<void> _handleImport(BuildContext context) async {
-    final presetName =
-        await context.read<BuildConfigCubit>().importConfig();
+    final presetName = await context.read<BuildConfigCubit>().importConfig();
 
     if (!context.mounted) return;
     final t = context.t;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          presetName != null
-              ? t.config.importSuccess(name: presetName)
-              : t.config.importCancelled,
+          presetName != null ? t.config.importSuccess(name: presetName) : t.config.importCancelled,
         ),
       ),
     );

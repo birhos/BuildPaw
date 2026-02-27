@@ -7,5 +7,7 @@ export 'platform_config/platform_config.dart';
 export 'profile_panel.dart';
 export 'project_info_card.dart';
 export 'project_selector_widget.dart';
+export 'publish_log_panel.dart';
+export 'publish_tab_content.dart';
 export 'save_profile_dialog.dart';
 export 'theme_selector.dart';

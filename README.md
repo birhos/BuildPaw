@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.icons8.com/fluency/96/paw-print.png" alt="BuildPaw Logo" width="80" height="80"/>
+  <img src="assets/logo.png" alt="BuildPaw Logo" width="80" height="80"/>
 </p>
 
 <h1 align="center">BuildPaw</h1>

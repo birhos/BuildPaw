@@ -1,5 +1,70 @@
 # BuildPaw - Changelog
 
+## v0.0.2 - MVP Release (2026-02-27)
+
+### New Features
+
+#### Publish Tab
+- New **Publish** tab alongside Build tab in the main UI
+- Publish Flutter builds to Firebase App Distribution, Google Play Console, and App Store Connect (TestFlight)
+- Publish profiles with configurable credentials per target
+- Last build output tracking — automatically uses the most recent build artifacts
+- Release notes and tester group support for Firebase
+- Play Store track selection (internal, closed, production)
+
+#### Publish Profiles
+- Create and manage multiple publish profiles
+- Firebase: App ID, token (stored securely)
+- Google Play: Package name, service account JSON path
+- App Store Connect: Bundle ID, Apple ID or API Key auth, Team IDs
+- Secure storage for sensitive values (Firebase token, app-specific password)
+
+#### Fastlane Integration
+- Auto-detection of Fastlane installation
+- One-click Fastlane install via Homebrew
+- Auto-generation of Fastfile, Appfile, and .env.default when missing
+- Gemfile and Pluginfile creation with Firebase/Flutter plugins
+- Real-time publish log streaming
+- Cancel support during publish
+
+#### macOS Notifications
+- BuildPawNotifier — custom notification app with BuildPaw icon
+- Success/error notifications after publish completes
+- Localized notification strings for all 8 languages
+
+### Documentation
+
+- README now uses local BuildPaw logo (`assets/logo.png`) instead of external icon
+
+### Build
+
+- Updated macOS app icons (AppIcon.appiconset)
+
+### Technical Changes
+
+#### New Files
+- `lib/domain/models/publish_profile.dart` — Publish profile model
+- `lib/domain/enums/publish_target.dart` — Firebase, GooglePlay, AppStoreConnect
+- `lib/domain/enums/play_track.dart` — internal, closed, production
+- `lib/domain/enums/secure_key.dart` — Secure key storage
+- `lib/infrastructure/services/notification_service.dart` — macOS notifications
+- `lib/infrastructure/services/publish_profile_repository.dart` — Profile CRUD + secure storage
+- `lib/application/last_build_output/` — LastBuildOutputCubit
+- `lib/application/publishing/` — PublishCubit, PublishProfileCubit, Fastlane helpers
+- `lib/presentation/pages/publish_config_page.dart` — Profile configuration UI
+- `lib/presentation/widgets/publish_tab_content.dart` — Publish tab UI
+- `lib/presentation/widgets/publish_log_panel.dart` — Publish output panel
+- `macos/Runner/Resources/BuildPawNotifier.app` — Custom notification app
+- `macos/Runner/Resources/build_notifier.sh` — Build script for notifier
+
+#### Updated Files
+- `lib/application/build_execution/` — Added projectPath, projectName to BuildSuccess
+- `lib/infrastructure/services/process_service.dart` — runWithExitCode, environment param
+- `lib/core/i18n/*.i18n.json` — Publish translations for all 8 locales
+- `lib/core/i18n/strings*.g.dart` — Regenerated with Slang
+
+---
+
 ## v0.0.1 - MVP Release (2026-02-26)
 
 ### New Features

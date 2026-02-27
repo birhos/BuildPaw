@@ -1,7 +1,9 @@
 export 'build_config/build_config.dart';
 export 'build_execution/build_execution.dart';
+export 'last_build_output/last_build_output.dart';
 export 'locale/locale.dart';
 export 'profile/profile.dart';
 export 'project/project.dart';
+export 'publishing/publishing.dart';
 export 'services/services.dart';
 export 'theme/theme.dart';

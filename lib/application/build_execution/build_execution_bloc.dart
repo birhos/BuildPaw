@@ -205,6 +205,8 @@ final class BuildExecutionBloc extends Bloc<BuildExecutionEvent, BuildExecutionS
           results: results,
           outputPath: outputPath,
           logs: logs,
+          projectPath: event.projectPath,
+          projectName: event.projectName,
         ),
       );
     } catch (e) {
@@ -217,6 +219,8 @@ final class BuildExecutionBloc extends Bloc<BuildExecutionEvent, BuildExecutionS
           results: results,
           outputPath: '',
           logs: logs,
+          projectPath: event.projectPath,
+          projectName: event.projectName,
         ),
       );
     }

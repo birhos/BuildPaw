@@ -50,13 +50,17 @@ class BuildSuccess extends BuildExecutionState {
     required this.results,
     required this.outputPath,
     this.logs = const [],
+    this.projectPath = '',
+    this.projectName = '',
   });
   final List<BuildResult> results;
   final String outputPath;
   final List<LogEntry> logs;
+  final String projectPath;
+  final String projectName;
 
   @override
-  List<Object?> get props => [results, outputPath, logs];
+  List<Object?> get props => [results, outputPath, logs, projectPath, projectName];
 }
 
 class BuildError extends BuildExecutionState {

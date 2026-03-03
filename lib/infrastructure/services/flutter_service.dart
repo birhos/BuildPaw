@@ -81,12 +81,8 @@ final class FlutterService {
     final lockFile = File('$path/pubspec.lock');
     if (!lockFile.existsSync()) return yamlDeps;
 
-    final lockVersions = await _parseLockFileVersions(lockFile);
-
-    return yamlDeps.map((name, yamlVersion) {
-      final resolved = lockVersions[name];
-      return MapEntry(name, resolved ?? yamlVersion);
-    });
+    final directDeps = await getDirectDependencies(lockFile);
+    return directDeps;
   }
 
   Future<Map<String, String>> _parsePubspecYamlDeps(File pubspec) async {
@@ -154,6 +150,36 @@ final class FlutterService {
     }
 
     return versions;
+  }
+
+  /// Returns only direct dependencies from pubspec.lock (dependency starts with "direct").
+  Future<Map<String, String>> getDirectDependencies(File lockFile) async {
+    final lines = await lockFile.readAsLines();
+    final result = <String, String>{};
+    String? currentPackage;
+    bool? isDirect;
+
+    for (final line in lines) {
+      if (line.startsWith('  ') && !line.startsWith('    ') && line.trimRight().endsWith(':')) {
+        currentPackage = line.trim().replaceAll(':', '');
+        isDirect = null;
+      } else if (currentPackage != null) {
+        final trimmed = line.trimLeft();
+        if (trimmed.startsWith('dependency:')) {
+          final value = trimmed.substring(11).trim();
+          final isMain = value.contains('main');
+          final isDev = value.contains('dev');
+          isDirect = isMain || isDev;
+
+          currentPackage = currentPackage + (isDev ? ' (dev)' : '');
+        } else if ((isDirect ?? false) && trimmed.startsWith('version:')) {
+          final raw = trimmed.substring(8).trim();
+          result[currentPackage] = raw.replaceAll('"', '').replaceAll("'", '');
+        }
+      }
+    }
+
+    return result;
   }
 
   Future<String> getFlutterVersion(String projectPath) async {

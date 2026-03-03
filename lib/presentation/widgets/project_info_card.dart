@@ -12,8 +12,7 @@ final class ProjectInfoCard extends StatefulWidget {
   State<ProjectInfoCard> createState() => _ProjectInfoCardState();
 }
 
-class _ProjectInfoCardState extends State<ProjectInfoCard>
-    with SingleTickerProviderStateMixin {
+class _ProjectInfoCardState extends State<ProjectInfoCard> with SingleTickerProviderStateMixin {
   late final TabController _tabController;
 
   @override
@@ -48,8 +47,7 @@ class _ProjectInfoCardState extends State<ProjectInfoCard>
                   children: [
                     Text(
                       t.projectInfo.title,
-                      style: theme.textTheme.titleMedium
-                          ?.copyWith(fontWeight: FontWeight.w600),
+                      style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
                     ),
                     const Spacer(),
                     IconButton(
@@ -57,9 +55,7 @@ class _ProjectInfoCardState extends State<ProjectInfoCard>
                       color: theme.colorScheme.onSurfaceVariant,
                       tooltip: t.projectInfo.refreshTooltip,
                       splashRadius: 16,
-                      onPressed: () => context
-                          .read<ProjectCubit>()
-                          .selectProject(info.path),
+                      onPressed: () => context.read<ProjectCubit>().selectProject(info.path),
                     ),
                   ],
                 ),
@@ -86,8 +82,7 @@ class _ProjectInfoCardState extends State<ProjectInfoCard>
                   indicatorWeight: 2.5,
                   dividerHeight: 0.5,
                   dividerColor: theme.colorScheme.outlineVariant,
-                  labelPadding:
-                      const EdgeInsets.symmetric(horizontal: 14),
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 14),
                   tabs: [
                     Tab(
                       height: 36,
@@ -121,9 +116,7 @@ class _ProjectInfoCardState extends State<ProjectInfoCard>
                 builder: (context, _) {
                   return AnimatedCrossFade(
                     duration: const Duration(milliseconds: 200),
-                    crossFadeState: _tabController.index == 0
-                        ? CrossFadeState.showFirst
-                        : CrossFadeState.showSecond,
+                    crossFadeState: _tabController.index == 0 ? CrossFadeState.showFirst : CrossFadeState.showSecond,
                     firstChild: _GeneralTab(info: info),
                     secondChild: _DependenciesTab(
                       dependencies: info.dependencies,
@@ -219,54 +212,59 @@ class _DependenciesTab extends StatelessWidget {
     }
 
     final sorted = dependencies.entries.toList()
-      ..sort((a, b) => a.key.compareTo(b.key));
+      ..sort((a, b) {
+        final aIsDev = a.key.contains('(dev)');
+        final bIsDev = b.key.contains('(dev)');
+        if (aIsDev != bIsDev) return aIsDev ? 1 : -1;
+        return a.key.compareTo(b.key);
+      });
 
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
         child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    t.projectInfo.package.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 1,
-                      color: theme.colorScheme.onSurfaceVariant,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Text(
+                      t.projectInfo.package.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1,
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Text(
-                    t.projectInfo.version.toUpperCase(),
-                    textAlign: TextAlign.end,
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 1,
-                      color: theme.colorScheme.onSurfaceVariant,
+                  Expanded(
+                    child: Text(
+                      t.projectInfo.version.toUpperCase(),
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1,
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
-          ...sorted.map(
-            (entry) => _DependencyRow(
-              name: entry.key,
-              version: entry.value,
-              isEven: sorted.indexOf(entry).isEven,
+            const SizedBox(height: 4),
+            ...sorted.map(
+              (entry) => _DependencyRow(
+                name: entry.key,
+                version: entry.value,
+                isEven: sorted.indexOf(entry).isEven,
+              ),
             ),
-          ),
-        ],
+          ],
         ),
       ),
     );
@@ -289,10 +287,7 @@ class _DependencyRow extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: isEven
-            ? theme.colorScheme.surfaceContainerHighest
-                .withValues(alpha: 0.3)
-            : Colors.transparent,
+        color: isEven ? theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.3) : Colors.transparent,
         borderRadius: BorderRadius.circular(6),
       ),
       child: Row(
@@ -382,8 +377,7 @@ class _FvmChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color =
-        info.hasFvm ? AppColors.success : AppColors.onSurfaceVariant;
+    final color = info.hasFvm ? AppColors.success : AppColors.onSurfaceVariant;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(

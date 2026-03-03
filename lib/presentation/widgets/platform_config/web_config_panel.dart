@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../application/application.dart';
 import '../../../core/core.dart';
 import '../../../domain/domain.dart';
+import '../debounced_text_field.dart';
 
 final class WebConfigPanel extends StatelessWidget {
   const WebConfigPanel({super.key});
@@ -69,16 +70,12 @@ final class WebConfigPanel extends StatelessWidget {
                       const Divider(),
                       _SectionLabel(t.platformConfig.flavor),
                       const SizedBox(height: 4),
-                      Directionality(
+                      DebouncedTextField(
+                        initialValue: config.flavor,
+                        hintText: t.platformConfig.flavorHint,
                         textDirection: TextDirection.ltr,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: t.platformConfig.flavorHint,
-                            isDense: true,
-                          ),
-                          controller: TextEditingController(text: config.flavor),
-                          onChanged: (v) => cubit.updateWebConfig(config.copyWith(flavor: v)),
-                        ),
+                        onChanged: (v) =>
+                            cubit.updateWebConfig(config.copyWith(flavor: v)),
                       ),
                       const SizedBox(height: 12),
                       _SectionLabel(t.platformConfig.runMode),
@@ -103,16 +100,12 @@ final class WebConfigPanel extends StatelessWidget {
                       const Divider(),
                       _SectionLabel(t.platformConfig.target),
                       const SizedBox(height: 4),
-                      Directionality(
+                      DebouncedTextField(
+                        initialValue: config.target,
+                        hintText: t.platformConfig.targetHint,
                         textDirection: TextDirection.ltr,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: t.platformConfig.targetHint,
-                            isDense: true,
-                          ),
-                          controller: TextEditingController(text: config.target),
-                          onChanged: (v) => cubit.updateWebConfig(config.copyWith(target: v)),
-                        ),
+                        onChanged: (v) =>
+                            cubit.updateWebConfig(config.copyWith(target: v)),
                       ),
                       const SizedBox(height: 12),
                     ],

@@ -69,6 +69,7 @@ final class BuildCommandGenerator {
       buildMode: config.buildMode,
       obfuscate: config.obfuscate,
       splitDebugInfo: config.splitDebugInfo,
+      noTreeShakeIcons: config.noTreeShakeIcons,
       flavor: config.flavor,
       target: config.target,
     );
@@ -93,6 +94,7 @@ final class BuildCommandGenerator {
       buildMode: config.buildMode,
       obfuscate: config.obfuscate,
       splitDebugInfo: config.splitDebugInfo,
+      noTreeShakeIcons: config.noTreeShakeIcons,
       flavor: config.flavor,
       target: config.target,
     );
@@ -147,6 +149,7 @@ final class BuildCommandGenerator {
     required BuildMode buildMode,
     required bool obfuscate,
     required bool splitDebugInfo,
+    bool noTreeShakeIcons = false,
     required String flavor,
     required String target,
   }) {
@@ -158,6 +161,10 @@ final class BuildCommandGenerator {
 
     if (splitDebugInfo) {
       args.add('--split-debug-info=${AppConstants.splitDebugInfoPath}');
+    }
+
+    if (noTreeShakeIcons) {
+      args.add('--no-tree-shake-icons');
     }
 
     if (flavor.isNotEmpty) {

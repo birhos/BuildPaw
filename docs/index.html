@@ -121,6 +121,23 @@
       height: 18px;
     }
 
+    .screenshots-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: 32px 0 24px;
+    }
+
+    .screenshot-thumb {
+      max-width: 280px;
+      max-height: 180px;
+      object-fit: contain;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
     /* Features */
     .section {
       padding: 48px 0;
@@ -230,6 +247,14 @@
         <span class="badge">macOS</span>
         <span class="badge">8 Languages</span>
         <span class="badge">GPL v3</span>
+      </div>
+      <div class="screenshots-preview">
+        <img src="screenshots/build-tab.png" alt="Build Tab" class="screenshot-thumb">
+        <img src="screenshots/publish-tab.png" alt="Publish Tab" class="screenshot-thumb">
+        <img src="screenshots/languages.png" alt="Language Selection" class="screenshot-thumb">
+        <img src="screenshots/web-config.png" alt="Web Config Panel" class="screenshot-thumb">
+        <img src="screenshots/ios-config.png" alt="iOS Config Panel" class="screenshot-thumb">
+        <img src="screenshots/android-config.png" alt="Android Config Panel" class="screenshot-thumb">
       </div>
       <a href="https://github.com/birhos/BuildPaw" class="cta" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor">

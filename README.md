@@ -37,7 +37,18 @@ BuildPaw is a **Flutter Desktop GUI application** (macOS first-class citizen) th
 
 ## Screenshots
 
-> *Coming soon — the app features a Material 3 dark/light theme with an amber/orange "paw" color palette.*
+<p align="center">
+  <img src="docs/screenshots/build-tab.png" alt="Build Tab" width="280" />
+  <img src="docs/screenshots/publish-tab.png" alt="Publish Tab" width="280" />
+  <img src="docs/screenshots/languages.png" alt="Language Selection" width="280" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/web-config.png" alt="Web Config Panel" width="280" />
+  <img src="docs/screenshots/ios-config.png" alt="iOS Config Panel" width="280" />
+  <img src="docs/screenshots/android-config.png" alt="Android Config Panel" width="280" />
+</p>
+
+*Material 3 dark/light theme with an amber/orange "paw" color palette. 8 languages supported.*
 
 ---
 

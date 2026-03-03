@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="BuildPaw - A beautiful Flutter Desktop app to manage build processes without the CLI complexity.">
+  <title>BuildPaw - Flutter Build Manager</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --bg-card: #1a1a1a;
+      --bg-elevated: #242424;
+      --text: #e8e8e8;
+      --text-muted: #9ca3af;
+      --accent: #f59e0b;
+      --accent-hover: #fbbf24;
+      --border: #2d2d2d;
+      --success: #22c55e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 60px;
+    }
+
+    .hero-logo {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 24px;
+      border-radius: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--text-muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .tagline {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--accent);
+      color: #000;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .cta:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .cta svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Features */
+    .section {
+      padding: 48px 0;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent);
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--bg-elevated);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 1.25rem;
+    }
+
+    /* Getting Started */
+    .code-block {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    .code-block .comment {
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 48px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-paw {
+      font-size: 1.5rem;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="hero">
+      <img src="assets/logo.png" alt="BuildPaw" class="hero-logo">
+      <h1>BuildPaw</h1>
+      <p class="tagline">
+        A beautiful Flutter Desktop app to manage build processes without the CLI complexity.
+      </p>
+      <div class="badges">
+        <span class="badge">Flutter 3.35+</span>
+        <span class="badge">Dart 3.9+</span>
+        <span class="badge">macOS</span>
+        <span class="badge">8 Languages</span>
+        <span class="badge">GPL v3</span>
+      </div>
+      <a href="https://github.com/birhos/BuildPaw" class="cta" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+        </svg>
+        View on GitHub
+      </a>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Key Features</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📦</div>
+            <h3>Multi-platform Builds</h3>
+            <p>Android (APK/AAB), iOS (Runner/IPA), Web — all in one place with a single click.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📋</div>
+            <h3>Real-time Logs</h3>
+            <p>Terminal-style output with color-coded messages. No more switching to the CLI.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h3>Publish Tab</h3>
+            <p>Distribute to Firebase App Distribution, Google Play Console, and App Store Connect.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📁</div>
+            <h3>Config Profiles</h3>
+            <p>Save, load, and switch between build configurations. Export/import as JSON.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🌍</div>
+            <h3>8 Languages</h3>
+            <p>EN, TR, AR, DE, FR, ZH, RU, HI with full RTL support for Arabic.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>FVM Aware</h3>
+            <p>Auto-detects .fvm and prefixes commands accordingly. No manual setup.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Getting Started</h2>
+        <p style="margin-bottom: 16px; color: var(--text-muted);">
+          Prerequisites: Flutter SDK ≥3.35.6, Dart SDK ≥3.9.2, macOS
+        </p>
+        <div class="code-block">
+          <span class="comment"># Clone the repository</span>
+          git clone https://github.com/birhos/BuildPaw.git
+          cd BuildPaw
+
+          <span class="comment"># Install dependencies</span>
+          flutter pub get
+
+          <span class="comment"># Generate i18n translations</span>
+          dart run slang
+
+          <span class="comment"># Run the app</span>
+          flutter run -d macos
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>BuildPaw is licensed under the <a href="https://github.com/birhos/BuildPaw/blob/main/LICENSE" target="_blank"
+          rel="noopener">GNU GPL v3</a>.</p>
+      <p class="footer-paw">🐾 Built with Flutter & lots of paw prints</p>
+    </footer>
+  </main>
+</body>
+
+</html>

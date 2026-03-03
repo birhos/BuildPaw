@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/Flutter-3.35+-02569B?logo=flutter" alt="Flutter"/>
   <img src="https://img.shields.io/badge/Dart-3.9+-0175C2?logo=dart" alt="Dart"/>
   <img src="https://img.shields.io/badge/Platform-macOS-000?logo=apple" alt="macOS"/>
-  <img src="https://img.shields.io/badge/License-MIT-green" alt="License"/>
+  <img src="https://img.shields.io/badge/License-GPLv3-blue" alt="License"/>
   <img src="https://img.shields.io/badge/Languages-8-orange" alt="Languages"/>
 </p>
 
@@ -240,7 +240,7 @@ Types: feat, fix, docs, style, refactor, perf, test, build, revert, hotfix
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the GNU GPL v3 (Copyleft). See [LICENSE](LICENSE) for details.
 
 ---
 

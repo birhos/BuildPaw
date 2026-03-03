@@ -16,6 +16,10 @@
   <img src="https://img.shields.io/badge/Languages-8-orange" alt="Languages"/>
 </p>
 
+<p align="center">
+  <strong>Developed by</strong> <a href="https://www.linkedin.com/in/seniorturkmen/" target="_blank" rel="noopener">Mustafa Türkmen</a> & <a href="https://www.linkedin.com/in/haydardemir/" target="_blank" rel="noopener">Haydar Demir</a>
+</p>
+
 ---
 
 ## What is BuildPaw?
@@ -256,5 +260,6 @@ This project is licensed under the GNU GPL v3 (Copyleft). See [LICENSE](LICENSE)
 ---
 
 <p align="center">
-  Built with Flutter & lots of paw prints
+  Built with Flutter & lots of paw prints<br>
+  <small>Created by <a href="https://www.linkedin.com/in/seniorturkmen/" target="_blank" rel="noopener">Mustafa Türkmen</a> & <a href="https://www.linkedin.com/in/haydardemir/" target="_blank" rel="noopener">Haydar Demir</a></small>
 </p>
